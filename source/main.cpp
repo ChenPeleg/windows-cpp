@@ -1,6 +1,8 @@
+#include "constants.h" // include a copy of each constant in this file
 #include <iostream>
 
 int main()
 {
-    std::cout << "Hello World" << std::endl;
+    int radius{};
+    std::cout << "Hello World! Pi is " << constants::pi << std::endl;
 }

@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++ build",
+			"label": "C/C++ build single file",
 			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
@@ -23,14 +23,14 @@
 		},
 		{
 			"type": "cppbuild",
-			"label": "C/C++ build active file 2",
+			"label": "C/C++ build multi file",
 			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
-				"${file}",
+				"${workspaceFolder}/source/*.cpp",
 				"-o",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe"
+				"${workspaceFolder}\\bin\\${fileBasenameNoExtension}.exe"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
@@ -40,6 +40,6 @@
 			],
 			"group": "build",
 			"detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
-		}
+		},
 	]
 }
