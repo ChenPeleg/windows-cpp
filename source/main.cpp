@@ -4,5 +4,7 @@
 int main()
 {
     int radius{};
-    std::cout << "Hello World! Pi is " << constants::pi << std::endl;
+    int e = constants::eight();
+    std::cout << "Hello World! eight is " << e << std::endl;
+    std::cin
 }
