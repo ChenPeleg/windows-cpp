@@ -4,7 +4,9 @@
 int main()
 {
     int radius{};
+    int respons;
     int e = constants::eight();
-    std::cout << "Hello World! eight is " << e << std::endl;
-    std::cin
+    std::cout << "Hello World! eight is 1 " << e << std::endl;
+    std::cout << "answer one question " << std::endl;
+    std::cin >> respons;
 }
