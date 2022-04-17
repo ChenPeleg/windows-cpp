@@ -1,4 +1,5 @@
-#include "constants.h"
+#include "./images/images.cpp"
+#include "constants.cpp"
 #include "grapihics_utils.h"
 #include <windows.h>
 #include <iomanip>
@@ -23,17 +24,15 @@ int main()
 {
     int radius{};
     int respons;
-    int e = constants::eight();
 
-    // char inputFileName[BUFFER_SIZE];
     char *inputFileName = new char[BUFFER_SIZE];
 
     graphicUtils::clear();
-    for (int i = 1; i < 10; i++)
+    for (int i = 1; i < 100; i++)
     {
         graphicUtils::clear();
         std::cout << "\n\n\n";
-        std::cout << "Hello World! eight is 1 " << e << std::endl;
+        std::cout << "Hello World! is 1 " << images::image1 << std::endl;
         std::cout << inputFileName << std::endl;
         std::cout << inputFileName << std::endl;
         std::cout << inputFileName << std::endl;
@@ -42,8 +41,7 @@ int main()
         if (checkExit(inputFileName))
         {
             std::cout << "Goodbye!" << std::endl;
-            std::cin >> std::setw(BUFFER_SIZE) >> inputFileName;
-            i = 20;
+            i = 100;
             break;
         }
     }

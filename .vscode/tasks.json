@@ -18,6 +18,26 @@
             "problemMatcher": [
                 "$gcc"
             ],
+            "group": "build",
+            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++ build main.cpp",
+            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/source/main.cpp",
+                "-o",
+                "${workspaceFolder}\\bin\\main.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
