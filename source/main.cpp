@@ -6,90 +6,55 @@
 #include <iostream>
 #include <conio.h>
 
-const size_t BUFFER_SIZE = 1024;
-int eventLoop();
-int eventLoop2();
+using namespace std;
+using namespace constants;
 
-bool checkExit(char *stringToCheck)
-{
-    char exitString[5] = "exit";
-    bool isExit = true;
-    for (int i = 0; i < 5; i++)
-    {
-        if (stringToCheck[i] != exitString[i])
-        {
-            isExit = false;
-        }
-    }
-    return isExit;
-}
+int eventLoop();
+
 int main()
 {
+    cout << endl;
     graphicUtils::clear();
-    eventLoop2();
+    eventLoop();
     return 0;
 }
-int old_main()
 
+char *duplicateChar(char c, int len)
 {
-    int radius{};
-    int respons;
-
-    char *inputFileName = new char[BUFFER_SIZE];
-
-    graphicUtils::clear();
-    for (int i = 1; i < 1; i++)
+    char *newChar = new char[len];
+    for (int i = 0; i < len; i++)
     {
-        graphicUtils::clear();
-        std::cout << "\n\n";
-        std::cout << "Dungeons and Ghosts" << images::image1 << std::endl;
-        std::cout << inputFileName << std::endl;
-        std::cout << inputFileName << std::endl;
-        std::cout << inputFileName << std::endl;
-        std::cout << inputFileName << std::endl;
-        std::cout << "answer one question " << std::endl;
-
-        std::cin >> std::setw(BUFFER_SIZE) >> inputFileName;
-        if (checkExit(inputFileName))
-        {
-            std::cout << "Goodbye!" << std::endl;
-            i = 100;
-            break;
-        }
+        newChar[i] = c;
     }
-    delete[] inputFileName;
-    return 0;
+    return newChar;
 }
 
-int keypressed(int key)
+int keypressed(char key)
 {
-    std::cout << key << std::endl;
-    return 0;
-}
-int eventLoop()
-{
-    int c, l, last = 0;
-    char str[100];
-    do
+    cout << key << endl;
+    graphicUtils::clear();
+    char *multichar = duplicateChar(key, rowLength);
+    for (int y = 0; y < 10; y++)
     {
-        c = getchar();
-        str[l] = c;
-        if (c != l)
+        for (int i = 0; i < rowLength; i++)
         {
-            keypressed(c);
+            cout << multichar[i];
         }
+        cout << endl;
+    }
 
-    } while (c != '\n');
+    cout << key << endl;
+
     return 0;
 }
-int eventLoop2()
+
+int eventLoop()
 {
     char a;
     do
     {
-        a = getche();
-        graphicUtils::clear();
-        std::cout << a;
+        char a = getche();
+        keypressed(a);
 
     } while (a != '\n');
     return 0;
