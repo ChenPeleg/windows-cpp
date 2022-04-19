@@ -2,10 +2,11 @@
 #include "constants.cpp"
 #include "grapihics_utils.h"
 #include "./classes/app_state.hpp"
+#include "./events/app_events.cpp"
 #include <windows.h>
 #include <iomanip>
 #include <iostream>
-#include <conio.h>
+
 using namespace std;
 using namespace constants;
 namespace app_main
@@ -68,21 +69,21 @@ namespace app_main
         while (runing)
         {
             lastChar = keyPressed;
-            char keyPressed = getche();
+            char keyPressed = app_events::getKeyPressed();
             int sec = 0;
             lastSecond = sec;
             sec =
                 state->getSecondsPassed();
             if (sec != lastSecond)
             {
-                cout << sec << endl;
+                cout << " seconds:" << sec << endl;
             }
 
             if (keyPressed != lastChar)
             {
                 // keypressed(keyPressed);
             }
-            if (keyPressed == 'q')
+            if (keyPressed == 'q' || sec > 10)
             {
                 finish();
                 runing = false;

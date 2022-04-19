@@ -26,7 +26,7 @@ namespace app_state
         {
             time_t current = std::time(nullptr);
 
-            return this->start_time - current;
+            return current - this->start_time;
         };
     };
 
