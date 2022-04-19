@@ -10,14 +10,16 @@ using namespace std;
 using namespace constants;
 namespace app_main
 {
-    // app_state::State state;
+
     int eventLoop();
     int keypressed(char);
     char *duplicateChar(char, int);
+    app_state::State *state = new app_state::State(10);
 
     int app()
     {
-        app_state::State state(10);
+
+        // app_state::State state(10);
 
         cout << endl;
         graphicUtils::clear();
@@ -53,16 +55,40 @@ namespace app_main
 
         return 0;
     }
+    void finish()
+    {
+        cout << "Finished, Goodbye!" << endl;
+    }
 
     int eventLoop()
     {
-        char a;
-        do
+        char keyPressed, lastChar;
+        int lastSecond;
+        bool runing = true;
+        while (runing)
         {
-            char a = getche();
-            keypressed(a);
+            lastChar = keyPressed;
+            char keyPressed = getche();
+            int sec = 0;
+            lastSecond = sec;
+            sec =
+                state->getSecondsPassed();
+            if (sec != lastSecond)
+            {
+                cout << sec << endl;
+            }
 
-        } while (a != '\n');
+            if (keyPressed != lastChar)
+            {
+                // keypressed(keyPressed);
+            }
+            if (keyPressed == 'q')
+            {
+                finish();
+                runing = false;
+            }
+        }
+
         return 0;
     }
 
@@ -70,4 +96,5 @@ namespace app_main
 int main()
 {
     app_main::app();
+    return 0;
 }
