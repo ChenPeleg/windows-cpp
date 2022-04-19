@@ -66,24 +66,40 @@ namespace app_main
         char keyPressed, lastChar;
         int lastSecond;
         bool runing = true;
+        cout << images::mage << endl;
+
+        cout << "\x1B[31mRED\033[0m\t\t";
+        printf("\x1B[32mTexting\033[0m\t\t");
+        printf("\x1B[33mTexting\033[0m\t\t");
         while (runing)
         {
-            lastChar = keyPressed;
-            char keyPressed = app_events::getKeyPressed();
-            int sec = 0;
-            lastSecond = sec;
-            sec =
+
+            char keyPressed = app_events::getKeyPressed2();
+            int sec =
                 state->getSecondsPassed();
             if (sec != lastSecond)
             {
-                cout << " seconds:" << sec << endl;
+                // cout << " " << sec << "    ";
             }
+            lastSecond = sec;
 
             if (keyPressed != lastChar)
             {
+                cout << " \n pressed:" << keyPressed << endl;
+                lastChar = keyPressed;
+                if (keyPressed == '1')
+                {
+                    graphicUtils::clear();
+                    cout << images::mage << endl;
+                }
+                if (keyPressed == '2')
+                {
+                    graphicUtils::clear();
+                    cout << images::fighter << endl;
+                }
                 // keypressed(keyPressed);
             }
-            if (keyPressed == 'q' || sec > 10)
+            if (keyPressed == 'Q' || sec > 10)
             {
                 finish();
                 runing = false;
