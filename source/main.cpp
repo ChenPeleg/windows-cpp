@@ -3,6 +3,7 @@
 #include "grapihics_utils.h"
 #include "./classes/app_state.hpp"
 #include "./events/app_events.cpp"
+#include "./content/content_pages.cpp"
 #include <windows.h>
 #include <iomanip>
 #include <iostream>
@@ -66,9 +67,13 @@ namespace app_main
         char keyPressed, lastChar;
         int lastSecond;
         bool runing = true;
-        cout << images::mage << endl;
+        // content_pages::Page *currentPage = content_pages::pages[0];
 
-        cout << "\x1B[31mRED\033[0m\t\t";
+        cout << content_pages::pages[0]->text << endl;
+        //   cout << images::mage << endl;
+
+        cout
+            << "\x1B[31mRED\033[0m\t\t";
         printf("\x1B[32mTexting\033[0m\t\t");
         printf("\x1B[33mTexting\033[0m\t\t");
         while (runing)

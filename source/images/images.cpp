@@ -4,20 +4,20 @@
 // Images are by design 60X30
 namespace images
 {
-    char image1[] = "123123";
-    const char *fighter = R"(
+  char image1[] = "123123";
+  const char *fighter = R"(
 
 |==(W{==========-       
     ||  (.--.)         
     | \_,|**|,__      
     `\ ' `--'   ),     
-      `\_. .__/\ \     
+      `\_. .__/\ \`      
         | .  |~~\~|    
        /==0==-\  /    
       /~\___/~~\/    
 
     )";
-    const char *mage = R"(
+  const char *mage = R"(
                                     /\
                                    /  \
                                   |    |
