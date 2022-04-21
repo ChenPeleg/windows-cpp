@@ -3,16 +3,25 @@
 
 namespace content_pages
 {
-    class Option
-    {
-        char *optionText;
-        int optionPage;
-    };
+    class Page;
+
     class Page
     {
-        Page(char *text, /* Option options[5],*/ int imageId, int customId)
+
+    public:
+        char *text;
+        // Option options[5];
+        int imageId;
+        int customId;
+
+        buildPage(const char *text, /* Option options[5],*/ int imageId, int customId)
         {
-            this->text = text;
+            int size = this->string_size(text);
+            for (int i = 0; i < size + 1; i++)
+            {
+                this->text[i] = text[i];
+            }
+            //
             this->imageId = imageId;
             this->customId = customId;
             // this->options = options;
@@ -20,21 +29,25 @@ namespace content_pages
             {
                 // this->options[i] = options[i];
             }
+            return 0;
         }
-        char *text;
-        // Option options[5];
-        int imageId;
-        int customId;
+        int string_size(const char *str)
+        {
+            // const char *str = "Hello World !";
+            int Size = 0;
+            while (str[Size] != '\0')
+                Size++;
+            return Size;
+        }
     };
-    Page *pages[200];
-    // Page page[0] = {
 
-    // }
-    // pages[0] = new Page(
-    //     "You wakeup in an old room. Can't remember How you got here. What do you want to do?",
-    //     {"Look for a way out", "Search my clothes", "Prey to God"},
-    //     0,
-    //     0);
+    void getPages()
+    {
+        Page pages[200];
+        pages[0].buildPage("abc1234", 12, 1);
+    };
+
+    // pages[0].text = "asdfasg";
 
 }
 

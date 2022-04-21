@@ -68,8 +68,8 @@ namespace app_main
         int lastSecond;
         bool runing = true;
         // content_pages::Page *currentPage = content_pages::pages[0];Page
-
-        // cout << content_pages::pages[0]->text << endl;
+        content_pages::getPages();
+        //  cout << content_pages::getPages() << endl;
         //   cout << images::mage << endl;
 
         cout
