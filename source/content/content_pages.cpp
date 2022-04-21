@@ -3,25 +3,33 @@
 
 namespace content_pages
 {
-    struct Page
+    class Option
     {
-        Page(char *text, char options[5][100], int imageId, int customId)
+        char *optionText;
+        int optionPage;
+    };
+    class Page
+    {
+        Page(char *text, /* Option options[5],*/ int imageId, int customId)
         {
             this->text = text;
             this->imageId = imageId;
             this->customId = customId;
-            this->options = options;
+            // this->options = options;
             for (int i; i < 5; i++)
             {
-                this->options[i] = options[i];
+                // this->options[i] = options[i];
             }
         }
         char *text;
-        char options[5][100];
+        // Option options[5];
         int imageId;
         int customId;
     };
     Page *pages[200];
+    // Page page[0] = {
+
+    // }
     // pages[0] = new Page(
     //     "You wakeup in an old room. Can't remember How you got here. What do you want to do?",
     //     {"Look for a way out", "Search my clothes", "Prey to God"},

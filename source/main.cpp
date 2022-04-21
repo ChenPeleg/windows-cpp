@@ -67,9 +67,9 @@ namespace app_main
         char keyPressed, lastChar;
         int lastSecond;
         bool runing = true;
-        // content_pages::Page *currentPage = content_pages::pages[0];
+        // content_pages::Page *currentPage = content_pages::pages[0];Page
 
-        cout << content_pages::pages[0]->text << endl;
+        // cout << content_pages::pages[0]->text << endl;
         //   cout << images::mage << endl;
 
         cout
