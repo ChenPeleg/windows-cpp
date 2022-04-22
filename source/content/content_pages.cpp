@@ -4,13 +4,14 @@
 namespace content_pages
 {
     class Page;
+    Page getPages();
 
     class Page
     {
 
     public:
-        char *text;
-        // Option options[5];
+        char text[100];
+        char options[5][50];
         int imageId;
         int customId;
 
@@ -41,10 +42,11 @@ namespace content_pages
         }
     };
 
-    void getPages()
+    Page getPages()
     {
-        Page pages[200];
-        pages[0].buildPage("abc1234", 12, 1);
+        Page thepage;
+        thepage.buildPage("abc1234", 12, 1);
+        return thepage;
     };
 
     // pages[0].text = "asdfasg";
