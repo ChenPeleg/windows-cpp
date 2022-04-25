@@ -10,8 +10,9 @@ namespace content_pages
     {
 
     public:
-        char text[100];
-        char options[5][50];
+        char text[500];
+        char options[5][100];
+        int optionsNumber[5];
         int imageId;
         int customId;
         void o(const char *textoptions1, int op1,
@@ -33,7 +34,7 @@ namespace content_pages
 
             this->setOptions(textoptions1, op1, textoptions2, op2, "", 0, "", 0);
         };
-        void o(const char *textoptions1, int op1 )
+        void o(const char *textoptions1, int op1)
         {
 
             this->setOptions(textoptions1, op1, "", 0, "", 0, "", 0);
@@ -47,6 +48,7 @@ namespace content_pages
             for (int o = 0; o < 5; o++)
             {
                 int currentSize = 0;
+                int optionNumber = 0;
                 const char *optionString = NULL;
 
                 switch (o)
@@ -54,26 +56,39 @@ namespace content_pages
                 case 0:
                     currentSize = this->string_size(textoptions1);
                     optionString = textoptions1;
+                    optionNumber = op1;
                     break;
                 case 1:
                     currentSize = this->string_size(textoptions2);
                     optionString = textoptions2;
+                    optionNumber = op2;
                     break;
                 case 2:
                     currentSize = this->string_size(textoptions3);
                     optionString = textoptions3;
+                    optionNumber = op3;
                     break;
                 case 3:
                     currentSize = this->string_size(textoptions4);
                     optionString = textoptions4;
+                    optionNumber = op4;
                     break;
                 case 4:
                     break;
                 }
-                for (int i; i < currentSize; i++)
+                int i = 0;
+                for (i = 0; i < currentSize; i++)
                 {
-                    this->options[o][i] = textoptions1[i];
+                    this->options[o][i] = optionString[i];
                 };
+                int sizeOfArr = sizeof(this->options[o]);
+                // for ()
+                for (int d = i + 1; d < sizeOfArr - currentSize; d++)
+                {
+                    this->options[o][d] = '\0'; // end  of meaningfull cahrs
+                }
+
+                this->optionsNumber[o] = optionNumber;
             };
         };
 
@@ -83,19 +98,23 @@ namespace content_pages
         };
         void buildPage(const char *text, /* Option options[5],*/ int imageId, int customId)
         {
+            int i;
+
             int size = this->string_size(text);
-            for (int i = 0; i < size + 1; i++)
+            for (i = 0; i < size + 1; i++)
             {
                 this->text[i] = text[i];
             }
+            int sizeOfArr = sizeof(this->text);
+            // for ()
+            for (int d = i + 1; d < sizeOfArr - size; d++)
+            {
+                this->text[d] = '\0'; // end  of meaningfull cahrs
+            }
+
             //
             this->imageId = imageId;
             this->customId = customId;
-            // this->options = options;
-            for (int i; i < 5; i++)
-            {
-                // this->options[i] = options[i];
-            };
         }
         int string_size(const char *str)
         {
@@ -134,17 +153,16 @@ namespace content_pages
                 "Go through the door", 2);
             break;
         case 4:
-            p.b("The paper has strage writings on it and it sais: '...don't touch the golden goose", 12, 1);
+            p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", 12, 1);
             p.o(
                 "Go through the door", 2);
             break;
-        
-    }
+        }
 
-    return p;
-};
+        return p;
+    };
 
-// pages[0].text = "asdfasg";
+    // pages[0].text = "asdfasg";
 }
 
 #endif

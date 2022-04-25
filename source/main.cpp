@@ -14,9 +14,11 @@ namespace app_main
 {
 
     int eventLoop();
-    int keypressed(char);
+    void paint();
+    void keypressed(char);
     char *duplicateChar(char, int);
-    app_state::State *state = new app_state::State(10);
+    content_pages::Page page = content_pages::getPages(1);
+    app_state::State *state = new app_state::State(1);
 
     int app()
     {
@@ -39,72 +41,105 @@ namespace app_main
         return newChar;
     }
 
-    int keypressed(char key)
+    void keypressed(char key)
     {
-        cout << key << endl;
-        graphicUtils::clear();
-        char *multichar = duplicateChar(key, rowLength);
-        for (int y = 0; y < 10; y++)
+        if (state->lastKey == key)
         {
-            for (int i = 0; i < rowLength; i++)
-            {
-                cout << multichar[i];
-            }
-            cout << endl;
+            return;
         }
+        state->lastKey = key;
 
-        cout << key << endl;
+        int keyAsInt = key - '0';
+        int newPageNumber = 0;
+        for (int o = 0; o < 5; o++)
+        {
+            if (page.optionsNumber[o] < 1)
+            {
+                continue;
+            }
 
-        return 0;
+            if (keyAsInt == (o + 1))
+            {
+                newPageNumber = page.optionsNumber[o];
+            }
+
+            // cout << page.options[o] << "\n\n"
+            //      << endl;
+        }
+        if (newPageNumber > 0)
+        {
+            state->highLightedAns = keyAsInt;
+            page = content_pages::getPages(newPageNumber);
+            paint();
+        }
     }
     void finish()
     {
         cout << "Finished, Goodbye!" << endl;
     }
-
+    void paint()
+    {
+        cout << "\n\n\n"
+             << endl;
+        graphicUtils::clear();
+        cout << "\n\n\n";
+        cout << page.text << endl;
+        cout << "\n"
+             << endl;
+        for (int o = 0; o < 5; o++)
+        {
+            if (page.optionsNumber[o] < 1)
+            {
+                continue;
+            }
+            cout << o + 1 << ". " << page.options[o] << "\n\n"
+                 << endl;
+        }
+        // cout << page.options[0]
+    };
     int eventLoop()
     {
         char keyPressed, lastChar;
         int lastSecond;
         bool runing = true;
+        page = content_pages::getPages(1);
+        paint();
         // content_pages::Page *currentPage = content_pages::pages[0];Page
-        content_pages::Page onePage = content_pages::getPages(0);
-        //  cout << content_pages::getPages() << endl;
+
         //   cout << images::mage << endl;
 
-        cout
-            << "\x1B[31mRED\033[0m\t\t";
-        printf("\x1B[32mTexting\033[0m\t\t");
-        printf("\x1B[33mTexting\033[0m\t\t");
+        // cout
+        //     << "\x1B[31mRED\033[0m\t\t";
+        // printf("\x1B[32mTexting\033[0m\t\t");
+        // printf("\x1B[33mTexting\033[0m\t\t");
         while (runing)
         {
 
             char keyPressed = app_events::getKeyPressed2();
-            int sec =
-                state->getSecondsPassed();
-            if (sec != lastSecond)
-            {
-                // cout << " " << sec << "    ";
-            }
+
+            int sec = state->getSecondsPassed();
             lastSecond = sec;
 
             if (keyPressed != lastChar)
             {
-                cout << " \n pressed:" << keyPressed << endl;
+                keypressed(keyPressed);
+                keyPressed = '\0';
                 lastChar = keyPressed;
-                if (keyPressed == '1')
-                {
-                    graphicUtils::clear();
-                    cout << images::mage << endl;
-                }
-                if (keyPressed == '2')
-                {
-                    graphicUtils::clear();
-                    cout << images::fighter << endl;
-                }
-                // keypressed(keyPressed);
+                // cout << " \n pressed:" << keyPressed << endl;
+                // lastChar = keyPressed;
+                // if (keyPressed == '1')
+                // {
+                //     graphicUtils::clear();
+                //     cout << images::mage << endl;
+                // }
+                // if (keyPressed == '2')
+                // {
+                //     graphicUtils::clear();
+                //     cout << images::fighter << endl;
+                // }
+                //
             }
-            if (keyPressed == 'Q' || sec > 10)
+            if (keyPressed == 'Q' || sec > 20)
             {
                 finish();
                 runing = false;
