@@ -99,6 +99,7 @@ namespace content_pages
         void buildPage(const char *text, /* Option options[5],*/ int imageId, int customId)
         {
             int i;
+            const int paddingMaxSize = 400;
 
             int size = this->string_size(text);
             for (i = 0; i < size + 1; i++)
@@ -107,9 +108,17 @@ namespace content_pages
             }
             int sizeOfArr = sizeof(this->text);
             // for ()
+            this->text[i] = ' ';
             for (int d = i + 1; d < sizeOfArr - size; d++)
             {
-                this->text[d] = '\0'; // end  of meaningfull cahrs
+                if (d < paddingMaxSize)
+                {
+                    this->text[d] = ' '; // add space padding
+                }
+                else
+                {
+                    this->text[d] = '\0'; // end  of meaningfull cahrs
+                }
             }
 
             //

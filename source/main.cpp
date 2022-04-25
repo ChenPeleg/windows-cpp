@@ -83,9 +83,8 @@ namespace app_main
              << endl;
         graphicUtils::clear();
         cout << "\n\n\n";
-        cout << page.text << endl;
-        cout << "\n"
-             << endl;
+        cout << page.text << "...." << endl;
+        // cout << "\n"             << endl;
         for (int o = 0; o < 5; o++)
         {
             if (page.optionsNumber[o] < 1)
@@ -95,7 +94,7 @@ namespace app_main
             cout << o + 1 << ". " << page.options[o] << "\n\n"
                  << endl;
         }
-        // cout << page.options[0]
+        // cout << page.options[0]21
     };
     int eventLoop()
     {

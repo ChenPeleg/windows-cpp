@@ -2,6 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "clear_console",
+            "type": "shell",
+            "command": "cls",
+            "args": []
+        },
+        {
             "type": "cppbuild",
             "label": "C/C++ build",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
@@ -22,9 +28,9 @@
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
         },
         {
-            "type": "cppbuild",
             "label": "C/C++ build main.cpp",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+            "type": "cppbuild",
+            "command": " C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
@@ -42,7 +48,10 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
+            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe",
+            "dependsOn": [
+                "clear_console"
+            ]
         }
     ]
 }
