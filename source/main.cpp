@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <iomanip>
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 using namespace constants;
@@ -17,13 +18,12 @@ namespace app_main
     void paint();
     void keypressed(char);
     char *duplicateChar(char, int);
+    void paintKeyPressBar(int);
     content_pages::Page page = content_pages::getPages(1);
     app_state::State *state = new app_state::State(1);
 
     int app()
     {
-
-        // app_state::State state(10);
 
         cout << endl;
         graphicUtils::clear();
@@ -33,11 +33,13 @@ namespace app_main
 
     char *duplicateChar(char c, int len)
     {
+        int i;
         char *newChar = new char[len];
-        for (int i = 0; i < len; i++)
+        for (i = 0; i < len; i++)
         {
             newChar[i] = c;
         }
+        newChar[i] = '\0';
         return newChar;
     }
 
@@ -106,12 +108,30 @@ namespace app_main
                  << "\n"
                  << endl;
         }
-        // cout << page.options[0]21
+        paintKeyPressBar(state->carridgePos);
     };
+    void paintKeyPressBar(int carriagePos)
+    {
+        if (carriagePos < 1)
+        {
+            return;
+        }
+        const char *block = duplicateChar(61, pow(carriagePos, 2) - (carriagePos * 3) + 4);
+
+        cout << "\x1b[47m" << block << "\033[0m\t\t"
+             << "\n\n"
+             << carriagePos << "\n"
+             << endl;
+        // cout << block << "\n"
+        //      << endl;
+    }
+
     int eventLoop()
     {
-        char keyPressed, lastChar;
-        int lastSecond;
+        char keyPressed = 0, lastChar = 0;
+        int lastSecond = 0;
+        long keyDownTime = 0;
+        int carpos = 0;
         bool runing = true;
         page = content_pages::getPages(1);
         paint();
@@ -127,22 +147,33 @@ namespace app_main
             if (keyPressed != lastChar)
             {
                 keypressed(keyPressed);
-                keyPressed = '\0';
+                // keyPressed = '\0';
                 lastChar = keyPressed;
-                // cout << " \n pressed:" << keyPressed << endl;
-                // lastChar = keyPressed;
-                // if (keyPressed == '1')
-                // {
-                //     graphicUtils::clear();
-                //     cout << images::mage << endl;
-                // }
-                // if (keyPressed == '2')
-                // {
-                //     graphicUtils::clear();
-                //     cout << images::fighter << endl;
-                // }
-                //
             }
+            else if (keyPressed && keyPressed == lastChar)
+            {
+                keyDownTime++;
+
+                if (keyDownTime > 1000)
+                {
+                    keyDownTime = 0;
+                    carpos = carpos + 1;
+                    state->carridgePos = carpos;
+                    paint();
+                }
+            }
+            else if (carpos > 0)
+                1111211111111111111111
+                {
+                    keyDownTime--;
+                    if (keyDownTime < -1000)
+                    {
+                        keyDownTime = 0;
+                        carpos = carpos - 1;
+                        state->carridgePos = carpos;
+                        paint();
+                    }
+                }
             if (keyPressed == 'Q' || sec > 20)
             {
                 finish();
@@ -151,9 +182,9 @@ namespace app_main
         }
 
         return 0;
-    }
+    };
 
-}
+};
 int main()
 {
     app_main::app();
