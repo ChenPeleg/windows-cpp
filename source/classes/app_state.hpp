@@ -17,6 +17,7 @@ namespace app_state
     public:
         int lastKey;
         int highLightedAns;
+        int carridgePos;
         State(int _initialState)
         {
             this->p_level = 1;

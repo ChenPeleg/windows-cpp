@@ -146,7 +146,7 @@ namespace content_pages
         switch (pageNumber)
         {
         case 1:
-            p.b("You wake up in a small room with one door.", 12, 1);
+            p.b("You wake up in a small room with one door made of iron.", 12, 1);
             p.o("Open the door", 2,
                 "Look around", 3);
             break;

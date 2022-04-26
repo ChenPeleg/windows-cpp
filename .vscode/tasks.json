@@ -24,6 +24,12 @@
             "options": {
                 "cwd": "${fileDirname}"
             },
+            "presentation": {
+                "echo": true,
+                "reveal": "never",
+                "focus": false,
+                "panel": "new"
+            },
             "problemMatcher": [
                 "$gcc"
             ],
@@ -32,9 +38,9 @@
                 "isDefault": true
             },
             "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe",
-            "dependsOn": [
-                "clear_console"
-            ]
+            // "dependsOn": [
+            //     "clear_console"
+            // ]
         }
     ]
 }
