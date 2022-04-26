@@ -4,37 +4,20 @@
         {
             "label": "clear_console",
             "type": "shell",
-            "command": "cls",
-            "args": []
+            "command": "cls; cls",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         },
         {
+            "label": "build_main.cpp",
             "type": "cppbuild",
-            "label": "C/C++ build",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}/source/*.cpp",
-                "-o",
-                "${workspaceFolder}\\bin\\main.exe"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe"
-        },
-        {
-            "label": "C/C++ build main.cpp",
-            "type": "cppbuild",
-            "command": " C:\\msys64\\mingw64\\bin\\g++.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${workspaceFolder}/source/main.cpp",
+                "${workspaceFolder}\\source\\main.cpp",
                 "-o",
                 "${workspaceFolder}\\bin\\main.exe"
             ],

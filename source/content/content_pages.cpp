@@ -83,6 +83,7 @@ namespace content_pages
                 };
                 int sizeOfArr = sizeof(this->options[o]);
                 // for ()
+                this->options[o][i] = '\0';
                 for (int d = i + 1; d < sizeOfArr - currentSize; d++)
                 {
                     this->options[o][d] = '\0'; // end  of meaningfull cahrs
@@ -92,7 +93,7 @@ namespace content_pages
             };
         };
 
-        void b(const char *text, /* Option options[5],*/ int imageId, int customId)
+        void b(const char *text, int imageId, int customId)
         {
             this->buildPage(text, imageId, customId);
         };
@@ -152,8 +153,8 @@ namespace content_pages
 
         case 2:
             p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", 12, 1);
-            p.o("Go up", 1,
-                "Go down", 1);
+            p.o("Go up ", 5,
+                "Go down ", 6);
             break;
 
         case 3:
@@ -165,6 +166,18 @@ namespace content_pages
             p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", 12, 1);
             p.o(
                 "Go through the door", 2);
+            break;
+        case 5:
+            p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling.", 12, 1);
+            p.o(
+                "Pull the Rope", 1,
+                "Open the door", 1);
+            break;
+        case 6:
+            p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", 12, 1);
+            p.o(
+                "Get close and try to call", 2,
+                "Stay put and listen to the voices", 2);
             break;
         }
 
