@@ -83,15 +83,17 @@ namespace app_main
              << endl;
         graphicUtils::clear();
         cout << "\n\n\n";
-        cout << page.text << "...." << endl;
-        // cout << "\n"             << endl;
+        cout << page.text << endl
+             << "\n_________________\n"
+             << endl;
+
         for (int o = 0; o < 5; o++)
         {
             if (page.optionsNumber[o] < 1)
             {
                 continue;
             }
-            cout << o + 1 << ". " << page.options[o] << "\n\n"
+            cout << o + 1 << ". " << page.options[o] << "\n"
                  << endl;
         }
         // cout << page.options[0]21
