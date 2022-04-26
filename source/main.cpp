@@ -51,6 +51,7 @@ namespace app_main
 
         int keyAsInt = key - '0';
         int newPageNumber = 0;
+        int highLightedAns = 0;
         for (int o = 0; o < 5; o++)
         {
             if (page.optionsNumber[o] < 1)
@@ -61,15 +62,14 @@ namespace app_main
             if (keyAsInt == (o + 1))
             {
                 newPageNumber = page.optionsNumber[o];
+                highLightedAns = o + 1;
             }
-
-            // cout << page.options[o] << "\n\n"
-            //      << endl;
         }
         if (newPageNumber > 0)
         {
             state->highLightedAns = keyAsInt;
-            page = content_pages::getPages(newPageNumber);
+            // page = content_pages::getPages(newPageNumber);
+            state->highLightedAns = highLightedAns;
             paint();
         }
     }
@@ -89,11 +89,21 @@ namespace app_main
 
         for (int o = 0; o < 5; o++)
         {
+            //\x1b[30m \x1b[47m //
+            const char *chooseColor = "\x1b[37m"; // white
+
             if (page.optionsNumber[o] < 1)
             {
                 continue;
             }
-            cout << o + 1 << ". " << page.options[o] << "\n"
+            if (state->highLightedAns == o + 1)
+            {
+                chooseColor = "\x1b[30m\x1b[47m";
+            };
+
+            cout << chooseColor << o + 1 << ". " << page.options[o] << " "
+                 << "\033[0m\t\t"
+                 << "\n"
                  << endl;
         }
         // cout << page.options[0]21
@@ -105,14 +115,7 @@ namespace app_main
         bool runing = true;
         page = content_pages::getPages(1);
         paint();
-        // content_pages::Page *currentPage = content_pages::pages[0];Page
 
-        //   cout << images::mage << endl;
-
-        // cout
-        //     << "\x1B[31mRED\033[0m\t\t";
-        // printf("\x1B[32mTexting\033[0m\t\t");
-        // printf("\x1B[33mTexting\033[0m\t\t");
         while (runing)
         {
 
