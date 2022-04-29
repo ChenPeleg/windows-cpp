@@ -163,17 +163,16 @@ namespace app_main
                 }
             }
             else if (carpos > 0)
-                1111211111111111111111
+            {
+                keyDownTime--;
+                if (keyDownTime < -1000)
                 {
-                    keyDownTime--;
-                    if (keyDownTime < -1000)
-                    {
-                        keyDownTime = 0;
-                        carpos = carpos - 1;
-                        state->carridgePos = carpos;
-                        paint();
-                    }
+                    keyDownTime = 0;
+                    carpos = carpos - 1;
+                    state->carridgePos = carpos;
+                    paint();
                 }
+            }
             if (keyPressed == 'Q' || sec > 20)
             {
                 finish();
