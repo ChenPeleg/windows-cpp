@@ -1,8 +1,12 @@
 #ifndef VIEWS_ENGINE
 #define VIEWS_ENGINE
 #include <windows.h>
+#include <iostream>
+#include "./app_state.h"
+#include "./content_pages.h"
+#include "../content/content_pages.cpp"
 
-class ConsoleView
+class ViewEngine
 {
 private:
     int charsPerRow;
@@ -10,11 +14,13 @@ private:
     char *rows[][50];
 
 public:
-    static const int maxCatridgeBarSize = 7;
-    static const int ticsForKeyPress = 2000;
-    ConsoleView(int charsPerRow, int numOfRows);
-    ~ConsoleView();
+    static const int maxCatridgeBarSize = 9;
+    static const int ticsForKeyPress = 3000;
+    ViewEngine(int charsPerRow, int numOfRows);
+    ~ViewEngine();
     static void hideCursor();
+    static void paint(State state, Page page);
+    static void paintKeyPressBar(int carriagePos);
     static void ShowConsoleCursor(bool showFlag);
     void trimRows();
 };

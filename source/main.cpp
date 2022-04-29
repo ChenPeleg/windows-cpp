@@ -23,14 +23,14 @@ namespace app_main
     void keypressed(char);
     char *duplicateChar(char, int);
     void paintKeyPressBar(int);
-    content_pages::Page page = content_pages::getPages(1);
+    Page page = Page::getPages(1);
     State *state = new State(1);
 
     int app()
     {
 
         cout << endl;
-        ConsoleView::hideCursor();
+        ViewEngine::hideCursor();
 
         graphicUtils::clear();
         eventLoop();
@@ -122,9 +122,9 @@ namespace app_main
         {
             return;
         }
-        int barLenght = pow(carriagePos, 2) - (carriagePos * 3) + 4;
+        int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
 
-        const char *block = duplicateChar(61, barLenght);
+        const char *block = duplicateChar(32, barLenght);
 
         cout << "\x1b[47m" << block << "\033[0m\t\t"
              << endl;
@@ -139,7 +139,7 @@ namespace app_main
         long keyDownTime = 0;
         int carpos = 0;
         bool runing = true;
-        page = content_pages::getPages(1);
+        page = Page::getPages(1);
         paint();
 
         while (runing)
@@ -160,11 +160,11 @@ namespace app_main
             {
                 keyDownTime++;
 
-                if (keyDownTime > ConsoleView::ticsForKeyPress)
+                if (keyDownTime > ViewEngine::ticsForKeyPress)
                 {
                     keyDownTime = 0;
 
-                    if (ConsoleView::maxCatridgeBarSize > carpos)
+                    if (ViewEngine::maxCatridgeBarSize > carpos)
                     {
                         carpos = carpos + 1;
                         state->carridgePos = carpos;
@@ -176,7 +176,7 @@ namespace app_main
             else if (carpos > 0)
             {
                 keyDownTime--;
-                if (keyDownTime < (ConsoleView::ticsForKeyPress * -1))
+                if (keyDownTime < (ViewEngine::ticsForKeyPress * -1))
                 {
                     keyDownTime = 0;
                     if (carpos > 2)

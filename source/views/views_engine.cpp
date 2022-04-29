@@ -1,20 +1,24 @@
 
+#include <windows.h>
 #include "../headers/views_engine.h"
+#include "../content/content_pages.cpp"
+#include <iostream>
 
-ConsoleView::ConsoleView(int charsPerRow, int numOfRows)
+using namespace std;
+
+ViewEngine::ViewEngine(int charsPerRow, int numOfRows)
 {
     this->charsPerRow = charsPerRow;
     this->numOfRows = numOfRows;
-    // this->rows
 };
-ConsoleView::~ConsoleView(){
+ViewEngine::~ViewEngine(){
 
 };
-void ConsoleView::hideCursor()
+void ViewEngine::hideCursor()
 {
-    ConsoleView::ShowConsoleCursor(false);
+    ViewEngine::ShowConsoleCursor(false);
 };
-void ConsoleView::ShowConsoleCursor(bool showFlag)
+void ViewEngine::ShowConsoleCursor(bool showFlag)
 {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -24,5 +28,51 @@ void ConsoleView::ShowConsoleCursor(bool showFlag)
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
 };
+void ViewEngine::paint(State state, Page page)
+{
+    cout << "\n\n\n"
+         << endl;
+    graphicUtils::clear();
+    cout << "\n\n\n";
+    cout << page.text << endl
+         << "\n_________________\n"
+         << endl;
 
-void ConsoleView::trimRows(){};
+    for (int o = 0; o < 5; o++)
+    {
+
+        const char *chooseColor = "\x1b[37m";
+
+        if (page.optionsNumber[o] < 1)
+        {
+            continue;
+        }
+        if (state.highLightedAns == o + 1)
+        {
+            chooseColor = "\x1b[30m\x1b[47m";
+        };
+
+        cout << chooseColor << o + 1 << ". " << page.options[o] << " "
+             << "\033[0m\t\t"
+             << "\n"
+             << endl;
+    }
+    ViewEngine::paintKeyPressBar(state.carridgePos);
+};
+void ViewEngine::paintKeyPressBar(int carriagePos)
+{
+    if (carriagePos < 1)
+    {
+        return;
+    }
+    int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
+
+    const char *block = duplicateChar(32, barLenght);
+
+    cout << "\x1b[47m" << block << "\033[0m\t\t"
+         << endl;
+    // cout << block << "\n"
+    //      << endl;
+};
+
+void ViewEngine::trimRows(){};
