@@ -1,7 +1,8 @@
 #include "./images/images.cpp"
 #include "constants.cpp"
 #include "grapihics_utils.h"
-#include "./classes/app_state.hpp"
+#include "./headers/app_state.h"
+#include "./classes/app_state.cpp"
 #include "./events/app_events.cpp"
 #include "./content/content_pages.cpp"
 #include <windows.h>
@@ -20,7 +21,7 @@ namespace app_main
     char *duplicateChar(char, int);
     void paintKeyPressBar(int);
     content_pages::Page page = content_pages::getPages(1);
-    app_state::State *state = new app_state::State(1);
+    State *state = new State(1);
 
     int app()
     {
