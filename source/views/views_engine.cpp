@@ -1,30 +1,28 @@
-#ifndef VIEWS_ENGINE
-#define VIEWS_ENGINE
 
-namespace view_engine
+#include "../headers/views_engine.h"
+
+ConsoleView::ConsoleView(int charsPerRow, int numOfRows)
 {
-    class ConsoleView
-    {
-    private:
-        char *rows[][];
-        int charsPerRow;
-        int numOfRows;
+    this->charsPerRow = charsPerRow;
+    this->numOfRows = numOfRows;
+    // this->rows
+};
+ConsoleView::~ConsoleView(){
 
-    public:
-        views_engine(int charsPerRow, int numOfRows)
-        {
-            this->charsPerRow = charsPerRow;
-            this->numOfRows = numOfRows;
-            // this->rows
-        };
-        ~views_engine(){
+};
+void ConsoleView::hideCursor()
+{
+    ConsoleView::ShowConsoleCursor(false);
+};
+void ConsoleView::ShowConsoleCursor(bool showFlag)
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
-        };
-    };
+    CONSOLE_CURSOR_INFO cursorInfo;
 
-    void trimRows()
-    {
-    }
-}
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = showFlag; // set the cursor visibility
+    SetConsoleCursorInfo(out, &cursorInfo);
+};
 
-#endif
+void ConsoleView::trimRows(){};

@@ -6,7 +6,6 @@ State::State(int _initialState)
     this->initialState = _initialState;
     this->start_time = std::time(&start_time);
     this->page = 1;
-    // can also pass pinter to start time
 };
 State::~State(){};
 int State::getSecondsPassed()

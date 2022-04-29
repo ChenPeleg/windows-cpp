@@ -2,7 +2,9 @@
 #include "constants.cpp"
 #include "grapihics_utils.h"
 #include "./headers/app_state.h"
+#include "./headers/views_engine.h"
 #include "./classes/app_state.cpp"
+#include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
 #include "./content/content_pages.cpp"
 #include <windows.h>
@@ -12,6 +14,7 @@
 
 using namespace std;
 using namespace constants;
+
 namespace app_main
 {
 
@@ -27,6 +30,8 @@ namespace app_main
     {
 
         cout << endl;
+        ConsoleView::hideCursor();
+
         graphicUtils::clear();
         eventLoop();
         return 0;
