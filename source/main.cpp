@@ -76,7 +76,7 @@ namespace app_main
         if (newPageNumber > 0)
         {
             state->highLightedAns = keyAsInt;
-            // page = content_pages::getPages(newPageNumber);
+
             state->highLightedAns = highLightedAns;
             paint();
         }
@@ -97,8 +97,8 @@ namespace app_main
 
         for (int o = 0; o < 5; o++)
         {
-            //\x1b[30m \x1b[47m //
-            const char *chooseColor = "\x1b[37m"; // white
+
+            const char *chooseColor = "\x1b[37m";
 
             if (page.optionsNumber[o] < 1)
             {
@@ -122,11 +122,11 @@ namespace app_main
         {
             return;
         }
-        const char *block = duplicateChar(61, pow(carriagePos, 2) - (carriagePos * 3) + 4);
+        int barLenght = pow(carriagePos, 2) - (carriagePos * 3) + 4;
+
+        const char *block = duplicateChar(61, barLenght);
 
         cout << "\x1b[47m" << block << "\033[0m\t\t"
-             << "\n\n"
-             << carriagePos << "\n"
              << endl;
         // cout << block << "\n"
         //      << endl;
@@ -160,23 +160,31 @@ namespace app_main
             {
                 keyDownTime++;
 
-                if (keyDownTime > 1000)
+                if (keyDownTime > ConsoleView::ticsForKeyPress)
                 {
                     keyDownTime = 0;
-                    carpos = carpos + 1;
-                    state->carridgePos = carpos;
-                    paint();
+
+                    if (ConsoleView::maxCatridgeBarSize > carpos)
+                    {
+                        carpos = carpos + 1;
+                        state->carridgePos = carpos;
+                        cout << carpos;
+                        paint();
+                    }
                 }
             }
             else if (carpos > 0)
             {
                 keyDownTime--;
-                if (keyDownTime < -1000)
+                if (keyDownTime < (ConsoleView::ticsForKeyPress * -1))
                 {
                     keyDownTime = 0;
-                    carpos = carpos - 1;
-                    state->carridgePos = carpos;
-                    paint();
+                    if (carpos > 2)
+                    {
+                        carpos = carpos - 1;
+                        state->carridgePos = carpos;
+                        paint();
+                    }
                 }
             }
             if (keyPressed == 'Q' || sec > 20)
