@@ -21,7 +21,7 @@ namespace app_main
     int eventLoop();
     void paint();
     void keypressed(char);
-    char *duplicateChar(char, int);
+
     void paintKeyPressBar(int);
     Page page = Page::getPages(1);
     State *state = new State(1);
@@ -35,18 +35,6 @@ namespace app_main
         graphicUtils::clear();
         eventLoop();
         return 0;
-    }
-
-    char *duplicateChar(char c, int len)
-    {
-        int i;
-        char *newChar = new char[len];
-        for (i = 0; i < len; i++)
-        {
-            newChar[i] = c;
-        }
-        newChar[i] = '\0';
-        return newChar;
     }
 
     void keypressed(char key)

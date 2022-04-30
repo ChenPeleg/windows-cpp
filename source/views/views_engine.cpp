@@ -1,8 +1,9 @@
-
 #include <windows.h>
+#include <iostream>
+#include <math.h>
+
 #include "../headers/views_engine.h"
 #include "../content/content_pages.cpp"
-#include <iostream>
 
 using namespace std;
 
@@ -67,12 +68,23 @@ void ViewEngine::paintKeyPressBar(int carriagePos)
     }
     int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
 
-    const char *block = duplicateChar(32, barLenght);
+    const char *block = ViewEngine::duplicateChar(32, barLenght);
 
     cout << "\x1b[47m" << block << "\033[0m\t\t"
          << endl;
     // cout << block << "\n"
     //      << endl;
 };
+char *ViewEngine::duplicateChar(char c, int len)
+{
+    int i;
+    char *newChar = new char[len];
+    for (i = 0; i < len; i++)
+    {
+        newChar[i] = c;
+    }
+    newChar[i] = '\0';
+    return newChar;
+}
 
 void ViewEngine::trimRows(){};
