@@ -19,9 +19,7 @@ namespace app_main
 {
 
     int eventLoop();
-    void paint();
     void keypressed(char);
-
     void paintKeyPressBar(int);
     Page page = Page::getPages(1);
     State *state = new State(1);
@@ -66,59 +64,13 @@ namespace app_main
             state->highLightedAns = keyAsInt;
 
             state->highLightedAns = highLightedAns;
-            paint();
+            ViewEngine::paint(state, page);
         }
     }
     void finish()
     {
         cout << "Finished, Goodbye!" << endl;
-    }
-    void paint()
-    {
-        cout << "\n\n\n"
-             << endl;
-        graphicUtils::clear();
-        cout << "\n\n\n";
-        cout << page.text << endl
-             << "\n_________________\n"
-             << endl;
-
-        for (int o = 0; o < 5; o++)
-        {
-
-            const char *chooseColor = "\x1b[37m";
-
-            if (page.optionsNumber[o] < 1)
-            {
-                continue;
-            }
-            if (state->highLightedAns == o + 1)
-            {
-                chooseColor = "\x1b[30m\x1b[47m";
-            };
-
-            cout << chooseColor << o + 1 << ". " << page.options[o] << " "
-                 << "\033[0m\t\t"
-                 << "\n"
-                 << endl;
-        }
-        paintKeyPressBar(state->carridgePos);
     };
-    void paintKeyPressBar(int carriagePos)
-    {
-        if (carriagePos < 1)
-        {
-            return;
-        }
-        int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
-
-        const char *block = duplicateChar(32, barLenght);
-
-        cout << "\x1b[47m" << block << "\033[0m\t\t"
-             << endl;
-        // cout << block << "\n"
-        //      << endl;
-    }
 
     int eventLoop()
     {
@@ -128,7 +80,7 @@ namespace app_main
         int carpos = 0;
         bool runing = true;
         page = Page::getPages(1);
-        paint();
+        ViewEngine::paint(state, page);
 
         while (runing)
         {
@@ -156,8 +108,7 @@ namespace app_main
                     {
                         carpos = carpos + 1;
                         state->carridgePos = carpos;
-                        cout << carpos;
-                        paint();
+                        ViewEngine::paint(state, page);
                     }
                 }
             }
@@ -171,7 +122,7 @@ namespace app_main
                     {
                         carpos = carpos - 1;
                         state->carridgePos = carpos;
-                        paint();
+                        ViewEngine::paint(state, page);
                     }
                 }
             }
@@ -190,4 +141,4 @@ int main()
 {
     app_main::app();
     return 0;
-}
+};

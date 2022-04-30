@@ -29,7 +29,7 @@ void ViewEngine::ShowConsoleCursor(bool showFlag)
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
 };
-void ViewEngine::paint(State state, Page page)
+void ViewEngine::paint(State *state, Page page)
 {
     cout << "\n\n\n"
          << endl;
@@ -48,7 +48,7 @@ void ViewEngine::paint(State state, Page page)
         {
             continue;
         }
-        if (state.highLightedAns == o + 1)
+        if (state->highLightedAns == o + 1)
         {
             chooseColor = "\x1b[30m\x1b[47m";
         };
@@ -58,7 +58,7 @@ void ViewEngine::paint(State state, Page page)
              << "\n"
              << endl;
     }
-    ViewEngine::paintKeyPressBar(state.carridgePos);
+    ViewEngine::paintKeyPressBar(state->carridgePos);
 };
 void ViewEngine::paintKeyPressBar(int carriagePos)
 {
@@ -68,12 +68,10 @@ void ViewEngine::paintKeyPressBar(int carriagePos)
     }
     int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
 
-    const char *block = ViewEngine::duplicateChar(32, barLenght);
+    const char *block = duplicateChar(32, barLenght);
 
     cout << "\x1b[47m" << block << "\033[0m\t\t"
          << endl;
-    // cout << block << "\n"
-    //      << endl;
 };
 char *ViewEngine::duplicateChar(char c, int len)
 {

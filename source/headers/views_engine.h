@@ -19,11 +19,10 @@ public:
     ViewEngine(int charsPerRow, int numOfRows);
     ~ViewEngine();
     static void hideCursor();
-    static void paint(State state, Page page);
+    static void paint(State *state, Page page);
     static void paintKeyPressBar(int carriagePos);
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
-   
 
     void trimRows();
 };

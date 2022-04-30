@@ -1,6 +1,10 @@
 #ifndef CONTENT_PAGES
 #define CONTENT_PAGES
-
+/* ********************
+ *   For some reason this class could no be split to
+ *   header and implementation files.
+ *   So the definitions and implementation are all in one file.
+ * *********************/
 class Page
 {
 
@@ -130,7 +134,7 @@ public:
               return Size;
        }
 
-       Page getPages(int pageNumber = 1)
+       static Page getPages(int pageNumber = 1)
        {
               Page p;
               p.b("abc1234", 12, 1);
