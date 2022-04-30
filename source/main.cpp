@@ -3,6 +3,7 @@
 #include "grapihics_utils.h"
 #include "./headers/app_state.h"
 #include "./headers/views_engine.h"
+#include "./headers/common.h"
 #include "./classes/app_state.cpp"
 #include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
@@ -14,14 +15,25 @@
 
 using namespace std;
 using namespace constants;
+using namespace common;
 
 namespace app_main
 {
     int eventLoop();
-    void keypressed(char);
+    void optionWasPressed(char);
     void paintKeyPressBar(int);
+    void paintContent();
+    int getOptionFromKeyPressed(char key);
+
     static Page page = Page::getPages(1);
     static State *state = new State(1);
+
+    void paintNewPage()
+    {
+        state->animation = AnimationType::FadeIn;
+        // state->
+        paintContent();
+    }
     void paintContent()
     {
         ViewEngine::paint(state, &page);
@@ -32,15 +44,16 @@ namespace app_main
         cout << endl;
         ViewEngine::hideCursor();
         graphicUtils::clear();
+        paintContent();
         eventLoop();
         return 0;
     }
 
-    void keypressed(char key)
+    void optionWasPressed(char key)
     {
         if (state->lastKey == key)
         {
-            return;
+            // return;
         }
         state->lastKey = key;
 
@@ -62,11 +75,37 @@ namespace app_main
         }
         if (newPageNumber > 0)
         {
-            state->highLightedAns = keyAsInt;
 
             state->highLightedAns = highLightedAns;
         }
     }
+    int getOptionFromKeyPressed(char key)
+    {
+        int keyAsInt = key - '0';
+        int newPageNumber = 0;
+        int highLightedAns = 0;
+        for (int o = 0; o < 5; o++)
+        {
+            if (page.optionsNumber[o] < 1)
+            {
+                continue;
+            }
+
+            if (keyAsInt == (o + 1))
+            {
+                newPageNumber = page.optionsNumber[o];
+                highLightedAns = o + 1;
+            }
+        }
+        if (newPageNumber > 0)
+        {
+            return highLightedAns;
+        }
+        else
+        {
+            return 0;
+        }
+    };
     void finish()
     {
         cout << "Finished, Goodbye!" << endl;
@@ -79,40 +118,42 @@ namespace app_main
         long keyDownTime = 0;
         int carpos = 0;
         bool runing = true;
-        paintContent();
 
         while (runing)
         {
-
             char keyPressed = app_events::getKeyPressed2();
-
             int sec = state->getSecondsPassed();
             lastSecond = sec;
 
             if (keyPressed != lastChar)
             {
-                keypressed(keyPressed);
-                // keyPressed = '\0';
                 lastChar = keyPressed;
             }
+
             else if (keyPressed && keyPressed == lastChar)
             {
+                // continue to press same key
                 keyDownTime++;
-
                 if (keyDownTime > ViewEngine::ticsForKeyPress)
                 {
-                    keyDownTime = 0;
 
+                    keyDownTime = 0;
+                    optionWasPressed(keyPressed);
                     if (ViewEngine::maxCatridgeBarSize > carpos)
                     {
                         carpos = carpos + 1;
                         state->carridgePos = carpos;
                         paintContent();
                     }
+                    else
+                    {
+                        paintNewPage();
+                    }
                 }
             }
             else if (carpos > 0)
             {
+                // If no key is pressed
                 keyDownTime--;
                 if (keyDownTime < (ViewEngine::ticsForKeyPress * -1))
                 {
@@ -122,7 +163,6 @@ namespace app_main
                         carpos = carpos - 1;
                         state->carridgePos = carpos;
                         paintContent();
-                        // ViewEngine::paint(state, &page);
                     }
                 }
             }

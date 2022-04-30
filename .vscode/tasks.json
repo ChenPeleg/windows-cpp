@@ -29,7 +29,7 @@
                 "reveal": "never",
                 "focus": false,
                 "panel": "new",
-                "close": true
+                // "close": true
             },
             "problemMatcher": [
                 "$gcc"

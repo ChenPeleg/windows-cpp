@@ -31,6 +31,8 @@ void ViewEngine::ShowConsoleCursor(bool showFlag)
 };
 void ViewEngine::paint(State *state, Page *page)
 {
+    bool fadeIn = false;
+    bool fadeOut = false;
     cout << "\n\n\n"
          << endl;
     graphicUtils::clear();
