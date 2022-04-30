@@ -14,6 +14,10 @@ public:
        int optionsNumber[5];
        int imageId;
        int customId;
+       ~Page()
+       {
+              //  delete this;
+       }
        void o(const char *textoptions1, int op1,
               const char *textoptions2, int op2,
               const char *textoptions3, int op3,

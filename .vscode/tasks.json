@@ -28,7 +28,8 @@
                 "echo": true,
                 "reveal": "never",
                 "focus": false,
-                "panel": "new"
+                "panel": "new",
+                "close": true
             },
             "problemMatcher": [
                 "$gcc"

@@ -17,19 +17,20 @@ using namespace constants;
 
 namespace app_main
 {
-
     int eventLoop();
     void keypressed(char);
     void paintKeyPressBar(int);
-    Page page = Page::getPages(1);
-    State *state = new State(1);
-
+    static Page page = Page::getPages(1);
+    static State *state = new State(1);
+    void paintContent()
+    {
+        ViewEngine::paint(state, &page);
+    }
     int app()
     {
 
         cout << endl;
         ViewEngine::hideCursor();
-
         graphicUtils::clear();
         eventLoop();
         return 0;
@@ -64,7 +65,6 @@ namespace app_main
             state->highLightedAns = keyAsInt;
 
             state->highLightedAns = highLightedAns;
-            ViewEngine::paint(state, page);
         }
     }
     void finish()
@@ -79,8 +79,7 @@ namespace app_main
         long keyDownTime = 0;
         int carpos = 0;
         bool runing = true;
-        page = Page::getPages(1);
-        ViewEngine::paint(state, page);
+        paintContent();
 
         while (runing)
         {
@@ -108,7 +107,7 @@ namespace app_main
                     {
                         carpos = carpos + 1;
                         state->carridgePos = carpos;
-                        ViewEngine::paint(state, page);
+                        paintContent();
                     }
                 }
             }
@@ -122,7 +121,8 @@ namespace app_main
                     {
                         carpos = carpos - 1;
                         state->carridgePos = carpos;
-                        ViewEngine::paint(state, page);
+                        paintContent();
+                        // ViewEngine::paint(state, &page);
                     }
                 }
             }

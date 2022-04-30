@@ -12,7 +12,10 @@
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\msys64\\mingw64\\bin\\gdb.exe",
             "cwd": "${workspaceFolder}",
-            "preLaunchTask": "build_main.cpp"
+            "preLaunchTask": "build_main.cpp",
+            "presentation": {
+                "close": true
+            }
         }
     ]
 }

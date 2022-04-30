@@ -29,13 +29,13 @@ void ViewEngine::ShowConsoleCursor(bool showFlag)
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
 };
-void ViewEngine::paint(State *state, Page page)
+void ViewEngine::paint(State *state, Page *page)
 {
     cout << "\n\n\n"
          << endl;
     graphicUtils::clear();
     cout << "\n\n\n";
-    cout << page.text << endl
+    cout << page->text << endl
          << "\n_________________\n"
          << endl;
 
@@ -44,7 +44,7 @@ void ViewEngine::paint(State *state, Page page)
 
         const char *chooseColor = "\x1b[37m";
 
-        if (page.optionsNumber[o] < 1)
+        if (page->optionsNumber[o] < 1)
         {
             continue;
         }
@@ -53,7 +53,7 @@ void ViewEngine::paint(State *state, Page page)
             chooseColor = "\x1b[30m\x1b[47m";
         };
 
-        cout << chooseColor << o + 1 << ". " << page.options[o] << " "
+        cout << chooseColor << o + 1 << ". " << page->options[o] << " "
              << "\033[0m\t\t"
              << "\n"
              << endl;
