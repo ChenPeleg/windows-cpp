@@ -113,7 +113,7 @@ namespace app_main
 
     int eventLoop()
     {
-        char keyPressed = 0, lastChar = 0;
+        char keyPressed = 0, lastChar = 240;
         int lastSecond = 0;
         long keyDownTime = 0;
         int carpos = 0;
@@ -128,17 +128,18 @@ namespace app_main
             if (keyPressed != lastChar)
             {
                 lastChar = keyPressed;
+                optionWasPressed(keyPressed);
             }
 
-            else if (keyPressed && keyPressed == lastChar)
+            if (keyPressed && keyPressed == lastChar)
             {
-                // continue to press same key
+
                 keyDownTime++;
                 if (keyDownTime > ViewEngine::ticsForKeyPress)
                 {
 
                     keyDownTime = 0;
-                    optionWasPressed(keyPressed);
+
                     if (ViewEngine::maxCatridgeBarSize > carpos)
                     {
                         carpos = carpos + 1;
