@@ -16,20 +16,14 @@
 #include <iostream>
 
 using namespace std;
-using namespace constants;
 using namespace common;
 
 class AppMain
 {
-    // int eventLoop();
-    // void optionWasPressed(char);
-    // void paintKeyPressBar(int);
-    // void paintContent();
-    // int getOptionFromKeyPressed(char key);
+
 public:
     int start()
     {
-
         cout << endl;
         ViewEngine::hideCursor();
         graphicUtils::clear();
@@ -47,7 +41,11 @@ private:
         state->setPage(newPage);
         page = Page::getPages(newPage);
         state->animation = AnimationType::FadeIn;
+        state->highLightedAns = 0;
+        state->carridgePos = ViewEngine::minCatridgeBarSize;
+
         paintContent();
+        state->animation = AnimationType::none;
     }
     void paintContent()
     {
@@ -100,9 +98,9 @@ private:
         char keyPressed = 0, lastChar = 240;
         int lastSecond = 0;
         long keyDownTime = 0;
-        int carpos = 0;
         bool pauseKeyPress = false;
         bool runing = true;
+        state->carridgePos = 0;
 
         while (runing)
         {
@@ -127,10 +125,10 @@ private:
                 if (keyDownTime > ViewEngine::ticsForKeyPress)
                 {
                     keyDownTime = 0;
-                    if (ViewEngine::maxCatridgeBarSize > carpos)
+                    if (ViewEngine::maxCatridgeBarSize > state->carridgePos)
                     {
-                        carpos = carpos + 1;
-                        state->carridgePos = carpos;
+                        state->carridgePos = state->carridgePos + 1;
+
                         paintContent();
                     }
                     else
@@ -149,17 +147,17 @@ private:
                     }
                 }
             }
-            else if (carpos > 0)
+            else if (state->carridgePos > 0)
             {
                 // If no key is pressed
                 keyDownTime--;
                 if (keyDownTime < (ViewEngine::ticsForKeyPress * -1))
                 {
                     keyDownTime = 0;
-                    if (carpos > 2)
+                    if (state->carridgePos > ViewEngine::minCatridgeBarSize)
                     {
-                        carpos = carpos - 1;
-                        state->carridgePos = carpos;
+                        state->carridgePos = state->carridgePos - 1;
+
                         paintContent();
                     }
                     else

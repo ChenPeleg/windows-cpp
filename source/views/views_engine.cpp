@@ -2,6 +2,7 @@
 #include <iostream>
 #include <math.h>
 
+#include "../headers/common.h"
 #include "../headers/views_engine.h"
 #include "../content/content_pages.cpp"
 
@@ -33,6 +34,11 @@ void ViewEngine::paint(State *state, Page *page)
 {
     bool fadeIn = false;
     bool fadeOut = false;
+    if (state->animation == AnimationType::FadeIn)
+    {
+        fadeIn = true;
+    }
+
     cout << "\n\n\n"
          << endl;
     graphicUtils::clear();
@@ -40,7 +46,8 @@ void ViewEngine::paint(State *state, Page *page)
     cout << page->text << endl
          << "\n_________________\n"
          << endl;
-
+    if (fadeIn)
+        Sleep(AnimationDelay);
     for (int o = 0; o < 5; o++)
     {
 
@@ -59,6 +66,9 @@ void ViewEngine::paint(State *state, Page *page)
              << "\033[0m\t\t"
              << "\n"
              << endl;
+
+        if (fadeIn)
+            Sleep(AnimationDelay);
     }
     ViewEngine::paintKeyPressBar(state->carridgePos);
 };
