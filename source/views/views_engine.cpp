@@ -74,16 +74,36 @@ void ViewEngine::paint(State *state, Page *page)
 };
 void ViewEngine::paintKeyPressBar(int carriagePos)
 {
+    bool isArrowAnimation = true;
+    // struct _util
+    // {
+    //     static int calcBarLength(int pos)
+    //     {
+    //         int ret = pow(pos, 2) - ((pos - 1) * 4) + 2;
+    //         return ret;
+    //     }
+    // };
+    const char *arrow = ">>========>";
+
     if (carriagePos < 1)
     {
         return;
-    }
-    int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
+    };
+    //_util u;
+    int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2; // u.calcBarLength(carriagePos); //
+    const char *emptySpaces = duplicateChar(32, barLenght);
 
     const char *block = duplicateChar(32, barLenght);
+    if (isArrowAnimation)
+    {
+        cout << emptySpaces << arrow << "\033[0m\t\t"
+             << endl;
+    }
+    else
+    {
 
-    cout << "\x1b[47m" << block << "\033[0m\t\t"
-         << endl;
+        cout << "\x1b[47m" << block << "\033[0m\t\t" << endl;
+    }
 };
 char *ViewEngine::duplicateChar(char c, int len)
 {

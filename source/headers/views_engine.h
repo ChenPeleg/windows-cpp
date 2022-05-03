@@ -14,9 +14,9 @@ private:
     char *rows[][50];
 
 public:
-    static const int maxCatridgeBarSize = 7; // Original 9 // for debugging 7
+    static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7
     static const int minCatridgeBarSize = 1;
-    static const int ticsForKeyPress = 3000;
+    static const int ticsForKeyPress = 3000; // 3000 as default
     ViewEngine(int charsPerRow, int numOfRows);
     ~ViewEngine();
     static void hideCursor();
