@@ -1,17 +1,19 @@
-#include "./images/images.cpp"
-#include "constants.cpp"
-#include "grapihics_utils.h"
+
+
+#include "./headers/constants.h"
 #include "./headers/app_state.h"
 #include "./headers/views_engine.h"
 #include "./headers/common.h"
+
+#include "grapihics_utils.h"
 #include "./classes/app_state.cpp"
 #include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
 #include "./content/content_pages.cpp"
+#include "./images/images.cpp"
+
 #include <windows.h>
-#include <iomanip>
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 using namespace constants;
