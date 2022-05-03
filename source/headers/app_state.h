@@ -19,6 +19,7 @@ public:
     int lastKey;
     int highLightedAns;
     int carridgePos;
+    void setPage(int);
     State(int _initialState);
     ~State();
     int getSecondsPassed();

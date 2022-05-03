@@ -28,10 +28,11 @@ namespace app_main
     static Page page = Page::getPages(1);
     static State *state = new State(1);
 
-    void paintNewPage()
+    void newPageWasChosen(int newPage)
     {
+        state->setPage(newPage);
+        page = Page::getPages(newPage);
         state->animation = AnimationType::FadeIn;
-        // state->
         paintContent();
     }
     void paintContent()
@@ -51,32 +52,11 @@ namespace app_main
 
     void optionWasPressed(char key)
     {
-        if (state->lastKey == key)
-        {
-            // return;
-        }
         state->lastKey = key;
-
-        int keyAsInt = key - '0';
-        int newPageNumber = 0;
-        int highLightedAns = 0;
-        for (int o = 0; o < 5; o++)
+        int chosenAnswer = getOptionFromKeyPressed(key);
+        if (chosenAnswer > 0)
         {
-            if (page.optionsNumber[o] < 1)
-            {
-                continue;
-            }
-
-            if (keyAsInt == (o + 1))
-            {
-                newPageNumber = page.optionsNumber[o];
-                highLightedAns = o + 1;
-            }
-        }
-        if (newPageNumber > 0)
-        {
-
-            state->highLightedAns = highLightedAns;
+            state->highLightedAns = chosenAnswer;
         }
     }
     int getOptionFromKeyPressed(char key)
@@ -117,6 +97,7 @@ namespace app_main
         int lastSecond = 0;
         long keyDownTime = 0;
         int carpos = 0;
+        bool pauseKeyPress = false;
         bool runing = true;
 
         while (runing)
@@ -133,13 +114,15 @@ namespace app_main
 
             if (keyPressed && keyPressed == lastChar)
             {
+                if (pauseKeyPress)
+                {
+                    continue;
+                }
 
                 keyDownTime++;
                 if (keyDownTime > ViewEngine::ticsForKeyPress)
                 {
-
                     keyDownTime = 0;
-
                     if (ViewEngine::maxCatridgeBarSize > carpos)
                     {
                         carpos = carpos + 1;
@@ -148,7 +131,17 @@ namespace app_main
                     }
                     else
                     {
-                        paintNewPage();
+                        int chosenAnswer = getOptionFromKeyPressed(keyPressed);
+                        if (chosenAnswer > 0)
+                        {
+                            state->highLightedAns = chosenAnswer;
+                            int newPAgeNumber = page.optionsNumber[chosenAnswer - 1];
+                            if (newPAgeNumber > 0)
+                            {
+                                newPageWasChosen(newPAgeNumber);
+                                pauseKeyPress = true;
+                            }
+                        }
                     }
                 }
             }
@@ -164,6 +157,10 @@ namespace app_main
                         carpos = carpos - 1;
                         state->carridgePos = carpos;
                         paintContent();
+                    }
+                    else
+                    {
+                        pauseKeyPress = false;
                     }
                 }
             }

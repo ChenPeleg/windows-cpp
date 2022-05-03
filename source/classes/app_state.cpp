@@ -8,6 +8,11 @@ State::State(int _initialState)
     this->page = 1;
 };
 State::~State(){};
+void State::setPage(int pageNum)
+{
+    if (pageNum > 0)
+        this->page = pageNum;
+};
 int State::getSecondsPassed()
 {
     time_t current = std::time(nullptr);
