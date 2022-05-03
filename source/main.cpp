@@ -19,16 +19,28 @@ using namespace std;
 using namespace constants;
 using namespace common;
 
-namespace app_main
+class AppMain
 {
-    int eventLoop();
-    void optionWasPressed(char);
-    void paintKeyPressBar(int);
-    void paintContent();
-    int getOptionFromKeyPressed(char key);
+    // int eventLoop();
+    // void optionWasPressed(char);
+    // void paintKeyPressBar(int);
+    // void paintContent();
+    // int getOptionFromKeyPressed(char key);
+public:
+    int start()
+    {
 
-    static Page page = Page::getPages(1);
-    static State *state = new State(1);
+        cout << endl;
+        ViewEngine::hideCursor();
+        graphicUtils::clear();
+        paintContent();
+        eventLoop();
+        return 0;
+    };
+
+private:
+    Page page = Page::getPages(1);
+    State *state = new State(1);
 
     void newPageWasChosen(int newPage)
     {
@@ -40,16 +52,6 @@ namespace app_main
     void paintContent()
     {
         ViewEngine::paint(state, &page);
-    }
-    int app()
-    {
-
-        cout << endl;
-        ViewEngine::hideCursor();
-        graphicUtils::clear();
-        paintContent();
-        eventLoop();
-        return 0;
     }
 
     void optionWasPressed(char key)
@@ -175,10 +177,11 @@ namespace app_main
 
         return 0;
     };
-
 };
 int main()
 {
-    app_main::app();
+    AppMain app;
+    cout << "works";
+    app.start();
     return 0;
 };
