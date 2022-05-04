@@ -5,6 +5,10 @@
  *   header and implementation files.
  *   So the definitions and implementation are all in one file.
  * *********************/
+#include "../images/images.cpp"
+
+using namespace imagesEnumb;
+
 class Page
 {
 
@@ -14,6 +18,7 @@ public:
        int optionsNumber[5];
        int imageId;
        int customId;
+       ImageEnumb image;
        ~Page()
        {
               //  delete this;
@@ -96,15 +101,14 @@ public:
               };
        };
 
-       void b(const char *text, int imageId, int customId)
+       void b(const char *text, ImageEnumb image, int customId)
        {
-              this->buildPage(text, imageId, customId);
+              this->buildPage(text, image, customId);
        };
-       void buildPage(const char *text, /* Option options[5],*/ int imageId, int customId)
+       void buildPage(const char *text, ImageEnumb image, int customId)
        {
               int i;
               const int paddingMaxSize = 400;
-
               int size = this->string_size(text);
               for (i = 0; i < size + 1; i++)
               {
@@ -126,7 +130,7 @@ public:
               }
 
               //
-              this->imageId = imageId;
+              this->image = image;
               this->customId = customId;
        }
        int string_size(const char *str)
@@ -141,42 +145,42 @@ public:
        static Page getPages(int pageNumber = 1)
        {
               Page p;
-              p.b("abc1234", 12, 1);
+              p.b("abcImageEnumb::none34", ImageEnumb::none, 1);
               p.o("Open the door", 1,
                   "Look around", 1);
 
               switch (pageNumber)
               {
               case 1:
-                     p.b("You wake up in a small room with one door made of iron.", 12, 1);
+                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::fighter, 1);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
 
               case 2:
-                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", 12, 1);
+                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::mage, 1);
                      p.o("Go up ", 5,
                          "Go down ", 6);
                      break;
 
               case 3:
-                     p.b("Tou look around the room. In the cornner you see a small peace of paper.", 12, 1);
+                     p.b("Tou look around the room. In the cornner you see a small peace of paper.", ImageEnumb::none, 1);
                      p.o("Read the paper", 4,
                          "Go through the door", 2);
                      break;
               case 4:
-                     p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", 12, 1);
+                     p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", ImageEnumb::none, 1);
                      p.o(
                          "Go through the door", 2);
                      break;
               case 5:
-                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling.", 12, 1);
+                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling.", ImageEnumb::none, 1);
                      p.o(
                          "Pull the Rope", 1,
                          "Open the door", 1);
                      break;
               case 6:
-                     p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", 12, 1);
+                     p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", ImageEnumb::none, 1);
                      p.o(
                          "Get close and try to call", 2,
                          "Stay put and listen to the voices", 2);

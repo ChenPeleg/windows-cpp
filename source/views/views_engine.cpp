@@ -5,6 +5,7 @@
 #include "../headers/common.h"
 #include "../headers/views_engine.h"
 #include "../content/content_pages.cpp"
+#include "../images/images.cpp"
 
 using namespace std;
 
@@ -38,11 +39,14 @@ void ViewEngine::paint(State *state, Page *page)
     {
         fadeIn = true;
     }
-
     cout << "\n\n\n"
          << endl;
     graphicUtils::clear();
-    cout << "\n\n\n";
+
+    const char *img = getImage(page->image);
+    cout << img << endl;
+
+    cout << "\n";
     cout << page->text << endl
          << "\n_________________\n"
          << endl;
@@ -75,27 +79,21 @@ void ViewEngine::paint(State *state, Page *page)
 void ViewEngine::paintKeyPressBar(int carriagePos)
 {
     bool isArrowAnimation = true;
-    // struct _util
-    // {
-    //     static int calcBarLength(int pos)
-    //     {
-    //         int ret = pow(pos, 2) - ((pos - 1) * 4) + 2;
-    //         return ret;
-    //     }
-    // };
+
     const char *arrow = ">>========>";
 
     if (carriagePos < 1)
     {
         return;
     };
-    //_util u;
-    int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2; // u.calcBarLength(carriagePos); //
-    const char *emptySpaces = duplicateChar(32, barLenght);
+
+    int barLenght = pow(carriagePos, 2) - ((carriagePos - 1) * 4) + 2;
 
     const char *block = duplicateChar(32, barLenght);
     if (isArrowAnimation)
     {
+        const char *emptySpaces = duplicateChar(32, barLenght - 2);
+
         cout << emptySpaces << arrow << "\033[0m\t\t"
              << endl;
     }
@@ -116,5 +114,17 @@ char *ViewEngine::duplicateChar(char c, int len)
     newChar[i] = '\0';
     return newChar;
 }
+const char *ViewEngine::getImage(ImageEnumb image)
+{
+    switch (image)
+    {
+    case ImageEnumb::fighter:
+        return images::fighter;
+    case ImageEnumb::mage:
+        return images::mage;
+    default:
+        return " ";
+    }
+};
 
 void ViewEngine::trimRows(){};

@@ -1,7 +1,17 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
-// Images are by design 60X30
+namespace imagesEnumb
+{
+  enum ImageEnumb
+  {
+    none = 0,
+    fighter = 1,
+    mage,
+    Choose
+  };
+}
+
 namespace images
 {
   char image1[] = "123123";
@@ -31,9 +41,7 @@ namespace images
                                    .'     \\
                                   :       :
                                  /   :    \
-
-
-    )";
+                                 )";
 }
 
 #endif

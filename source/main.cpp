@@ -4,8 +4,8 @@
 #include "./headers/app_state.h"
 #include "./headers/views_engine.h"
 #include "./headers/common.h"
+#include "./headers/grapihics_utils.h"
 
-#include "grapihics_utils.h"
 #include "./classes/app_state.cpp"
 #include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
@@ -96,7 +96,6 @@ private:
     int eventLoop()
     {
         char keyPressed = 0, lastChar = 240;
-        int lastSecond = 0;
         long keyDownTime = 0;
         bool pauseKeyPress = false;
         bool runing = true;
@@ -106,7 +105,6 @@ private:
         {
             char keyPressed = app_events::getKeyPressed2();
             int sec = state->getSecondsPassed();
-            lastSecond = sec;
 
             if (keyPressed != lastChar)
             {
@@ -166,7 +164,7 @@ private:
                     }
                 }
             }
-            if (keyPressed == 'Q' || sec > 20)
+            if (keyPressed == 'Q' || sec > 40)
             {
                 finish();
                 runing = false;

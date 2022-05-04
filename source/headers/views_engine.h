@@ -5,6 +5,7 @@
 #include "./app_state.h"
 #include "./content_pages.h"
 #include "../content/content_pages.cpp"
+#include "../images/images.cpp"
 
 class ViewEngine
 {
@@ -24,6 +25,7 @@ public:
     static void paintKeyPressBar(int carriagePos);
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
+    static const char *getImage(ImageEnumb image);
 
     void trimRows();
 };
