@@ -11,6 +11,14 @@ namespace common
         Choose = 3
     };
     const int AnimationDelay = 500;
+    int string_size(const char *str)
+    {
+
+        int Size = 0;
+        while (str[Size] != '\0')
+            Size++;
+        return Size;
+    }
 };
 
 #endif

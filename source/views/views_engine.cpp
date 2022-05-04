@@ -119,12 +119,84 @@ const char *ViewEngine::getImage(ImageEnumb image)
     switch (image)
     {
     case ImageEnumb::fighter:
-        return images::fighter;
+        return ViewEngine::proccessImage(images::fighter);
     case ImageEnumb::mage:
-        return images::mage;
+        return ViewEngine::proccessImage(images::mage);
     default:
         return " ";
     }
+};
+const char *ViewEngine::proccessImage(const char *rawImage)
+{
+    int linesWithEmptySpaces = 0;
+    int rowsWithText = 0;
+    int emptySpaces = 100;
+    int thisRowEmptySpaces = 0;
+    bool allStartingCharsSpaces = true;
+    int overallSize = common::string_size(rawImage);
+
+    for (int i = 0; i < overallSize; i++)
+    {
+        char c = rawImage[i];
+
+        if (c == '\n')
+        {
+
+            if (thisRowEmptySpaces > 0)
+            {
+                if (emptySpaces > thisRowEmptySpaces)
+                {
+                    emptySpaces = thisRowEmptySpaces;
+                }
+                linesWithEmptySpaces++;
+            }
+            thisRowEmptySpaces = 0;
+            allStartingCharsSpaces = true;
+        }
+        else if (allStartingCharsSpaces && c == ' ')
+        {
+            thisRowEmptySpaces++;
+        }
+        else
+        {
+            allStartingCharsSpaces = false;
+        }
+    }
+    int newSize = overallSize - (emptySpaces * linesWithEmptySpaces);
+
+    char *newImage = new char(newSize);
+    linesWithEmptySpaces = 0;
+    thisRowEmptySpaces = 0;
+    allStartingCharsSpaces = true;
+    int newImageIndex = 0;
+
+    for (int i = 0; i < overallSize; i++)
+    {
+
+        const char c = rawImage[i];
+        bool addToNewImage = true;
+        if (c == '\n')
+        {
+            linesWithEmptySpaces++;
+            allStartingCharsSpaces = true;
+        }
+        else if (allStartingCharsSpaces && c == ' ' && thisRowEmptySpaces < emptySpaces)
+        {
+            thisRowEmptySpaces++;
+            addToNewImage = false;
+        }
+        else
+        {
+            allStartingCharsSpaces = false;
+        }
+
+        if (addToNewImage)
+        {
+            newImage[newImageIndex] = c;
+            newImageIndex++;
+        }
+    }
+    return rawImage;
 };
 
 void ViewEngine::trimRows(){};

@@ -6,6 +6,7 @@
  *   So the definitions and implementation are all in one file.
  * *********************/
 #include "../images/images.cpp"
+#include "common.h"
 
 using namespace imagesEnumb;
 
@@ -62,22 +63,22 @@ public:
                      switch (o)
                      {
                      case 0:
-                            currentSize = this->string_size(textoptions1);
+                            currentSize = common::string_size(textoptions1);
                             optionString = textoptions1;
                             optionNumber = op1;
                             break;
                      case 1:
-                            currentSize = this->string_size(textoptions2);
+                            currentSize = common::string_size(textoptions2);
                             optionString = textoptions2;
                             optionNumber = op2;
                             break;
                      case 2:
-                            currentSize = this->string_size(textoptions3);
+                            currentSize = common::string_size(textoptions3);
                             optionString = textoptions3;
                             optionNumber = op3;
                             break;
                      case 3:
-                            currentSize = this->string_size(textoptions4);
+                            currentSize = common::string_size(textoptions4);
                             optionString = textoptions4;
                             optionNumber = op4;
                             break;
@@ -109,7 +110,7 @@ public:
        {
               int i;
               const int paddingMaxSize = 400;
-              int size = this->string_size(text);
+              int size = common::string_size(text);
               for (i = 0; i < size + 1; i++)
               {
                      this->text[i] = text[i];
@@ -132,14 +133,6 @@ public:
               //
               this->image = image;
               this->customId = customId;
-       }
-       int string_size(const char *str)
-       {
-              // const char *str = "Hello World !";
-              int Size = 0;
-              while (str[Size] != '\0')
-                     Size++;
-              return Size;
        }
 
        static Page getPages(int pageNumber = 1)

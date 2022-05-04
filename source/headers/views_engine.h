@@ -25,6 +25,7 @@ public:
     static void paintKeyPressBar(int carriagePos);
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
+    static const char *proccessImage(const char *);
     static const char *getImage(ImageEnumb image);
 
     void trimRows();
