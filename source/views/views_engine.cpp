@@ -43,7 +43,7 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
 
-    const char *img = getImage(page->image);
+    char *img = getImage(page->image);
     cout << img << endl;
 
     cout << "\n";
@@ -96,11 +96,14 @@ void ViewEngine::paintKeyPressBar(int carriagePos)
 
         cout << emptySpaces << arrow << "\033[0m\t\t"
              << endl;
+        delete emptySpaces;
     }
     else
     {
 
         cout << "\x1b[47m" << block << "\033[0m\t\t" << endl;
+
+        delete block;
     }
 };
 char *ViewEngine::duplicateChar(char c, int len)
@@ -114,7 +117,7 @@ char *ViewEngine::duplicateChar(char c, int len)
     newChar[i] = '\0';
     return newChar;
 }
-const char *ViewEngine::getImage(ImageEnumb image)
+char *ViewEngine::getImage(ImageEnumb image)
 {
     switch (image)
     {
@@ -122,11 +125,12 @@ const char *ViewEngine::getImage(ImageEnumb image)
         return ViewEngine::proccessImage(images::fighter);
     case ImageEnumb::mage:
         return ViewEngine::proccessImage(images::mage);
+    case ImageEnumb::none:
     default:
-        return " ";
+        return ViewEngine::proccessImage(images::none);
     }
 };
-const char *ViewEngine::proccessImage(const char *rawImage)
+char *ViewEngine::proccessImage(const char *rawImage)
 {
     int linesWithEmptySpaces = 0;
     int rowsWithText = 0;
@@ -141,8 +145,12 @@ const char *ViewEngine::proccessImage(const char *rawImage)
 
         if (c == '\n')
         {
-
-            if (thisRowEmptySpaces > 0)
+            bool isConsecutiveNewLinse = false;
+            if (i < 0 && rawImage[i - 1] == '\n')
+            {
+                isConsecutiveNewLinse = true;
+            }
+            if (!isConsecutiveNewLinse)
             {
                 if (emptySpaces > thisRowEmptySpaces)
                 {
@@ -164,7 +172,7 @@ const char *ViewEngine::proccessImage(const char *rawImage)
     }
     int newSize = overallSize - (emptySpaces * linesWithEmptySpaces);
 
-    char *newImage = new char(newSize);
+    char *newImage = new char[newSize + 1];
     linesWithEmptySpaces = 0;
     thisRowEmptySpaces = 0;
     allStartingCharsSpaces = true;
@@ -178,6 +186,7 @@ const char *ViewEngine::proccessImage(const char *rawImage)
         if (c == '\n')
         {
             linesWithEmptySpaces++;
+            thisRowEmptySpaces = 0;
             allStartingCharsSpaces = true;
         }
         else if (allStartingCharsSpaces && c == ' ' && thisRowEmptySpaces < emptySpaces)
@@ -196,7 +205,8 @@ const char *ViewEngine::proccessImage(const char *rawImage)
             newImageIndex++;
         }
     }
-    return rawImage;
+    newImage[newImageIndex] = '\0';
+    return newImage;
 };
 
 void ViewEngine::trimRows(){};

@@ -15,6 +15,7 @@ namespace imagesEnumb
 namespace images
 {
   char image1[] = "123123";
+  const char *none = R"( )";
   const char *fighter = R"(
 
 |==(W{==========-       
