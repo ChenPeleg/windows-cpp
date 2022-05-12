@@ -50,7 +50,7 @@ void ViewEngine::paint(State *state, Page *page)
 
     cout << "\n";
     // for debuging
-    cout << std::setprecision(2) << state->getTimePased() << "\n\n";
+    cout << std::setprecision(2) << state->getMiliseconds() << "\n\n";
 
     cout << page->text << endl
          << "\n_________________\n"

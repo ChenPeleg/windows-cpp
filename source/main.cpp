@@ -99,12 +99,18 @@ private:
         long keyDownTime = 0;
         bool pauseKeyPress = false;
         bool runing = true;
+        bool paintOrNot = true;
         state->carridgePos = 0;
+        state->setMsTimer(500);
 
         while (runing)
         {
-            char keyPressed = app_events::getKeyPressed2();
             int sec = state->secondsClock();
+            if (state->isTimerDone())
+            {
+                paintOrNot = true;
+            }
+            char keyPressed = app_events::getKeyPressed2();
 
             if (keyPressed != lastChar)
             {
@@ -127,7 +133,7 @@ private:
                     {
                         state->carridgePos = state->carridgePos + 1;
 
-                        paintContent();
+                        paintOrNot = true;
                     }
                     else
                     {
@@ -156,7 +162,7 @@ private:
                     {
                         state->carridgePos = state->carridgePos - 1;
 
-                        paintContent();
+                        paintOrNot = true;
                     }
                     else
                     {
@@ -168,6 +174,13 @@ private:
             {
                 finish();
                 runing = false;
+            }
+
+            // end of loop
+            if (paintOrNot)
+            {
+                paintContent();
+                paintOrNot = false;
             }
         }
 

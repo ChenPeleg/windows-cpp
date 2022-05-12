@@ -14,6 +14,8 @@ private:
     int initialState;
     int page;
     int secondsPassed;
+    int msTimer;
+    int msTimerDuration;
     long milisecondsPassed;
     time_t start_time;
     clock_t start_t;
@@ -27,11 +29,14 @@ public:
     int carridgePos;
 
     void setPage(int);
+    void setMsTimer(int ms);
+    bool isTimerDone();
 
     State(int _initialState);
     ~State();
     int secondsClock();
     double getTimePased();
+    long getMiliseconds();
 };
 
 #endif
