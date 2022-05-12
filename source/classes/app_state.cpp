@@ -1,4 +1,5 @@
 #include "../headers/app_state.h"
+#include <time.h>
 
 State::State(int _initialState)
 {
@@ -13,11 +14,18 @@ void State::setPage(int pageNum)
     if (pageNum > 0)
         this->page = pageNum;
 };
-int State::getSecondsPassed()
+int State::secondsClock()
 {
-    time_t current = std::time(nullptr);
+    clock_t currnetClock = clock();
 
-    return current - this->start_time;
+    time_t current = std::time(nullptr);
+    this->secondsPassed = current - this->start_time;
+
+    return secondsPassed;
+};
+double State::getTimePased()
+{
+    return secondsPassed;
 };
 
 // }

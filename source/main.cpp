@@ -104,7 +104,7 @@ private:
         while (runing)
         {
             char keyPressed = app_events::getKeyPressed2();
-            int sec = state->getSecondsPassed();
+            int sec = state->secondsClock();
 
             if (keyPressed != lastChar)
             {

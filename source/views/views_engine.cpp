@@ -1,6 +1,7 @@
 #include <windows.h>
 #include <iostream>
 #include <math.h>
+#include <iomanip>
 
 #include "../headers/common.h"
 #include "../headers/views_engine.h"
@@ -8,6 +9,7 @@
 #include "../images/images.cpp"
 
 using namespace std;
+using namespace common;
 
 ViewEngine::ViewEngine(int charsPerRow, int numOfRows)
 {
@@ -43,10 +45,13 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
 
-    char *img = getImage(page->image);
+    char *img = getImage(page->image, 0);
     cout << img << endl;
 
     cout << "\n";
+    // for debuging
+    cout << std::setprecision(2) << state->getTimePased() << "\n\n";
+
     cout << page->text << endl
          << "\n_________________\n"
          << endl;
@@ -117,7 +122,7 @@ char *ViewEngine::duplicateChar(char c, int len)
     newChar[i] = '\0';
     return newChar;
 }
-char *ViewEngine::getImage(ImageEnumb image)
+char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
 {
     switch (image)
     {
@@ -187,6 +192,10 @@ char *ViewEngine::proccessImage(const char *rawImage)
     if (emptySpaces > 99)
     {
         emptySpaces = 0;
+    }
+    if (emptySpaces > 2)
+    {
+        emptySpaces--;
     }
     int newSize = overallSize - (emptySpaces * linesWithEmptySpaces);
     if (newSize > overallSize)

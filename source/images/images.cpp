@@ -8,7 +8,8 @@ namespace imagesEnumb
     none = 0,
     fighter = 1,
     mage,
-    Choose
+    Choose,
+    mageAnimation
   };
 }
 
@@ -17,6 +18,18 @@ namespace images
   char image1[] = "123123";
   const char *none = R"( )";
   const char *fighter = R"(
+
+|==(W{==========-       
+    ||  (.--.)         
+    | \_,|**|,__      
+    `\ ' `--'   ),     
+      `\_. .__/\ \`      
+        | .  |~~\~|    
+       /==0==-\  /    
+      /~\___/~~\/    
+
+    )";
+  const char *fighterA1 = R"(
 
 |==(W{==========-       
     ||  (.--.)         

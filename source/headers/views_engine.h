@@ -26,7 +26,7 @@ public:
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
     static char *proccessImage(const char *);
-    static char *getImage(ImageEnumb image);
+    static char *getImage(ImageEnumb image, common::AnimState animbationState = 0);
 
     void trimRows();
 };
