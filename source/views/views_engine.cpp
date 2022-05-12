@@ -96,7 +96,7 @@ void ViewEngine::paintKeyPressBar(int carriagePos)
 
         cout << emptySpaces << arrow << "\033[0m\t\t"
              << endl;
-        delete emptySpaces;
+        //  delete emptySpaces;
     }
     else
     {
@@ -146,13 +146,23 @@ char *ViewEngine::proccessImage(const char *rawImage)
         if (c == '\n')
         {
             bool isConsecutiveNewLinse = false;
-            if (i < 0 && rawImage[i - 1] == '\n')
+            if (i > 0 && rawImage[i - 1] == '\n')
             {
                 isConsecutiveNewLinse = true;
             }
+            else if (i == 0)
+            {
+                isConsecutiveNewLinse = true;
+            }
+
             if (!isConsecutiveNewLinse)
             {
-                if (emptySpaces > thisRowEmptySpaces)
+                bool considerThisRow = true;
+                if (isConsecutiveNewLinse)
+                {
+                    considerThisRow = false;
+                }
+                if (considerThisRow && emptySpaces > thisRowEmptySpaces)
                 {
                     emptySpaces = thisRowEmptySpaces;
                 }
@@ -164,13 +174,29 @@ char *ViewEngine::proccessImage(const char *rawImage)
         else if (allStartingCharsSpaces && c == ' ')
         {
             thisRowEmptySpaces++;
+            if (thisRowEmptySpaces > 10)
+            {
+                int c1 = thisRowEmptySpaces;
+            }
         }
         else
         {
             allStartingCharsSpaces = false;
         }
     }
+    if (emptySpaces > 99)
+    {
+        emptySpaces = 0;
+    }
     int newSize = overallSize - (emptySpaces * linesWithEmptySpaces);
+    if (newSize > overallSize)
+    {
+        throw "new size of image is larger than old size";
+    }
+    if (overallSize > 200)
+    {
+        int c = newSize;
+    }
 
     char *newImage = new char[newSize + 1];
     linesWithEmptySpaces = 0;
