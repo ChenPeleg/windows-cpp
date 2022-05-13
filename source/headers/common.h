@@ -10,6 +10,7 @@ namespace common
         FadeOut = 2,
         Choose = 3
     };
+    /* from 1 to 10000 im miliseconds*/
     typedef int AnimState;
     const int AnimationDelay = 500;
     int string_size(const char *str)

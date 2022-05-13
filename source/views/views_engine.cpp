@@ -26,9 +26,7 @@ void ViewEngine::hideCursor()
 void ViewEngine::ShowConsoleCursor(bool showFlag)
 {
     HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
-
     CONSOLE_CURSOR_INFO cursorInfo;
-
     GetConsoleCursorInfo(out, &cursorInfo);
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
@@ -45,7 +43,7 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
 
-    char *img = getImage(page->image, 0);
+    char *img = getImage(page->image, state->animationState);
     cout << img << endl;
 
     cout << "\n";
@@ -122,13 +120,25 @@ char *ViewEngine::duplicateChar(char c, int len)
     newChar[i] = '\0';
     return newChar;
 }
+
+int ViewEngine::GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationInMs)
+{
+    int numberOfstagesFromDivision = (animationState + 1) / durationInMs;
+
+    return animationState;
+};
 char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
 {
+    int stage = GetAnimationStage(animationsState, 5, 200);
+    cout << "\n\n"
+         << stage << "\n\n";
     switch (image)
     {
     case ImageEnumb::fighter:
         return ViewEngine::proccessImage(images::fighter);
     case ImageEnumb::mage:
+        return ViewEngine::proccessImage(images::mage);
+    case ImageEnumb::mageAnimation:
         return ViewEngine::proccessImage(images::mage);
     case ImageEnumb::none:
     default:

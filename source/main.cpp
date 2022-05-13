@@ -105,7 +105,8 @@ private:
 
         while (runing)
         {
-            int sec = state->secondsClock();
+            state->tik();
+            int sec = state->getSeconds();
             if (state->isTimerDone())
             {
                 paintOrNot = true;

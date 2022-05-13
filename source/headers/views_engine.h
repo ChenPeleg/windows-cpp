@@ -13,6 +13,7 @@ private:
     int charsPerRow;
     int numOfRows;
     char *rows[][50];
+    static int GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationInMs);
 
 public:
     static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7

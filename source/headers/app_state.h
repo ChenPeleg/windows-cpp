@@ -3,6 +3,7 @@
 #define STATE_H
 #include <ctime>
 #include <time.h>
+#include <cmath>
 #include "common.h"
 
 using namespace common;
@@ -34,9 +35,10 @@ public:
 
     State(int _initialState);
     ~State();
-    int secondsClock();
+    void tik();
     double getTimePased();
     long getMiliseconds();
+    int getSeconds();
 };
 
 #endif
