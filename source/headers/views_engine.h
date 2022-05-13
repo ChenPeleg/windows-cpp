@@ -6,6 +6,7 @@
 #include "./content_pages.h"
 #include "../content/content_pages.cpp"
 #include "../images/images.cpp"
+#include "../images/animations1.cpp"
 
 class ViewEngine
 {

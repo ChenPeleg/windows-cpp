@@ -145,7 +145,7 @@ public:
               switch (pageNumber)
               {
               case 1:
-                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::mage, 1);
+                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::mageAnimation, 1);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;

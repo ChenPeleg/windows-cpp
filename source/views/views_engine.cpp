@@ -142,17 +142,29 @@ char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
         return ViewEngine::proccessImage(images::mage);
     case ImageEnumb::mageAnimation:
     {
-        int stage = GetAnimationStage(animationsState, 2, 500);
+        int stage = GetAnimationStage(animationsState, 10, 100);
         switch (stage)
         {
         case 0:
+        case 9:
             return ViewEngine::proccessImage(images::mageA0);
             break;
+        case 8:
         case 1:
             return ViewEngine::proccessImage(images::mageA1);
             break;
+
         case 2:
+        case 7:
             return ViewEngine::proccessImage(images::mageA2);
+            break;
+        case 3:
+        case 6:
+            return ViewEngine::proccessImage(images::mageA3);
+            break;
+        case 4:
+        case 5:
+            return ViewEngine::proccessImage(images::mageA4);
             break;
 
         default:
