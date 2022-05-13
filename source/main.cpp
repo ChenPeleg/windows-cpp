@@ -101,7 +101,7 @@ private:
         bool runing = true;
         bool paintOrNot = true;
         state->carridgePos = 0;
-        state->setMsTimer(500);
+        state->setMsTimer(100);
 
         while (runing)
         {

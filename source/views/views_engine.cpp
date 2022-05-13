@@ -121,17 +121,19 @@ char *ViewEngine::duplicateChar(char c, int len)
     return newChar;
 }
 
-int ViewEngine::GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationInMs)
+int ViewEngine::GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationOfTickInMs)
 {
-    int numberOfstagesFromDivision = (animationState + 1) / durationInMs;
+    double totalNumberOfTicksPreCycle = 10000 / durationOfTickInMs;
+    double howManyTicksPassed = animationState / (durationOfTickInMs);
 
-    return animationState;
+    int stage = (int)howManyTicksPassed % numberOfStages;
+    return stage;
 };
 char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
 {
-    int stage = GetAnimationStage(animationsState, 5, 200);
-    cout << "\n\n"
-         << stage << "\n\n";
+    // int stage = GetAnimationStage(animationsState, 3, 500);
+    // cout << "\n\n"
+    //      << stage << "\n\n";
     switch (image)
     {
     case ImageEnumb::fighter:
@@ -139,8 +141,30 @@ char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
     case ImageEnumb::mage:
         return ViewEngine::proccessImage(images::mage);
     case ImageEnumb::mageAnimation:
-        return ViewEngine::proccessImage(images::mage);
+    {
+        int stage = GetAnimationStage(animationsState, 2, 500);
+        switch (stage)
+        {
+        case 0:
+            return ViewEngine::proccessImage(images::mageA0);
+            break;
+        case 1:
+            return ViewEngine::proccessImage(images::mageA1);
+            break;
+        case 2:
+            return ViewEngine::proccessImage(images::mageA2);
+            break;
+
+        default:
+            return ViewEngine::proccessImage(images::mage);
+            break;
+        }
+        return ViewEngine::proccessImage(images::mageA0);
+        break;
+    }
+
     case ImageEnumb::none:
+
     default:
         return ViewEngine::proccessImage(images::none);
     }
