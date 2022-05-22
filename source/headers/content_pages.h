@@ -145,13 +145,13 @@ public:
               switch (pageNumber)
               {
               case 1:
-                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::mageAnimation, 1);
+                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::elephant, 1);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
 
               case 2:
-                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::fighter, 1);
+                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::manWalkingSun, 1);
                      p.o("Go up ", 5,
                          "Go down ", 6);
                      break;

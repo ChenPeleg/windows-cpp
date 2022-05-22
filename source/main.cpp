@@ -24,7 +24,7 @@ class AppMain
 public:
     int start()
     {
-        cout << endl;
+
         ViewEngine::hideCursor();
         graphicUtils::clear();
         paintContent();
@@ -191,7 +191,6 @@ private:
 int main()
 {
     AppMain app;
-    cout << "works";
     app.start();
     return 0;
 };

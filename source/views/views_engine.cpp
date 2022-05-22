@@ -47,8 +47,8 @@ void ViewEngine::paint(State *state, Page *page)
     cout << img << endl;
 
     cout << "\n";
-    // for debuging
-    cout << std::setprecision(2) << state->getMiliseconds() << "\n\n";
+    // for debuging22111
+    // cout << std::setprecision(2) << state->getMiliseconds() << "\n\n";
 
     cout << page->text << endl
          << "\n_________________\n"
@@ -174,6 +174,12 @@ char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
         return ViewEngine::proccessImage(images::mageA0);
         break;
     }
+    case ImageEnumb::manPickingFromTree:
+        return ViewEngine::proccessImage(images::manPickingFromTree);
+    case ImageEnumb::manWalkingSun:
+        return ViewEngine::proccessImage(images::manWalkingSun);
+    case ImageEnumb::elephant:
+        return ViewEngine::proccessImage(images::elephant);
 
     case ImageEnumb::none:
 

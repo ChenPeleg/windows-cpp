@@ -22,7 +22,7 @@
                 "${workspaceFolder}\\bin\\main.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}"
             },
             "presentation": {
                 "echo": true,

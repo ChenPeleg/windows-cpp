@@ -11,6 +11,8 @@ using namespace common;
 class State
 {
 private:
+    int HP;
+    int maxHP;
     int p_level;
     int initialState;
     int page;
