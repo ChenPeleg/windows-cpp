@@ -1,15 +1,18 @@
 #include "../headers/app_state.h"
 #include <time.h>
 #include <cmath>
+#include "../headers/combat_state.h"
 
 State::State(int _initialState)
 {
     this->p_level = 1;
     this->animationState = 1;
+
     this->initialState = _initialState;
     this->start_time = std::time(&start_time);
     this->start_t = clock();
     this->page = 1;
+    this->combat = new combatController::CombatState();
 };
 State::~State(){};
 void State::setPage(int pageNum)

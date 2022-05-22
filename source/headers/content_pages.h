@@ -13,12 +13,15 @@ using namespace imagesEnumb;
 class Page
 {
 
+private:
+       int imageId;
+       int customId;
+
 public:
+       bool isFight;
        char text[500];
        char options[5][100];
        int optionsNumber[5];
-       int imageId;
-       int customId;
        ImageEnumb image;
        ~Page()
        {
@@ -53,6 +56,10 @@ public:
                        const char *textoptions3, int op3,
                        const char *textoptions4, int op4)
        {
+              // if (this->customId == 1)
+              // {
+              //        return;
+              // }
 
               for (int o = 0; o < 5; o++)
               {
@@ -108,6 +115,7 @@ public:
        };
        void buildPage(const char *text, ImageEnumb image, int customId)
        {
+              setCustomId(customId);
               int i;
               const int paddingMaxSize = 400;
               int size = common::string_size(text);
@@ -116,7 +124,7 @@ public:
                      this->text[i] = text[i];
               }
               int sizeOfArr = sizeof(this->text);
-              // for ()
+
               this->text[i] = ' ';
               for (int d = i + 1; d < sizeOfArr - size; d++)
               {
@@ -130,9 +138,7 @@ public:
                      }
               }
 
-              //
               this->image = image;
-              this->customId = customId;
        }
 
        static Page getPages(int pageNumber = 1)
@@ -145,13 +151,13 @@ public:
               switch (pageNumber)
               {
               case 1:
-                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::elephant, 1);
+                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::elephant, 1000);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
 
               case 2:
-                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::manWalkingSun, 1);
+                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::elephant, 1);
                      p.o("Go up ", 5,
                          "Go down ", 6);
                      break;
@@ -182,6 +188,19 @@ public:
 
               return p;
        };
+       void setCustomId(int customId)
+       {
+              this->customId = customId;
+              switch (customId)
+              {
+              case 1000:
+                     this->isFight = true;
+                     break;
+              default:
+                     this->isFight = false;
+                     break;
+              }
+       }
 };
 
 #endif

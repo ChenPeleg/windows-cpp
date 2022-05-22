@@ -11,7 +11,7 @@ namespace common
         Choose = 3
     };
     /* from 1 to 10000 im miliseconds*/
-    typedef int AnimState;
+    typedef int ClockTicksState;
     const int AnimationDelay = 500;
     int string_size(const char *str)
     {

@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cmath>
 #include "common.h"
+#include "combat_state.h"
 
 using namespace common;
 
@@ -20,12 +21,14 @@ private:
     int msTimer;
     int msTimerDuration;
     long milisecondsPassed;
+    int highlightedBattleOption;
     time_t start_time;
     clock_t start_t;
 
 public:
     AnimationType animation;
-    AnimState animationState;
+    ClockTicksState animationState;
+    combatController::CombatState *combat;
 
     int lastKey;
     int highLightedAns;

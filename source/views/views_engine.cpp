@@ -55,6 +55,10 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     if (fadeIn)
         Sleep(AnimationDelay);
+    if (page->isFight)
+    {
+        return;
+    }
     for (int o = 0; o < 5; o++)
     {
 
@@ -121,15 +125,15 @@ char *ViewEngine::duplicateChar(char c, int len)
     return newChar;
 }
 
-int ViewEngine::GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationOfTickInMs)
+int ViewEngine::getStageClockTicks(common::ClockTicksState clockTicksState, int numberOfStages, int durationOfTickInMs)
 {
     double totalNumberOfTicksPreCycle = 10000 / durationOfTickInMs;
-    double howManyTicksPassed = animationState / (durationOfTickInMs);
+    double howManyTicksPassed = clockTicksState / (durationOfTickInMs);
 
     int stage = (int)howManyTicksPassed % numberOfStages;
     return stage;
 };
-char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
+char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
 {
     // int stage = GetAnimationStage(animationsState, 3, 500);
     // cout << "\n\n"
@@ -142,7 +146,7 @@ char *ViewEngine::getImage(ImageEnumb image, AnimState animationsState)
         return ViewEngine::proccessImage(images::mage);
     case ImageEnumb::mageAnimation:
     {
-        int stage = GetAnimationStage(animationsState, 10, 100);
+        int stage = getStageClockTicks(animationsState, 10, 100);
         switch (stage)
         {
         case 0:

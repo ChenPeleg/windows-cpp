@@ -14,7 +14,7 @@ private:
     int charsPerRow;
     int numOfRows;
     char *rows[][50];
-    static int GetAnimationStage(common::AnimState animationState, int numberOfStages, int durationInMs);
+    static int getStageClockTicks(common::ClockTicksState animationState, int numberOfStages, int durationInMs);
 
 public:
     static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7
@@ -28,7 +28,7 @@ public:
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
     static char *proccessImage(const char *);
-    static char *getImage(ImageEnumb image, common::AnimState animbationState = 0);
+    static char *getImage(ImageEnumb image, common::ClockTicksState animbationState = 0);
 
     void trimRows();
 };
