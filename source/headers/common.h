@@ -3,6 +3,7 @@
 #define COMMON_H
 namespace common
 {
+
     enum AnimationType
     {
         none = 0,
@@ -29,12 +30,19 @@ namespace common
     };
     const int AnimationDelay = 500;
     int string_size(const char *str)
+
     {
 
         int Size = 0;
         while (str[Size] != '\0')
             Size++;
         return Size;
+    };
+
+    int RandomInt(int size = 100)
+    {
+        srand(time(NULL));
+        return rand() % size;
     }
 };
 

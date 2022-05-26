@@ -4,6 +4,7 @@
 #include <iomanip>
 
 #include "../headers/common.h"
+#include "../headers/combat_state.h"
 #include "../headers/views_engine.h"
 #include "../content/content_pages.cpp"
 #include "../images/images.cpp"
@@ -31,6 +32,41 @@ void ViewEngine::ShowConsoleCursor(bool showFlag)
     cursorInfo.bVisible = showFlag; // set the cursor visibility
     SetConsoleCursorInfo(out, &cursorInfo);
 };
+void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
+{
+    const int spaceBetweenLenght = 3;
+    const int buttonLength = 10;
+    // cout << "  " << combat->highlightPosition;
+    for (int btn = 0; btn < combatController::numberOfButtons; btn++)
+    {
+        char btnText[11];
+        cout << "  ";
+        if (combat->highlightPosition == btn)
+        {
+            cout << "\x1b[30m\x1b[47m";
+        }
+        switch (combat->currentButtons[btn])
+        {
+        case common::CombatButtonType::Attack:
+            cout << " Attack ";
+            break;
+        case common::CombatButtonType::noop:
+            cout << "   " << btn + 1 << "   ";
+            break;
+        case common::CombatButtonType::Block:
+            cout << " Block  ";
+            break;
+        case common::CombatButtonType::Dodge:
+            cout << " Dodge  ";
+            break;
+        }
+        if (combat->highlightPosition == btn)
+        {
+            cout << "\033[0m";
+        }
+    }
+    cout << endl;
+}
 void ViewEngine::paint(State *state, Page *page)
 {
     bool fadeIn = false;
@@ -47,8 +83,6 @@ void ViewEngine::paint(State *state, Page *page)
     cout << img << endl;
 
     cout << "\n";
-    // for debuging22111
-    // cout << std::setprecision(2) << state->getMiliseconds() << "\n\n";
 
     cout << page->text << endl
          << "\n_________________\n"
@@ -58,7 +92,8 @@ void ViewEngine::paint(State *state, Page *page)
 
     if (page->isFight)
     {
-        cout << "    " << state->combat->highlightPosition;
+
+        paintCombatButtons(state->combat);
         return;
     }
     for (int o = 0; o < 5; o++)
@@ -85,6 +120,7 @@ void ViewEngine::paint(State *state, Page *page)
     }
     ViewEngine::paintKeyPressBar(state->carridgePos);
 };
+
 void ViewEngine::paintKeyPressBar(int carriagePos)
 {
     bool isArrowAnimation = true;
