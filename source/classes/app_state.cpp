@@ -29,6 +29,8 @@ void State::tik()
     this->secondsPassed = current - this->start_time;
     double justMiliseconds = this->milisecondsPassed;
     this->animationState = ((justMiliseconds / 10000) - std::floor(justMiliseconds / 10000)) * 10000;
+
+    this->combat->highlightPosition = common::getStageClockTicks(animationState, 4, 350);
 };
 double State::getTimePased()
 {

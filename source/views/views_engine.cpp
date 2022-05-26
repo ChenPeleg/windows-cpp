@@ -55,8 +55,10 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     if (fadeIn)
         Sleep(AnimationDelay);
+
     if (page->isFight)
     {
+        cout << "    " << state->combat->highlightPosition;
         return;
     }
     for (int o = 0; o < 5; o++)
@@ -127,11 +129,7 @@ char *ViewEngine::duplicateChar(char c, int len)
 
 int ViewEngine::getStageClockTicks(common::ClockTicksState clockTicksState, int numberOfStages, int durationOfTickInMs)
 {
-    double totalNumberOfTicksPreCycle = 10000 / durationOfTickInMs;
-    double howManyTicksPassed = clockTicksState / (durationOfTickInMs);
-
-    int stage = (int)howManyTicksPassed % numberOfStages;
-    return stage;
+    return common::getStageClockTicks(clockTicksState, numberOfStages, durationOfTickInMs);
 };
 char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
 {

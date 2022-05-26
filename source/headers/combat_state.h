@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cmath>
 #include "common.h"
+using namespace common;
 
 namespace combatController
 {
@@ -15,9 +16,17 @@ namespace combatController
     public:
         CombatState(){};
         char *monsterName;
-        int highlightPosition;
-    };
 
+        int highlightPosition;
+        // CombatButtonType *[4] getCombatStateButtons()
+        // {
+        //     return CombatButtonType * [4]
+        //     { CombatButtonType::none, }
+        // };
+        void setCombatButtons(int difficulty = 1)
+        {
+        }
+    };
 };
 
 #endif
