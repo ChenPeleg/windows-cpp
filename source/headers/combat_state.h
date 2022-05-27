@@ -11,13 +11,18 @@ namespace combatController
 {
     const int numberOfButtons = 4;
     const int maxBattleButtonOptions = 100;
+
     class CombatState
     {
     private:
+        int randomNumbers[101];
+        int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
         CombatButtonType getRandCombatBtnRowByDifficulty(int dificculty)
         {
             int rand = common::RandomInt(100);
+            *randomNumbersPtr = rand;
+            ++randomNumbersPtr;
             switch (rand / 10)
             {
             case 0:
@@ -42,10 +47,11 @@ namespace combatController
         void setCombatBtnRowByDifficulty(CombatButtonType *tempArr, int dificculty)
         {
             CombatButtonType buttonForAction = getRandCombatBtnRowByDifficulty(dificculty);
+            int randPos = common::RandomInt(3);
 
             for (int btn = 0; btn < numberOfButtons; btn++)
             {
-                tempArr[btn] = buttonForAction == btn ? buttonForAction : CombatButtonType::noop;
+                tempArr[btn] = btn == randPos ? buttonForAction : CombatButtonType::noop;
             }
         }
         CombatButtonType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
@@ -60,7 +66,7 @@ namespace combatController
             {
                 currentButtons[o] = allButtonsArray[i][o];
             }
-        };
+        }
 
     public:
         CombatState()

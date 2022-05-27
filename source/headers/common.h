@@ -1,6 +1,9 @@
 
+#include <cstdlib>
+
 #ifndef COMMON_H
 #define COMMON_H
+
 namespace common
 {
 
@@ -42,7 +45,6 @@ namespace common
 
     static int RandomInt(int size = 100)
     {
-        srand(time(NULL));
         return rand() % size;
     }
 };
