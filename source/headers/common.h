@@ -16,7 +16,8 @@ namespace common
         noop = 0,
         Dodge = 1,
         Attack = 2,
-        Block = 3
+        Block = 3,
+        Special = 4,
     };
     /* from 1 to 10000 im miliseconds*/
     typedef int ClockTicksState;
@@ -39,7 +40,7 @@ namespace common
         return Size;
     };
 
-    int RandomInt(int size = 100)
+    static int RandomInt(int size = 100)
     {
         srand(time(NULL));
         return rand() % size;

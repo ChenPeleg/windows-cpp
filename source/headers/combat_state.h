@@ -15,13 +15,37 @@ namespace combatController
     {
     private:
         int battleOptionIndex = 0;
+        CombatButtonType getRandCombatBtnRowByDifficulty(int dificculty)
+        {
+            int rand = common::RandomInt(100);
+            switch (rand / 10)
+            {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+                return CombatButtonType::Attack;
+            case 4:
+            case 5:
+            case 6:
+                return CombatButtonType::Dodge;
+            case 7:
+            case 8:
+            case 9:
+                return CombatButtonType::Block;
+            case 10:
+            default:
+                return CombatButtonType::Attack;
+            }
+            //
+        }
         void setCombatBtnRowByDifficulty(CombatButtonType *tempArr, int dificculty)
         {
-            int buttonForAction = common::RandomInt(3);
+            CombatButtonType buttonForAction = getRandCombatBtnRowByDifficulty(dificculty);
 
             for (int btn = 0; btn < numberOfButtons; btn++)
             {
-                tempArr[btn] = buttonForAction == btn ? CombatButtonType::Dodge : CombatButtonType::noop;
+                tempArr[btn] = buttonForAction == btn ? buttonForAction : CombatButtonType::noop;
             }
         }
         CombatButtonType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
@@ -46,7 +70,17 @@ namespace combatController
         };
         CombatButtonType currentButtons[numberOfButtons];
         char *monsterName;
+
         int highlightPosition;
+        void setHighlightPosition(int pos)
+        {
+            if (pos < highlightPosition)
+            {
+                battleOptionIndex++;
+                setButtonsByIndex();
+            }
+            highlightPosition = pos;
+        }
 
         // diffuculty from 1 to 10
         void
@@ -54,8 +88,18 @@ namespace combatController
         {
             for (int index = 0; index < maxBattleButtonOptions; index++)
             {
-
-                setCombatBtnRowByDifficulty(allButtonsArray[index], difficulty);
+                if (index % 2 == 0 || true)
+                {
+                    setCombatBtnRowByDifficulty(allButtonsArray[index], difficulty);
+                }
+                else if (index > 0)
+                {
+                    for (int btn = 0; btn < numberOfButtons; btn++)
+                    {
+                        allButtonsArray[index][btn] =
+                            allButtonsArray[index - 1][btn];
+                    }
+                }
             }
         };
     };

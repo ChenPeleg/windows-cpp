@@ -141,8 +141,7 @@ void ViewEngine::paintKeyPressBar(int carriagePos)
 
         cout << emptySpaces << arrow << "\033[0m\t\t"
              << endl;
-        //  delete emptySpaces;
-    }
+        }
     else
     {
 

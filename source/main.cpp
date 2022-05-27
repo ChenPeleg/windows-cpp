@@ -22,6 +22,10 @@ class AppMain
 {
 
 public:
+    AppMain()
+    {
+        srand(time(NULL));
+    };
     int start()
     {
 
