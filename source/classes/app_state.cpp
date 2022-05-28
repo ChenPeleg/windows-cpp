@@ -30,7 +30,7 @@ void State::tik()
     double justMiliseconds = this->milisecondsPassed;
     this->animationState = ((justMiliseconds / 10000) - std::floor(justMiliseconds / 10000)) * 10000;
 
-    this->combat->setHighlightPosition(common::getStageClockTicks(animationState, 4, 350));
+    this->combat->setHighlightPosition(common::getStageClockTicks(animationState, 4, 450));
 };
 double State::getTimePased()
 {

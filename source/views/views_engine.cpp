@@ -217,6 +217,16 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         return ViewEngine::proccessImage(images::manWalkingSun);
     case ImageEnumb::elephant:
         return ViewEngine::proccessImage(images::elephant);
+    case ImageEnumb::skeleton:
+        return ViewEngine::proccessImage(images::skeleton);
+    case ImageEnumb::skull:
+        return ViewEngine::proccessImage(images::skull);
+    case ImageEnumb::earthMonster:
+        return ViewEngine::proccessImage(images::earthMonser);
+    case ImageEnumb::ghost:
+        return ViewEngine::proccessImage(images::ghost);
+    case ImageEnumb::worm:
+        return ViewEngine::proccessImage(images::worm);
 
     case ImageEnumb::none:
 

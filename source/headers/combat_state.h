@@ -56,12 +56,9 @@ namespace combatController
         }
         CombatButtonType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
 
-        void setButtonsByIndex(int i = 0)
+        void setButtonsByIndex(int i)
         {
-            if (i == 0)
-            {
-                i = ++battleOptionIndex;
-            };
+
             for (int o = 0; o < numberOfButtons; o++)
             {
                 currentButtons[o] = allButtonsArray[i][o];
@@ -72,7 +69,7 @@ namespace combatController
         CombatState()
         {
             setAllCombatButtons();
-            setButtonsByIndex();
+            setButtonsByIndex(0);
         };
         CombatButtonType currentButtons[numberOfButtons];
         char *monsterName;
@@ -82,8 +79,8 @@ namespace combatController
         {
             if (pos < highlightPosition)
             {
-                battleOptionIndex++;
-                setButtonsByIndex();
+
+                setButtonsByIndex(++battleOptionIndex);
             }
             highlightPosition = pos;
         }
@@ -94,11 +91,11 @@ namespace combatController
         {
             for (int index = 0; index < maxBattleButtonOptions; index++)
             {
-                if (index % 2 == 0 || true)
+                if (index % 2 == 0)
                 {
                     setCombatBtnRowByDifficulty(allButtonsArray[index], difficulty);
                 }
-                else if (index > 0)
+                else
                 {
                     for (int btn = 0; btn < numberOfButtons; btn++)
                     {

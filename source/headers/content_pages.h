@@ -151,7 +151,7 @@ public:
               switch (pageNumber)
               {
               case 1:
-                     p.b("You wake up in a small room with one door made of iron.", ImageEnumb::elephant, 1000);
+                     p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;

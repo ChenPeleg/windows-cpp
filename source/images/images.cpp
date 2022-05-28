@@ -13,18 +13,23 @@ namespace imagesEnumb
     fighterAnimation,
     manWalkingSun,
     manPickingFromTree,
-    elephant
+    elephant,
+    worm,
+    earthMonster,
+    skull,
+    ghost,
+    skeleton
   };
 }
 
 namespace images
 {
   const char *none = R"( )";
-  const char *hsutimage = R"(
+  const char *fighterStatic = R"(
 
 |==(W{==========-       
     ||  (.--.)         
-    | \_,|**fsdfsdf|,__      
+    | \_,|**|,__      
     `\ ' `--'   ),     
       `\_. .__/\ \`      
         | .  |~~\~|    
@@ -74,22 +79,82 @@ namespace images
                | |        | \   |             |
  a:f_________.-' "-______-'  \__|             |________________________)";
   const char *elephant = R"(                              
-                ▄▄▄          
-            ▄█▀▀   ▌         
-         ▄█▀      █          
-  ▄▄▀   █         ▌          
- ██▄▄▄▄█         ▐   ▄▄▄     
-  █   ▐▀▀▀▀▀█▄▄▄▄█▀▀▀        
-   █  ▐         ▐▀▄          
-      ▐         ▌  █         
-      ▐▄       █             
-       ▀▄     ▀              
-         ▀▄▄▄█               
-                             
-
+ 
  
 )";
-  const char *none3 = R"( )";
+  const char *skull = R"( 
+              _______________
+         /               \
+        /                 \
+       /                   \
+       |    /\       /\   /
+       |   (  )     (  )  |
+       |    ``       ``   |,
+       |         M         |
+        \__     DDD     __/
+         |\     XXX     /|
+         | |           | |
+         |     |```|     |
+         |     \___/     |
+          \            _/
+           \_         _/
+             \_______/
+
+  )";
+  const char *ghost = R"( 
+    ./```````\.
+   ./          \.
+ (               )
+ |  (^)    (^)    |
+ |                |
+|                |
+|      MMM       |
+|     MMMMM       |
+|     MMMMM       |
+ |     MM        |
+ (_______________)
+
+  )";
+
+  const char *skeleton = R"( 
+T        T
+[========]  j
+ \ `*  * /  | 
+  |  `  |   |
+   \ & /`  s@s
+    \ /    /
+|--Q||D---/ 
+|  \||/
+|   ||     
+)";
+  const char *earthMonser = R"( 
+    _____T.. .-___T
+  ,/========/--\=======\
+ /     ,,               \
+ \    \*O/    `O*,      \
+  `i        -V-          i
+   i ;              ,    i
+   ;    /`v```v`\        `.
+   ;   <         >        ;..
+  ;     \,^,,^,,/   ;     ;\..
+ /;\  /                 ;;;\..
+ /,;\_____________,.,.,/.,/\...
+   
+)";
+  const char *worm = R"( 
+  _/*****\_
+L/         \J
+ \ `S`  `S`/
+  \  /`\  /               i
+   | \,/ |                |
+    \     \    /```````\  |
+     \     \../    _    \//
+      |           /  \   /
+       \........./    \./  
+
+   
+)";
+
 }
 
 #endif
