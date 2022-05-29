@@ -12,8 +12,6 @@ using namespace common;
 class State
 {
 private:
-    int HP;
-    int maxHP;
     int p_level;
     int initialState;
     int page;
@@ -26,6 +24,8 @@ private:
     clock_t start_t;
 
 public:
+    int HP;
+    int maxHP;
     AnimationType animation;
     ClockTicksState animationState;
     combatController::CombatState *combat;
@@ -33,6 +33,7 @@ public:
     int lastKey;
     int highLightedAns;
     int carridgePos;
+    bool isInCombat;
 
     void setPage(int);
     void setMsTimer(int ms);

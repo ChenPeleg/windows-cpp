@@ -9,7 +9,6 @@
 #include "./classes/app_state.cpp"
 #include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
-#include "./content/content_pages.cpp"
 #include "./images/images.cpp"
 
 #include <windows.h>
@@ -49,7 +48,6 @@ private:
         state->animation = AnimationType::FadeIn;
         state->highLightedAns = 0;
         state->carridgePos = ViewEngine::minCatridgeBarSize;
-
         paintContent();
         state->animation = AnimationType::none;
     }
@@ -64,7 +62,13 @@ private:
         int chosenAnswer = getOptionFromKeyPressed(key);
         if (chosenAnswer > 0)
         {
-            state->highLightedAns = chosenAnswer;
+            if (state->isInCombat)
+            {
+            }
+            else
+            {
+                state->highLightedAns = chosenAnswer;
+            }
         }
     }
     int getOptionFromKeyPressed(char key)

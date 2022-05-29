@@ -7,6 +7,9 @@ State::State(int _initialState)
 {
     this->p_level = 1;
     this->animationState = 1;
+    this->isInCombat = true;
+    this->maxHP = 100;
+    this->HP = this->maxHP;
 
     this->initialState = _initialState;
     this->start_time = std::time(&start_time);

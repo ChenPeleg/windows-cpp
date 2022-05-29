@@ -56,10 +56,6 @@ public:
                        const char *textoptions3, int op3,
                        const char *textoptions4, int op4)
        {
-              // if (this->customId == 1)
-              // {
-              //        return;
-              // }
 
               for (int o = 0; o < 5; o++)
               {

@@ -6,7 +6,6 @@
 #include "../headers/common.h"
 #include "../headers/combat_state.h"
 #include "../headers/views_engine.h"
-#include "../content/content_pages.cpp"
 #include "../images/images.cpp"
 
 using namespace std;
@@ -67,6 +66,10 @@ void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
     }
     cout << endl;
 }
+void ViewEngine ::paintUpperStatusBar(State *state)
+{
+    cout << "HP " << state->HP << "/" << state->maxHP << "\n";
+}
 void ViewEngine::paint(State *state, Page *page)
 {
     bool fadeIn = false;
@@ -78,7 +81,7 @@ void ViewEngine::paint(State *state, Page *page)
     cout << "\n\n\n"
          << endl;
     graphicUtils::clear();
-
+    paintUpperStatusBar(state);
     char *img = getImage(page->image, state->animationState);
     cout << img << endl;
 
