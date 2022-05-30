@@ -181,7 +181,7 @@ private:
                     }
                 }
             }
-            if (keyPressed == 'Q' || sec > 40)
+            if (keyPressed == 116 || keyPressed == 'Q' || sec > 40)
             {
                 finish();
                 runing = false;

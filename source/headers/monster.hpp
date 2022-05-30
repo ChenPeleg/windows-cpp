@@ -10,41 +10,31 @@ using namespace content_monsters;
 class Monster
 {
 private:
-    void SetMonsterData();
+    void SetMonsterData(MonsterType monsterType);
     MonsterType typ;
 
 public:
     int HP;
     int maxHP;
     imagesEnumb::ImageEnumb monsterImage;
-    char monsterName[20];
+    char monsterName0[20];
     int mosterDifficulty;
     int baseDamage;
 
-    // Monster(MonsterType
-    //         : monsterType);
+    Monster(MonsterType monster);
 
-    Monster(/* args */);
+    // Monster(/* args */);
 
     ~Monster();
-    // setMonster()
-    // {
-    // }
-    // static Monster buildMonster(MonsterType
-    //                             : monsterType);
 };
-/*
-Monster::Monster()
+
+Monster::Monster(MonsterType monsterType)
 {
+    this->SetMonsterData(monsterType);
 }
-Monster::Monster(MonsterType
-                 : monsterType)
+void Monster::SetMonsterData(MonsterType monsterType)
 {
-    this->SetMonsterData(MonsterType);
-}
-Monster::SetMonsterData(MonsterType
-                        : monsterType)
-{
+    char *monsterName;
     switch (monsterType)
     {
     case MonsterType::blobhMonster:
@@ -100,6 +90,5 @@ Monster::SetMonsterData(MonsterType
 Monster::~Monster()
 {
 }
-*/
 
 #endif
