@@ -70,6 +70,10 @@ void ViewEngine ::paintUpperStatusBar(State *state)
 {
     cout << "HP " << state->HP << "/" << state->maxHP << "\n";
 }
+void ViewEngine ::paintMosterStatusBar(combatController::CombatState *combat)
+{
+    cout << *combat->monsterName << " HP ";
+}
 void ViewEngine::paint(State *state, Page *page)
 {
     bool fadeIn = false;
@@ -224,8 +228,8 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         return ViewEngine::proccessImage(images::skeleton);
     case ImageEnumb::skull:
         return ViewEngine::proccessImage(images::skull);
-    case ImageEnumb::earthMonster:
-        return ViewEngine::proccessImage(images::earthMonser);
+    case ImageEnumb::blobMonster:
+        return ViewEngine::proccessImage(images::blobMonser);
     case ImageEnumb::ghost:
         return ViewEngine::proccessImage(images::ghost);
     case ImageEnumb::worm:

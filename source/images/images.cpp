@@ -15,7 +15,7 @@ namespace imagesEnumb
     manPickingFromTree,
     elephant,
     worm,
-    earthMonster,
+    blobMonster,
     skull,
     ghost,
     skeleton
@@ -127,7 +127,7 @@ T        T
 |  \||/
 |   ||     
 )";
-  const char *earthMonser = R"( 
+  const char *blobMonser = R"( 
     _____T.. .-___T
   ,/========/--\=======\
  /     ,,               \

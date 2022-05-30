@@ -17,6 +17,7 @@ private:
     static int getStageClockTicks(common::ClockTicksState animationState, int numberOfStages, int durationInMs);
     static void paintCombatButtons(combatController::CombatState *combat);
     static void paintUpperStatusBar(State *state);
+    static void paintMosterStatusBar(combatController::CombatState *combat);
 
 public:
     static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7
