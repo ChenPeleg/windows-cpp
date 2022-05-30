@@ -7,6 +7,7 @@
 #include "./combat_state.h"
 #include "../images/images.cpp"
 #include "../images/animations1.cpp"
+//#include "monster.h"
 
 class ViewEngine
 {

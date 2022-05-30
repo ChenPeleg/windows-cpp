@@ -1,7 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
-#include "./content/content_monsters.h"
+#include "content_monsters.h"
 #include "../images/images.cpp"
 
 using namespace content_monsters;

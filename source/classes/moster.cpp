@@ -2,7 +2,7 @@
 #include <time.h>
 #include <cmath>
 #include "../headers/monster.h"
-#include "../content/content_monsters.cpp"
+#include "../headers/content_monsters.h"
 
 Monster::buildMonster(content::MonsterType monsterType)
 {
