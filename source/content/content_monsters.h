@@ -1,7 +1,7 @@
 #ifndef CONTENT_MONSTERS
 #define CONTENT_MONSTERS
 
-namespace content
+namespace content_monsters
 {
     enum MonsterType
     {

@@ -7,6 +7,7 @@
 #include "common.h"
 #include "combat_state.h"
 //#include "monster.h"
+//#include "../content/content_monsters.cpp"
 
 using namespace common;
 

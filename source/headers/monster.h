@@ -1,10 +1,10 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
-#include "./content/content_monster.cpp"
+#include "./content/content_monsters.h"
 #include "../images/images.cpp"
 
-using namespace content;
+using namespace content_monsters;
 class Monster
 {
 private:
