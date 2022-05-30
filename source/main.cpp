@@ -1,10 +1,10 @@
 
 
-#include "./headers/constants.h"
-#include "./headers/app_state.h"
-#include "./headers/views_engine.h"
-#include "./headers/common.h"
-#include "./headers/grapihics_utils.h"
+#include "./headers/constants.hpp"
+#include "./headers/app_state.hpp"
+#include "./headers/views_engine.hpp"
+#include "./headers/common.hpp"
+#include "./headers/grapihics_utils.hpp"
 
 #include "./classes/app_state.cpp"
 #include "./views/views_engine.cpp"

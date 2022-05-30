@@ -4,7 +4,7 @@
 #include <ctime>
 #include <time.h>
 #include <cmath>
-#include "common.h"
+#include "common.hpp"
 using namespace common;
 
 namespace combatController

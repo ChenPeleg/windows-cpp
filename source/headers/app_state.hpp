@@ -4,9 +4,9 @@
 #include <ctime>
 #include <time.h>
 #include <cmath>
-#include "common.h"
-#include "combat_state.h"
-//#include "monster.h"
+#include "common.hpp"
+#include "combat_state.hpp"
+//#include "monster.hpp"
 //#include "../content/content_monsters.cpp"
 
 using namespace common;

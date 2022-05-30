@@ -2,12 +2,13 @@
 #define VIEWS_ENGINE
 #include <windows.h>
 #include <iostream>
-#include "./app_state.h"
-#include "./content_pages.h"
-#include "./combat_state.h"
+#include "./app_state.hpp"
+#include "./content_pages.hpp"
+#include "./combat_state.hpp"
 #include "../images/images.cpp"
 #include "../images/animations1.cpp"
-//#include "monster.h"
+#include "content_monsters.hpp"
+#include "monster.hpp"
 
 class ViewEngine
 {

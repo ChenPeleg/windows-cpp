@@ -3,9 +3,9 @@
 #include <math.h>
 #include <iomanip>
 
-#include "../headers/common.h"
-#include "../headers/combat_state.h"
-#include "../headers/views_engine.h"
+#include "../headers/common.hpp"
+#include "../headers/combat_state.hpp"
+#include "../headers/views_engine.hpp"
 #include "../images/images.cpp"
 
 using namespace std;

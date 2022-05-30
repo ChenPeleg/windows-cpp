@@ -6,7 +6,7 @@
  *   So the definitions and implementation are all in one file.
  * *********************/
 #include "../images/images.cpp"
-#include "common.h"
+#include "common.hpp"
 
 using namespace imagesEnumb;
 

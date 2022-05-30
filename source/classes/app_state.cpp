@@ -1,7 +1,7 @@
-#include "../headers/app_state.h"
+#include "../headers/app_state.hpp"
 #include <time.h>
 #include <cmath>
-#include "../headers/combat_state.h"
+#include "../headers/combat_state.hpp"
 
 State::State(int _initialState)
 {
