@@ -7,6 +7,7 @@
  * *********************/
 #include "../images/images.cpp"
 #include "common.hpp"
+#include "content_monsters.hpp"
 
 using namespace imagesEnumb;
 
@@ -23,6 +24,7 @@ public:
        char options[5][100];
        int optionsNumber[5];
        ImageEnumb image;
+       content_monsters::MonsterType pageMonster;
        ~Page()
        {
               //  delete this;
@@ -109,9 +111,14 @@ public:
        {
               this->buildPage(text, image, customId);
        };
-       void buildPage(const char *text, ImageEnumb image, int customId)
+       void m(content_monsters::MonsterType mnsType, const char *text = "")
        {
-              setCustomId(customId);
+              this->buildPage(text, image, 0, mnsType);
+       };
+       void buildPage(const char *text, ImageEnumb image, int customId, content_monsters::MonsterType mnsType = content_monsters::MonsterType::none)
+       {
+              pageMonster = mnsType;
+              setCustomId(customId, mnsType);
               int i;
               const int paddingMaxSize = 400;
               int size = common::string_size(text);
@@ -148,6 +155,7 @@ public:
               {
               case 1:
                      p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
+                     p.m(content_monsters::MonsterType::blobhMonster);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
@@ -184,16 +192,16 @@ public:
 
               return p;
        };
-       void setCustomId(int customId)
+       void setCustomId(int customId, content_monsters::MonsterType mnsType)
        {
               this->customId = customId;
-              switch (customId)
+              switch (mnsType)
               {
-              case 1000:
-                     this->isFight = true;
+              case content_monsters::MonsterType::none:
+                     this->isFight = false;
                      break;
               default:
-                     this->isFight = false;
+                     this->isFight = true;
                      break;
               }
        }

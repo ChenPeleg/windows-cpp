@@ -5,6 +5,7 @@ namespace content_monsters
 {
     enum MonsterType
     {
+        none,
         earthWorm,
         stingWorm,
         clayMonster,

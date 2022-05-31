@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cmath>
 #include "common.hpp"
+
 using namespace common;
 
 namespace combatController

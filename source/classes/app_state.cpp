@@ -16,6 +16,7 @@ State::State(int _initialState)
     this->start_t = clock();
     this->page = 1;
     this->combat = new combatController::CombatState();
+    this->monster = NULL;
 };
 State::~State(){};
 void State::setPage(int pageNum)

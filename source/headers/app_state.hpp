@@ -6,7 +6,7 @@
 #include <cmath>
 #include "common.hpp"
 #include "combat_state.hpp"
-//#include "monster.hpp"
+#include "monster.hpp"
 //#include "../content/content_monsters.cpp"
 
 using namespace common;
@@ -31,7 +31,7 @@ public:
     AnimationType animation;
     ClockTicksState animationState;
     combatController::CombatState *combat;
-    // content::Monster *monster;
+    Monster *monster;
 
     int lastKey;
     int highLightedAns;

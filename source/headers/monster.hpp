@@ -4,6 +4,8 @@
 
 #include "content_monsters.hpp"
 #include "../images/images.cpp"
+#include <string>
+#include <cstring>
 
 using namespace content_monsters;
 
@@ -11,70 +13,63 @@ class Monster
 {
 private:
     void SetMonsterData(MonsterType monsterType);
-    MonsterType typ;
+    const MonsterType typ;
 
 public:
     int HP;
     int maxHP;
     imagesEnumb::ImageEnumb monsterImage;
-    char monsterName0[20];
+    char name[20];
     int mosterDifficulty;
     int baseDamage;
 
     Monster(MonsterType monster);
-
-    // Monster(/* args */);
-
     ~Monster();
 };
 
-Monster::Monster(MonsterType monsterType)
+Monster::Monster(MonsterType monsterType) : typ(monsterType)
 {
-    this->SetMonsterData(monsterType);
-}
-void Monster::SetMonsterData(MonsterType monsterType)
-{
-    char *monsterName;
+    std::string monsterName = "Monster";
     switch (monsterType)
     {
     case MonsterType::blobhMonster:
-        monsterName = "Blob Moster        ";
+        monsterName.assign("Blob Moster");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::blobMonster;
         break;
     case MonsterType::clayMonster:
-        monsterName = "Clay Moster        ";
+        monsterName.assign("Clay Moster");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::blobMonster;
         break;
     case MonsterType::earthWorm:
-        monsterName = "Earth Worm         ";
+        monsterName.assign("Earth Worm");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::worm;
         break;
     case MonsterType::ghostMoster:
-        monsterName = "Ghost Walker       ";
+        monsterName.assign("Ghost Walker");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::ghost;
         break;
     case MonsterType::skeletonMoster:
-        monsterName = "Undead Skeleton    ";
+        monsterName.assign("Undead Skeleton");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::skeleton;
         break;
     case MonsterType::skullMonster:
-        monsterName = "Flying Skull       ";
+        monsterName.assign("Flying Skull");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::skull;
         break;
     case MonsterType::stingWorm:
-        monsterName = "Sting Worm         ";
+        monsterName.assign("Sting Worm");
         maxHP = 100;
         mosterDifficulty = 1;
         monsterImage = imagesEnumb::worm;
@@ -84,6 +79,9 @@ void Monster::SetMonsterData(MonsterType monsterType)
     default:
         break;
     }
+    std::strcpy(name, monsterName.c_str());
+    name[sizeof(name) - 1] = 0;
+
     HP = maxHP;
 }
 

@@ -31,7 +31,7 @@ public:
 
         ViewEngine::hideCursor();
         graphicUtils::clear();
-        //  page = Page::getPages(1);
+
         paintContent();
         eventLoop();
         return 0;
