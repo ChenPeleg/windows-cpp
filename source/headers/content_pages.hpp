@@ -19,7 +19,7 @@ private:
        int customId;
 
 public:
-       bool isFight;
+       bool isFight = false;
        char text[500];
        char options[5][100];
        int optionsNumber[5];

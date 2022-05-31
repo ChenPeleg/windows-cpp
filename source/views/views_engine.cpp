@@ -86,7 +86,7 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
     paintUpperStatusBar(state);
-    char *img = getImage(page->image, state->animationState);
+    char *img = page->isFight ? getImage(state->monster->monsterImage) : getImage(page->image, state->animationState);
     cout << img << endl;
 
     cout << "\n";

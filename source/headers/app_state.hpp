@@ -7,7 +7,6 @@
 #include "common.hpp"
 #include "combat_state.hpp"
 #include "monster.hpp"
-//#include "../content/content_monsters.cpp"
 
 using namespace common;
 
@@ -31,7 +30,7 @@ public:
     AnimationType animation;
     ClockTicksState animationState;
     combatController::CombatState *combat;
-    Monster *monster;
+    Monster *monster = NULL;
 
     int lastKey;
     int highLightedAns;
@@ -40,6 +39,8 @@ public:
 
     void setPage(int);
     void setMsTimer(int ms);
+    void initFight(content_monsters::MonsterType);
+
     bool isTimerDone();
 
     State(int _initialState);

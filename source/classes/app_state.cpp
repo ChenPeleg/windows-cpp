@@ -2,12 +2,12 @@
 #include <time.h>
 #include <cmath>
 #include "../headers/combat_state.hpp"
-
+#include "../headers/monster.hpp"
 State::State(int _initialState)
 {
     this->p_level = 1;
     this->animationState = 1;
-    this->isInCombat = true;
+    this->isInCombat = false;
     this->maxHP = 100;
     this->HP = this->maxHP;
 
@@ -19,6 +19,17 @@ State::State(int _initialState)
     this->monster = NULL;
 };
 State::~State(){};
+void State::initFight(content_monsters::MonsterType mnsTyp)
+{
+    if (mnsTyp == content_monsters::MonsterType ::none)
+    {
+        if (this->monster != NULL)
+            delete this->monster;
+
+        return;
+    }
+    this->monster = new Monster(mnsTyp);
+}
 void State::setPage(int pageNum)
 {
     if (pageNum > 0)

@@ -31,7 +31,7 @@ public:
 
         ViewEngine::hideCursor();
         graphicUtils::clear();
-
+        newPageWasChosen(1);
         paintContent();
         eventLoop();
         return 0;
@@ -45,6 +45,9 @@ private:
     {
         state->setPage(newPage);
         page = Page::getPages(newPage);
+
+        state->initFight(page.pageMonster);
+
         state->animation = AnimationType::FadeIn;
         state->highLightedAns = 0;
         state->carridgePos = ViewEngine::minCatridgeBarSize;
