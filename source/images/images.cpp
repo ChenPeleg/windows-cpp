@@ -1,7 +1,7 @@
 #ifndef IMAGES_H
 #define IMAGES_H
 
-namespace imagesEnumb
+namespace asciiImages
 {
   enum ImageEnumb
   {
@@ -138,8 +138,7 @@ T        T
    ;   <         >        ;..
   ;     \,^,,^,,/   ;     ;\..
  /;\  /                 ;;;\..
- /,;\_____________,.,.,/.,/\...
-   
+ /,;\_____________,.,.,/.,/\... 
 )";
   const char *worm = R"( 
   _/*****\_

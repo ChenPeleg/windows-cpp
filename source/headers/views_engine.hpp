@@ -6,6 +6,7 @@
 #include "./content_pages.hpp"
 #include "./combat_state.hpp"
 #include "../images/images.cpp"
+#include "../images/asciiWords.cpp"
 #include "../images/animations1.cpp"
 #include "content_monsters.hpp"
 #include "monster.hpp"
@@ -19,7 +20,8 @@ private:
     static int getStageClockTicks(common::ClockTicksState animationState, int numberOfStages, int durationInMs);
     static void paintCombatButtons(combatController::CombatState *combat);
     static void paintUpperStatusBar(State *state);
-    static void paintMosterStatusBar(combatController::CombatState *combat);
+    static void paintMosterStatusBar(Monster *monster);
+    static void paintCombatMessage(combatController::CombatState *combat);
 
 public:
     static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7
@@ -34,6 +36,7 @@ public:
     static char *duplicateChar(char c, int len);
     static char *proccessImage(const char *);
     static char *getImage(ImageEnumb image, common::ClockTicksState animbationState = 0);
+    static char *getTextImage(AsciiWordsEnumb asciiWord, common::ClockTicksState animbationState = 0);
 
     void trimRows();
 };

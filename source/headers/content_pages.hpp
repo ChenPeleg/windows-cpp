@@ -9,7 +9,7 @@
 #include "common.hpp"
 #include "content_monsters.hpp"
 
-using namespace imagesEnumb;
+using namespace asciiImages;
 
 class Page
 {

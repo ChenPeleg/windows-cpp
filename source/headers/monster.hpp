@@ -18,7 +18,7 @@ private:
 public:
     int HP;
     int maxHP;
-    imagesEnumb::ImageEnumb monsterImage;
+    asciiImages::ImageEnumb monsterImage;
     char name[20];
     int mosterDifficulty;
     int baseDamage;
@@ -36,43 +36,43 @@ Monster::Monster(MonsterType monsterType) : typ(monsterType)
         monsterName.assign("Blob Moster");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::blobMonster;
+        monsterImage = asciiImages::blobMonster;
         break;
     case MonsterType::clayMonster:
         monsterName.assign("Clay Moster");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::blobMonster;
+        monsterImage = asciiImages::blobMonster;
         break;
     case MonsterType::earthWorm:
         monsterName.assign("Earth Worm");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::worm;
+        monsterImage = asciiImages::worm;
         break;
     case MonsterType::ghostMoster:
         monsterName.assign("Ghost Walker");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::ghost;
+        monsterImage = asciiImages::ghost;
         break;
     case MonsterType::skeletonMoster:
         monsterName.assign("Undead Skeleton");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::skeleton;
+        monsterImage = asciiImages::skeleton;
         break;
     case MonsterType::skullMonster:
         monsterName.assign("Flying Skull");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::skull;
+        monsterImage = asciiImages::skull;
         break;
     case MonsterType::stingWorm:
         monsterName.assign("Sting Worm");
         maxHP = 100;
         mosterDifficulty = 1;
-        monsterImage = imagesEnumb::worm;
+        monsterImage = asciiImages::worm;
 
         break;
 

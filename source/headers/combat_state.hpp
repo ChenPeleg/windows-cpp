@@ -5,6 +5,7 @@
 #include <time.h>
 #include <cmath>
 #include "common.hpp"
+#include "monster.hpp"
 
 using namespace common;
 
@@ -69,12 +70,18 @@ namespace combatController
     public:
         CombatState()
         {
+            // Monster monster(content_monsters::MonsterType ::blobhMonster);
             setAllCombatButtons();
             setButtonsByIndex(0);
         };
+        // CombatState(Monster mnst) //: //monster(mnst)
+        // {
+        //     setAllCombatButtons();
+        //     setButtonsByIndex(0);
+        // };
         CombatButtonType currentButtons[numberOfButtons];
         char *monsterName;
-
+        //  Monster monster;
         int highlightPosition;
         void setHighlightPosition(int pos)
         {

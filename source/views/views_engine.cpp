@@ -39,7 +39,7 @@ void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
     for (int btn = 0; btn < combatController::numberOfButtons; btn++)
     {
         char btnText[11];
-        cout << "  ";
+        cout << (btn == 0 ? "" : "  ");
         if (combat->highlightPosition == btn)
         {
             cout << "\x1b[30m\x1b[47m";
@@ -70,9 +70,14 @@ void ViewEngine ::paintUpperStatusBar(State *state)
 {
     cout << "HP " << state->HP << "/" << state->maxHP << "\n";
 }
-void ViewEngine ::paintMosterStatusBar(combatController::CombatState *combat)
+void ViewEngine ::paintMosterStatusBar(Monster *monster)
 {
-    cout << *combat->monsterName << " HP ";
+    cout << (*monster).name << " HP " << (*monster).HP << "/" << (*monster).maxHP << '\n';
+}
+void ViewEngine ::paintCombatMessage(combatController::CombatState *combat)
+{
+    // getTextImage(asciiImages::AsciiWordsEnumb::hit);
+    // // cout << *combat->monsterName << " HP ";
 }
 void ViewEngine::paint(State *state, Page *page)
 {
@@ -89,10 +94,20 @@ void ViewEngine::paint(State *state, Page *page)
     char *img = page->isFight ? getImage(state->monster->monsterImage) : getImage(page->image, state->animationState);
     cout << img << endl;
 
-    cout << "\n";
+    if (page->isFight)
+    {
+        paintMosterStatusBar((*state).monster);
+        paintCombatMessage((*state).combat);
+        char *textImage = getTextImage(asciiImages::AsciiWordsEnumb::dodge);
+        cout << textImage;
+    }
+    else
+    {
+        cout << "\n";
+    }
 
     cout << page->text << endl
-         << "\n_________________\n"
+         << "_________________\n"
          << endl;
     if (fadeIn)
         Sleep(AnimationDelay);
@@ -239,6 +254,25 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
 
     default:
         return ViewEngine::proccessImage(images::none);
+    }
+};
+char *ViewEngine::getTextImage(AsciiWordsEnumb image, ClockTicksState animationsState)
+{
+
+    switch (image)
+    {
+    case AsciiWordsEnumb::blocked:
+        return ViewEngine::proccessImage(images::Wblocked);
+    case AsciiWordsEnumb::hit:
+        return ViewEngine::proccessImage(images::Whit);
+    case AsciiWordsEnumb::youWin:
+        return ViewEngine::proccessImage(images::WyouWin);
+    case AsciiWordsEnumb::dodge:
+        return ViewEngine::proccessImage(images::Wdodge);
+
+    case AsciiWordsEnumb::noword:
+    default:
+        return ViewEngine::proccessImage("");
     }
 };
 char *ViewEngine::proccessImage(const char *rawImage)
