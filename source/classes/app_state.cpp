@@ -16,19 +16,16 @@ State::State(int _initialState)
     this->start_t = clock();
     this->page = 1;
     this->combat = new combatController::CombatState(content_monsters::MonsterType::blobhMonster);
-    this->monster = NULL;
 };
 State::~State(){};
 void State::initFight(content_monsters::MonsterType mnsTyp)
 {
     if (mnsTyp == content_monsters::MonsterType ::none)
     {
-        if (this->monster != NULL)
-            delete this->monster;
 
         return;
     }
-    this->monster = new Monster(mnsTyp);
+    this->combat = new combatController::CombatState(content_monsters::MonsterType::blobhMonster);
 }
 void State::setPage(int pageNum)
 {

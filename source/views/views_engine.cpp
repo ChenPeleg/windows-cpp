@@ -91,12 +91,12 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
     paintUpperStatusBar(state);
-    char *img = page->isFight ? getImage(state->monster->monsterImage) : getImage(page->image, state->animationState);
+    char *img = page->isFight ? getImage(state->combat->monster.monsterImage) : getImage(page->image, state->animationState);
     cout << img << endl;
 
     if (page->isFight)
     {
-        paintMosterStatusBar((*state).monster);
+        paintMosterStatusBar(&(state->combat->monster));
         paintCombatMessage((*state).combat);
         char *textImage = getTextImage(asciiImages::AsciiWordsEnumb::dodge);
         cout << textImage;

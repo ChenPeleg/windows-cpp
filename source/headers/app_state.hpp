@@ -30,7 +30,6 @@ public:
     AnimationType animation;
     ClockTicksState animationState;
     combatController::CombatState *combat;
-    Monster *monster = NULL;
 
     int lastKey;
     int highLightedAns;
