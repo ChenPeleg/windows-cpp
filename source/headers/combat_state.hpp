@@ -19,11 +19,10 @@ namespace combatController
     class CombatState
     {
     private:
-        const State &stateRef;
+        State &stateRef;
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
-
         CombatButtonType getRandCombatBtnRowByDifficulty(int dificculty)
         {
             int rand = common::RandomInt(100);
@@ -66,26 +65,33 @@ namespace combatController
             switch (btn)
             {
             case CombatButtonType::Attack:
+                takeDamage();
                 break;
             case CombatButtonType::Dodge:
+                evadeDamage();
                 break;
             case CombatButtonType::Block:
+                evadeDamage();
                 break;
             case CombatButtonType::Special:
+                takeDamage();
                 break;
             case CombatButtonType::noop:
             default:
+                takeDamage();
                 break;
             }
-        }
-        void takeDamage()
-        {
-        }
+        };
+
+        void takeDamage(int dmg = 10);
         void inflictDamage()
         {
+            this->monster.HP -= 5;
         }
+
         void evadeDamage()
         {
+            takeDamage(2);
         }
         void setButtonsByIndex(int i)
         {
@@ -98,11 +104,11 @@ namespace combatController
 
     public:
         Monster monster;
-        CombatState(const State &stt, content_monsters::MonsterType mnst);
+        CombatState(State &stt, content_monsters::MonsterType mnst);
         void combatKeyPressed(char key)
         {
             combatActionHandler(getOptionFromKeyPressed(key));
-        } // 11111231
+        }
         CombatButtonType getOptionFromKeyPressed(char key)
         {
             int keyAsInt = key - '0';

@@ -74,3 +74,7 @@ bool State::isTimerDone()
     };
     return false;
 };
+void State::decrementHP(int hpDelta = 1)
+{
+    this->HP -= hpDelta;
+};

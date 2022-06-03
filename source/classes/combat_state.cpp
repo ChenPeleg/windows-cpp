@@ -15,11 +15,15 @@ class State;
 namespace combatController
 {
 
-    CombatState::CombatState(const State &stt, content_monsters::MonsterType mnst) : monster(mnst), stateRef(stt)
+    CombatState::CombatState(State &stt, content_monsters::MonsterType mnst) : monster(mnst), stateRef(stt)
     {
-        // stateRef = stt;
+
         setAllCombatButtons();
         setButtonsByIndex(0);
+    };
+    void CombatState::takeDamage(int dmg)
+    {
+        stateRef.decrementHP(dmg);
     };
 };
 
