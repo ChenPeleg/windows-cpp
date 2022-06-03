@@ -68,7 +68,7 @@ namespace combatController
         }
 
     public:
-        CombatState()
+        CombatState(content_monsters::MonsterType)
         {
             // Monster monster(content_monsters::MonsterType ::blobhMonster);
             setAllCombatButtons();

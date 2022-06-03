@@ -15,7 +15,7 @@ State::State(int _initialState)
     this->start_time = std::time(&start_time);
     this->start_t = clock();
     this->page = 1;
-    this->combat = new combatController::CombatState();
+    this->combat = new combatController::CombatState(content_monsters::MonsterType::blobhMonster);
     this->monster = NULL;
 };
 State::~State(){};
