@@ -12,6 +12,11 @@ using namespace common;
 
 class State
 {
+    friend void decrementHP(State &stt, signed int hpDelta = 1)
+    {
+        stt.HP -= hpDelta;
+    }
+
 private:
     int p_level;
     int initialState;

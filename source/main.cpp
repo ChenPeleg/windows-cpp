@@ -65,8 +65,9 @@ private:
         int chosenAnswer = getOptionFromKeyPressed(key);
         if (chosenAnswer > 0)
         {
-            if (state->isInCombat)
+            if (page.isFight)
             {
+                state->combat->combatKeyPressed(key);
             }
             else
             {
@@ -124,7 +125,7 @@ private:
             {
                 paintOrNot = true;
             }
-            char keyPressed = app_events::getKeyPressed2();
+            char keyPressed = app_events::getKeyPressed();
 
             if (keyPressed != lastChar)
             {

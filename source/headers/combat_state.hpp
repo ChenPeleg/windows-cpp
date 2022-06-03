@@ -57,7 +57,32 @@ namespace combatController
             }
         }
         CombatButtonType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
-
+        void combatActionHandler(CombatButtonType btn)
+        {
+            switch (btn)
+            {
+            case CombatButtonType::Attack:
+                break;
+            case CombatButtonType::Dodge:
+                break;
+            case CombatButtonType::Block:
+                break;
+            case CombatButtonType::Special:
+                break;
+            case CombatButtonType::noop:
+            default:
+                break;
+            }
+        }
+        void takeDamage()
+        {
+        }
+        void inflictDamage()
+        {
+        }
+        void evadeDamage()
+        {
+        }
         void setButtonsByIndex(int i)
         {
 
@@ -71,18 +96,28 @@ namespace combatController
         Monster monster;
         CombatState(content_monsters::MonsterType mnst) : monster(mnst)
         {
-            // Monster monster(content_monsters::MonsterType ::blobhMonster);
+
             setAllCombatButtons();
             setButtonsByIndex(0);
         };
-        // CombatState(Monster mnst) //: //monster(mnst)
-        // {
-        //     setAllCombatButtons();
-        //     setButtonsByIndex(0);
-        // };
+        void combatKeyPressed(char key)
+        {
+            combatActionHandler(getOptionFromKeyPressed(key));
+        } // 11111231
+        CombatButtonType getOptionFromKeyPressed(char key)
+        {
+            int keyAsInt = key - '0';
+            if (keyAsInt > 0 && keyAsInt < numberOfButtons + 1 && highlightPosition == keyAsInt - 1)
+            {
+                return currentButtons[keyAsInt - 1];
+            }
+
+            return CombatButtonType::noop;
+        }
+
         CombatButtonType currentButtons[numberOfButtons];
         char *monsterName;
-        //  Monster monster;
+
         int highlightPosition;
         void setHighlightPosition(int pos)
         {
