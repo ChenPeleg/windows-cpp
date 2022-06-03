@@ -15,7 +15,7 @@ State::State(int _initialState)
     this->start_time = std::time(&start_time);
     this->start_t = clock();
     this->page = 1;
-    this->combat = new combatController::CombatState(content_monsters::MonsterType::blobhMonster);
+    this->combat = new combatController::CombatState((*this), content_monsters::MonsterType::blobhMonster);
 };
 State::~State(){};
 void State::initFight(content_monsters::MonsterType mnsTyp)
@@ -25,7 +25,7 @@ void State::initFight(content_monsters::MonsterType mnsTyp)
 
         return;
     }
-    this->combat = new combatController::CombatState(content_monsters::MonsterType::blobhMonster);
+    this->combat = new combatController::CombatState((*this), content_monsters::MonsterType::blobhMonster);
 }
 void State::setPage(int pageNum)
 {

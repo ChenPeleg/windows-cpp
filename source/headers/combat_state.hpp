@@ -6,8 +6,10 @@
 #include <cmath>
 #include "common.hpp"
 #include "monster.hpp"
+#include "app_state.hpp"
 
 using namespace common;
+class State;
 
 namespace combatController
 {
@@ -17,9 +19,11 @@ namespace combatController
     class CombatState
     {
     private:
+        const State &stateRef;
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
+
         CombatButtonType getRandCombatBtnRowByDifficulty(int dificculty)
         {
             int rand = common::RandomInt(100);
@@ -94,12 +98,7 @@ namespace combatController
 
     public:
         Monster monster;
-        CombatState(content_monsters::MonsterType mnst) : monster(mnst)
-        {
-
-            setAllCombatButtons();
-            setButtonsByIndex(0);
-        };
+        CombatState(const State &stt, content_monsters::MonsterType mnst);
         void combatKeyPressed(char key)
         {
             combatActionHandler(getOptionFromKeyPressed(key));
@@ -150,6 +149,7 @@ namespace combatController
             }
         };
     };
+
 };
 
 #endif

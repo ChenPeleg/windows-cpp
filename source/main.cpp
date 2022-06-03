@@ -7,6 +7,7 @@
 #include "./headers/grapihics_utils.hpp"
 
 #include "./classes/app_state.cpp"
+#include "./classes/combat_state.cpp"
 #include "./views/views_engine.cpp"
 #include "./events/app_events.cpp"
 #include "./images/images.cpp"
