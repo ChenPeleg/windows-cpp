@@ -23,7 +23,7 @@ namespace combatController
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
-        CombatButtonType getRandCombatBtnRowByDifficulty(int dificculty)
+        CombatActionType getRandCombatBtnRowByDifficulty(int dificculty)
         {
             int rand = common::RandomInt(100);
             *randomNumbersPtr = rand;
@@ -34,49 +34,49 @@ namespace combatController
             case 1:
             case 2:
             case 3:
-                return CombatButtonType::Attack;
+                return CombatActionType::Attack;
             case 4:
             case 5:
             case 6:
-                return CombatButtonType::Dodge;
+                return CombatActionType::Dodge;
             case 7:
             case 8:
             case 9:
-                return CombatButtonType::Block;
+                return CombatActionType::Block;
             case 10:
             default:
-                return CombatButtonType::Attack;
+                return CombatActionType::Attack;
             }
             //
         }
-        void setCombatBtnRowByDifficulty(CombatButtonType *tempArr, int dificculty)
+        void setCombatBtnRowByDifficulty(CombatActionType *tempArr, int dificculty)
         {
-            CombatButtonType buttonForAction = getRandCombatBtnRowByDifficulty(dificculty);
+            CombatActionType buttonForAction = getRandCombatBtnRowByDifficulty(dificculty);
             int randPos = common::RandomInt(3);
 
             for (int btn = 0; btn < numberOfButtons; btn++)
             {
-                tempArr[btn] = btn == randPos ? buttonForAction : CombatButtonType::noop;
+                tempArr[btn] = btn == randPos ? buttonForAction : CombatActionType::noop;
             }
         }
-        CombatButtonType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
-        void combatActionHandler(CombatButtonType btn)
+        CombatActionType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
+        void combatActionHandler(CombatActionType btn)
         {
             switch (btn)
             {
-            case CombatButtonType::Attack:
+            case CombatActionType::Attack:
                 takeDamage();
                 break;
-            case CombatButtonType::Dodge:
+            case CombatActionType::Dodge:
                 evadeDamage();
                 break;
-            case CombatButtonType::Block:
+            case CombatActionType::Block:
                 evadeDamage();
                 break;
-            case CombatButtonType::Special:
+            case CombatActionType::Special:
                 takeDamage();
                 break;
-            case CombatButtonType::noop:
+            case CombatActionType::noop:
             default:
                 takeDamage();
                 break;
@@ -109,7 +109,7 @@ namespace combatController
         {
             combatActionHandler(getOptionFromKeyPressed(key));
         }
-        CombatButtonType getOptionFromKeyPressed(char key)
+        CombatActionType getOptionFromKeyPressed(char key)
         {
             int keyAsInt = key - '0';
             if (keyAsInt > 0 && keyAsInt < numberOfButtons + 1 && highlightPosition == keyAsInt - 1)
@@ -117,10 +117,10 @@ namespace combatController
                 return currentButtons[keyAsInt - 1];
             }
 
-            return CombatButtonType::noop;
+            return CombatActionType::noop;
         }
 
-        CombatButtonType currentButtons[numberOfButtons];
+        CombatActionType currentButtons[numberOfButtons];
         char *monsterName;
 
         int highlightPosition;

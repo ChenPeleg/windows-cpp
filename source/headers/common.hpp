@@ -14,7 +14,7 @@ namespace common
         FadeOut = 2,
         Choose = 3
     };
-    enum CombatButtonType
+    enum CombatActionType
     {
         noop = 0,
         Dodge = 1,

@@ -21,7 +21,7 @@ private:
     static void paintCombatButtons(combatController::CombatState *combat);
     static void paintUpperStatusBar(State *state);
     static void paintMosterStatusBar(Monster *monster);
-    static void paintCombatMessage(combatController::CombatState *combat);
+    static void paintCombatMessage(combatController::CombatState *combat, State *state);
 
 public:
     static const int maxCatridgeBarSize = 8; // Original 9 // for debugging 7

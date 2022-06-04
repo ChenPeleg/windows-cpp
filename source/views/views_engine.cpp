@@ -46,16 +46,16 @@ void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
         }
         switch (combat->currentButtons[btn])
         {
-        case common::CombatButtonType::Attack:
+        case common::CombatActionType::Attack:
             cout << " Attack ";
             break;
-        case common::CombatButtonType::noop:
+        case common::CombatActionType::noop:
             cout << "   " << btn + 1 << "   ";
             break;
-        case common::CombatButtonType::Block:
+        case common::CombatActionType::Block:
             cout << " Block  ";
             break;
-        case common::CombatButtonType::Dodge:
+        case common::CombatActionType::Dodge:
             cout << " Dodge  ";
             break;
         }
@@ -74,10 +74,17 @@ void ViewEngine ::paintMosterStatusBar(Monster *monster)
 {
     cout << (*monster).name << " HP " << (*monster).HP << "/" << (*monster).maxHP << '\n';
 }
-void ViewEngine ::paintCombatMessage(combatController::CombatState *combat)
+void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, State *state)
 {
-    // getTextImage(asciiImages::AsciiWordsEnumb::hit);
-    // // cout << *combat->monsterName << " HP ";
+    int stage = getStageClockTicks(state->animationState, 7, 80);
+    if (stage > 3)
+    {
+        cout << " *** TOOK " << 10 << "  DAMAGE ***" << endl;
+    }
+    else
+    {
+        cout << "          " << endl;
+    }
 }
 void ViewEngine::paint(State *state, Page *page)
 {
@@ -97,9 +104,10 @@ void ViewEngine::paint(State *state, Page *page)
     if (page->isFight)
     {
         paintMosterStatusBar(&(state->combat->monster));
-        paintCombatMessage((*state).combat);
+        cout << "\n";
+        paintCombatMessage((*state).combat, state);
         char *textImage = getTextImage(asciiImages::AsciiWordsEnumb::dodge);
-        cout << textImage;
+        // cout << textImage;
     }
     else
     {
