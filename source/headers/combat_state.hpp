@@ -15,11 +15,23 @@ namespace combatController
 {
     const int numberOfButtons = 4;
     const int maxBattleButtonOptions = 100;
+    const long timeInMsToshowCombatLog = 2000;
+    enum LastEvent
+    {
+        noEvent,
+        tookDamage,
+        dodgeDamage,
+        blockedDamage,
+        inflictedDamage
+
+    };
 
     class CombatState
     {
     private:
         State &stateRef;
+        LastEvent lastCombatEvent;
+        long timePassedFromLastEvent = 0;
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
@@ -88,6 +100,7 @@ namespace combatController
         {
             this->monster.HP -= 5;
         }
+        void setLastCombatEvent(LastEvent lst);
 
         void evadeDamage()
         {

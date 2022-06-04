@@ -25,6 +25,11 @@ namespace combatController
     {
         stateRef.decrementHP(dmg);
     };
+    void CombatState::setLastCombatEvent(LastEvent lst)
+    {
+        this->lastCombatEvent = lst;
+        this->timePassedFromLastEvent = this->stateRef.getMiliseconds();
+    };
 };
 
 #endif
