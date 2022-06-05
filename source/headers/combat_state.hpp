@@ -32,6 +32,7 @@ namespace combatController
         State &stateRef;
         LastEvent lastCombatEvent;
         long timePassedFromLastEvent = 0;
+        int lastEventInNumber = 0;
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
@@ -96,15 +97,18 @@ namespace combatController
         };
 
         void takeDamage(int dmg = 10);
-        void inflictDamage()
+        void inflictDamage(int dmg)
         {
-            this->monster.HP -= 5;
+            this->monster.HP -= dmg;
+            setLastCombatEvent(LastEvent::inflictedDamage, dmg);
         }
-        void setLastCombatEvent(LastEvent lst);
+        void setLastCombatEvent(LastEvent lst, int amount);
 
         void evadeDamage()
         {
-            takeDamage(2);
+            int dmg = 2;
+            takeDamage(dmg);
+            setLastCombatEvent(LastEvent::dodgeDamage, dmg);
         }
         void setButtonsByIndex(int i)
         {
@@ -132,7 +136,7 @@ namespace combatController
 
             return CombatActionType::noop;
         }
-
+        bool getShowLastEvent();
         CombatActionType currentButtons[numberOfButtons];
         char *monsterName;
 

@@ -7,7 +7,15 @@
 // define your own namespace to hold constants
 namespace graphicUtils
 {
-    void clear()
+    enum ConsoleColor
+    {
+        reset,
+        blackBGWhite,
+        whiteBGRed,
+
+    };
+    void
+    clear()
     {
         COORD topLeft = {0, 0};
         HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -22,6 +30,19 @@ namespace graphicUtils
             screen.dwSize.X * screen.dwSize.Y, topLeft, &written);
         SetConsoleCursorPosition(console, topLeft);
     }
-
+    const char *getColorText(ConsoleColor conClr)
+    {
+        switch (conClr)
+        {
+        case ConsoleColor::reset:
+            return "\033[0m";
+        case ConsoleColor::blackBGWhite:
+            return "\x1b[30m\x1b[47m";
+        case ConsoleColor::whiteBGRed:
+            return "\x1b[37m\x1b[41m";
+        default:
+            return "";
+        }
+    }
 }
 #endif

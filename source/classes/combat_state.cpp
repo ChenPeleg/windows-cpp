@@ -24,12 +24,18 @@ namespace combatController
     void CombatState::takeDamage(int dmg)
     {
         stateRef.decrementHP(dmg);
+        setLastCombatEvent(LastEvent::tookDamage, dmg);
     };
-    void CombatState::setLastCombatEvent(LastEvent lst)
+    void CombatState::setLastCombatEvent(LastEvent lst, int amount)
     {
         this->lastCombatEvent = lst;
         this->timePassedFromLastEvent = this->stateRef.getMiliseconds();
     };
+    bool CombatState::getShowLastEvent()
+    {
+        return this->timePassedFromLastEvent + 3000 > this->stateRef.getMiliseconds();
+    };
+
 };
 
 #endif

@@ -10,6 +10,7 @@
 
 using namespace std;
 using namespace common;
+using namespace graphicUtils;
 
 ViewEngine::ViewEngine(int charsPerRow, int numOfRows)
 {
@@ -79,7 +80,8 @@ void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, Stat
     int stage = getStageClockTicks(state->animationState, 7, 80);
     if (stage > 3)
     {
-        cout << " *** TOOK " << 10 << "  DAMAGE ***" << endl;
+
+        cout << getColorText(ConsoleColor::whiteBGRed) << " *** TOOK " << 10 << "  DAMAGE ***" << getColorText(ConsoleColor::reset) << endl;
     }
     else
     {
