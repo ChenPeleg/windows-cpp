@@ -77,11 +77,12 @@ void ViewEngine ::paintMosterStatusBar(Monster *monster)
 }
 void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, State *state)
 {
-    int stage = getStageClockTicks(state->animationState, 7, 80);
-    if (stage > 3)
+    int stage = getStageClockTicks(state->animationState, 7, 100);
+    if (stage > 2 && combat->getShowLastEvent())
     {
+        // switch (combat->)
 
-        cout << getColorText(ConsoleColor::whiteBGRed) << " *** TOOK " << 10 << "  DAMAGE ***" << getColorText(ConsoleColor::reset) << endl;
+        cout << getColorText(ConsoleColor::whiteBGBlue) << " *** TOOK " << 10 << "  DAMAGE ***" << getColorText(ConsoleColor::reset) << endl;
     }
     else
     {

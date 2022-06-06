@@ -35,7 +35,11 @@ namespace combatController
     {
         return this->timePassedFromLastEvent + 3000 > this->stateRef.getMiliseconds();
     };
-
-};
+    LastEvent CombatState::getLastEvent()
+    {
+        const bool show = getShowLastEvent();
+        return show ? lastCombatEvent : LastEvent::noEvent;
+    };
+}
 
 #endif

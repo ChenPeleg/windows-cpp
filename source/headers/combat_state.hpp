@@ -137,6 +137,7 @@ namespace combatController
             return CombatActionType::noop;
         }
         bool getShowLastEvent();
+        LastEvent getLastEvent();
         CombatActionType currentButtons[numberOfButtons];
         char *monsterName;
 
