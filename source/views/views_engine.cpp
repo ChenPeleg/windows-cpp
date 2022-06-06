@@ -77,13 +77,32 @@ void ViewEngine ::paintMosterStatusBar(Monster *monster)
 }
 void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, State *state)
 {
-    int stage = getStageClockTicks(state->animationState, 7, 100);
-    if (stage > 2 && combat->getShowLastEvent())
+    int stage = getStageClockTicks(state->animationState, 7, 200);
+    combatController::LastEvent last = combat->getLastEvent();
+    if (stage > 2 && last != combatController::LastEvent::noEvent)
     {
-        // switch (combat->)
+        char *startText;
+        char *endText;
+        switch (last)
+        {
+        case combatController::LastEvent::blockedDamage:
+            cout << getColorText(ConsoleColor::whiteBGGreen) << "  BLOCKED!   ";
+            break;
+        case combatController::LastEvent::dodgeDamage:
+            cout << getColorText(ConsoleColor::whiteBGGreen) << "  DODGED!   ";
+            break;
+        case combatController::LastEvent::inflictedDamage:
+            cout << getColorText(ConsoleColor::whiteBGRed) << "  INFLICTED  " << combat->lastEventInNumber << " DAMAGE  ";
+            break;
+        case combatController::LastEvent::tookDamage:
+            cout << getColorText(ConsoleColor::whiteBGRed) << "  TOOK  " << combat->lastEventInNumber << " DAMAGE  ";
+            break;
+        default:
+            break;
+        }
 
-        cout << getColorText(ConsoleColor::whiteBGBlue) << " *** TOOK " << 10 << "  DAMAGE ***" << getColorText(ConsoleColor::reset) << endl;
-    }
+        cout << getColorText(ConsoleColor::reset) << endl;
+    } //
     else
     {
         cout << "          " << endl;

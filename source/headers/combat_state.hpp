@@ -32,7 +32,7 @@ namespace combatController
         State &stateRef;
         LastEvent lastCombatEvent;
         long timePassedFromLastEvent = 0;
-        int lastEventInNumber = 0;
+
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
@@ -78,16 +78,16 @@ namespace combatController
             switch (btn)
             {
             case CombatActionType::Attack:
-                takeDamage();
+                inflictDamage();
                 break;
             case CombatActionType::Dodge:
-                evadeDamage();
+                evadeDamage(LastEvent::dodgeDamage);
                 break;
             case CombatActionType::Block:
-                evadeDamage();
+                evadeDamage(LastEvent::blockedDamage);
                 break;
             case CombatActionType::Special:
-                takeDamage();
+                inflictDamage();
                 break;
             case CombatActionType::noop:
             default:
@@ -97,18 +97,18 @@ namespace combatController
         };
 
         void takeDamage(int dmg = 10);
-        void inflictDamage(int dmg)
+        void inflictDamage(int dmg = 10)
         {
             this->monster.HP -= dmg;
             setLastCombatEvent(LastEvent::inflictedDamage, dmg);
         }
         void setLastCombatEvent(LastEvent lst, int amount);
 
-        void evadeDamage()
+        void evadeDamage(LastEvent lst)
         {
-            int dmg = 2;
-            takeDamage(dmg);
-            setLastCombatEvent(LastEvent::dodgeDamage, dmg);
+            // int dmg = 2;
+            // takeDamage(dmg);
+            setLastCombatEvent(lst, 0);
         }
         void setButtonsByIndex(int i)
         {
@@ -121,6 +121,7 @@ namespace combatController
 
     public:
         Monster monster;
+        int lastEventInNumber = 0;
         CombatState(State &stt, content_monsters::MonsterType mnst);
         void combatKeyPressed(char key)
         {

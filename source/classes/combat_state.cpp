@@ -29,6 +29,7 @@ namespace combatController
     void CombatState::setLastCombatEvent(LastEvent lst, int amount)
     {
         this->lastCombatEvent = lst;
+        this->lastEventInNumber = amount;
         this->timePassedFromLastEvent = this->stateRef.getMiliseconds();
     };
     bool CombatState::getShowLastEvent()
