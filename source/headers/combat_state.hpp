@@ -125,6 +125,10 @@ namespace combatController
         CombatState(State &stt, content_monsters::MonsterType mnst);
         void combatKeyPressed(char key)
         {
+            if (isLastEventAnimationRunning())
+            {
+                return;
+            }
             combatActionHandler(getOptionFromKeyPressed(key));
         }
         CombatActionType getOptionFromKeyPressed(char key)

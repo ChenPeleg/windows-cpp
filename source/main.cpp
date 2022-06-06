@@ -79,6 +79,10 @@ private:
     int getOptionFromKeyPressed(char key)
     {
         int keyAsInt = key - '0';
+        if (page.isFight && keyAsInt < 5 && keyAsInt > 0)
+        {
+            return keyAsInt + 1;
+        }
         int newPageNumber = 0;
         int highLightedAns = 0;
         for (int o = 0; o < 5; o++)
