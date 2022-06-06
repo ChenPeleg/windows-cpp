@@ -77,9 +77,9 @@ void ViewEngine ::paintMosterStatusBar(Monster *monster)
 }
 void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, State *state)
 {
-    int stage = getStageClockTicks(state->animationState, 7, 200);
+    int stage = getStageClockTicks(state->animationState, 7, 100);
     combatController::LastEvent last = combat->getLastEvent();
-    if (stage > 2 && last != combatController::LastEvent::noEvent)
+    if (stage > 1 && last != combatController::LastEvent::noEvent)
     {
         char *startText;
         char *endText;

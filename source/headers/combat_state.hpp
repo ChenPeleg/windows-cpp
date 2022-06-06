@@ -31,7 +31,7 @@ namespace combatController
     private:
         State &stateRef;
         LastEvent lastCombatEvent;
-        long timePassedFromLastEvent = 0;
+        long timePassedFromLastEvent = 5000;
 
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
@@ -137,7 +137,7 @@ namespace combatController
 
             return CombatActionType::noop;
         }
-        bool getShowLastEvent();
+        bool isLastEventAnimationRunning();
         LastEvent getLastEvent();
         CombatActionType currentButtons[numberOfButtons];
         char *monsterName;
@@ -145,6 +145,10 @@ namespace combatController
         int highlightPosition;
         void setHighlightPosition(int pos)
         {
+            if (isLastEventAnimationRunning())
+            {
+                return;
+            }
             if (pos < highlightPosition)
             {
 

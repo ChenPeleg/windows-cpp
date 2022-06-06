@@ -128,7 +128,7 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
-            if (keyPressed != lastChar)
+            if (keyPressed != lastChar || page.isFight)
             {
                 lastChar = keyPressed;
                 optionWasPressed(keyPressed);

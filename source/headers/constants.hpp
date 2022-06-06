@@ -10,5 +10,6 @@ namespace constants
     {
         return 8;
     }
+    const int TIME_FOR_COMBAT_MESSAGE = 3000;
 }
 #endif

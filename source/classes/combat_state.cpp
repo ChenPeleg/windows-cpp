@@ -8,6 +8,7 @@
 #include "../headers/app_state.hpp"
 #include "../headers/monster.hpp"
 #include "../headers/common.hpp"
+#include "../headers/constants.hpp"
 
 using namespace common;
 class State;
@@ -20,6 +21,8 @@ namespace combatController
 
         setAllCombatButtons();
         setButtonsByIndex(0);
+        setLastCombatEvent(LastEvent::noEvent, 0);
+        this->timePassedFromLastEvent -= constants::TIME_FOR_COMBAT_MESSAGE;
     };
     void CombatState::takeDamage(int dmg)
     {
@@ -32,13 +35,14 @@ namespace combatController
         this->lastEventInNumber = amount;
         this->timePassedFromLastEvent = this->stateRef.getMiliseconds();
     };
-    bool CombatState::getShowLastEvent()
+    bool CombatState::isLastEventAnimationRunning()
     {
-        return this->timePassedFromLastEvent + 3000 > this->stateRef.getMiliseconds();
+        return this->timePassedFromLastEvent + constants::TIME_FOR_COMBAT_MESSAGE > this->stateRef.getMiliseconds();
     };
     LastEvent CombatState::getLastEvent()
     {
-        const bool show = getShowLastEvent();
+        const bool show = isLastEventAnimationRunning();
+        // return lastCombatEvent;
         return show ? lastCombatEvent : LastEvent::noEvent;
     };
 }
