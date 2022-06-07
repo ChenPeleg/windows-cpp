@@ -32,6 +32,7 @@ void State::setPage(int pageNum)
     if (pageNum > 0)
         this->page = pageNum;
 };
+
 void State::tik()
 {
     clock_t currnetClock = clock();
@@ -77,3 +78,7 @@ void State::decrementHP(int hpDelta = 1)
 {
     this->HP -= hpDelta;
 };
+void State::combatWon()
+{
+    //  this->page;
+}

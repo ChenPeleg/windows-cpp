@@ -22,7 +22,9 @@ namespace combatController
         tookDamage,
         dodgeDamage,
         blockedDamage,
-        inflictedDamage
+        inflictedDamage,
+        combatWon,
+        combatLost
 
     };
 
@@ -32,7 +34,6 @@ namespace combatController
         State &stateRef;
         LastEvent lastCombatEvent;
         long timePassedFromLastEvent = 5000;
-
         int randomNumbers[101];
         int *randomNumbersPtr = randomNumbers;
         int battleOptionIndex = 0;
@@ -96,9 +97,8 @@ namespace combatController
                 break;
             }
         };
-
         void takeDamage(int dmg = 10);
-        void inflictDamage(int dmg = 10)
+        void inflictDamage(int dmg = 50)
         {
             this->monster.HP -= dmg;
             setLastCombatEvent(LastEvent::inflictedDamage, dmg);

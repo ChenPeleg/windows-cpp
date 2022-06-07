@@ -111,9 +111,10 @@ public:
        {
               this->buildPage(text, image, customId);
        };
-       void m(content_monsters::MonsterType mnsType, const char *text = "")
+       void m(content_monsters::MonsterType mnsType, int nextPage, const char *text = "")
        {
               this->buildPage(text, image, 0, mnsType);
+              this->o("", nextPage);
        };
        void buildPage(const char *text, ImageEnumb image, int customId, content_monsters::MonsterType mnsType = content_monsters::MonsterType::none)
        {
@@ -155,13 +156,13 @@ public:
               {
               case 1:
                      p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
-                     p.m(content_monsters::MonsterType::blobhMonster);
+                     p.m(content_monsters::MonsterType::blobhMonster, 2);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
 
               case 2:
-                     p.b("The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::elephant, 1);
+                     p.b("You look at the body of the monster. The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::elephant, 1);
                      p.o("Go up ", 5,
                          "Go down ", 6);
                      break;

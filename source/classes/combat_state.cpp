@@ -34,6 +34,16 @@ namespace combatController
         this->lastCombatEvent = lst;
         this->lastEventInNumber = amount;
         this->timePassedFromLastEvent = this->stateRef.getMiliseconds();
+        if (this->monster.HP <= 0)
+        {
+            this->monster.HP = 0;
+            this->lastCombatEvent = LastEvent::combatWon;
+        }
+        else if (this->stateRef.HP <= 0)
+        {
+            this->stateRef.HP = 0;
+            this->lastCombatEvent = LastEvent::combatLost;
+        }
     };
     bool CombatState::isLastEventAnimationRunning()
     {

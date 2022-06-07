@@ -50,6 +50,7 @@ public:
     long getMiliseconds();
     int getSeconds();
     void decrementHP(int);
+    void combatWon();
 };
 
 #endif
