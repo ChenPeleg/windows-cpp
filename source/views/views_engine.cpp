@@ -126,9 +126,12 @@ void ViewEngine::paint(State *state, Page *page)
          << endl;
     graphicUtils::clear();
     paintUpperStatusBar(state);
+
+    if (page->isFight && state->combat->getLastEvent() == combatController::LastEvent::combatWon)
+    {
+    }
     char *img = page->isFight ? getImage(state->combat->monster.monsterImage) : getImage(page->image, state->animationState);
     cout << img << endl;
-
     if (page->isFight)
     {
         paintMosterStatusBar(&(state->combat->monster), state);

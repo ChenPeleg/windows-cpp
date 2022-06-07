@@ -30,7 +30,9 @@ void State::initFight(content_monsters::MonsterType mnsTyp)
 void State::setPage(int pageNum)
 {
     if (pageNum > 0)
+    {
         this->page = pageNum;
+    }
 };
 
 void State::tik()
@@ -80,5 +82,7 @@ void State::decrementHP(int hpDelta = 1)
 };
 void State::combatWon()
 {
-    //  this->page;
+    Page tempPage = Page::getPages(this->page);
+    int nextPageValue = tempPage.optionsNumber[0];
+    this->setPage(nextPageValue);
 }

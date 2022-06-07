@@ -47,7 +47,12 @@ namespace combatController
     };
     bool CombatState::isLastEventAnimationRunning()
     {
-        return this->timePassedFromLastEvent + constants::TIME_FOR_COMBAT_MESSAGE > this->stateRef.getMiliseconds();
+        int timeForAnimationToRun = constants::TIME_FOR_COMBAT_MESSAGE;
+        if (this->lastCombatEvent == LastEvent::combatWon)
+        {
+            timeForAnimationToRun = constants::TIME_FOR_WIN_MESSAGE;
+        }
+        return this->timePassedFromLastEvent + timeForAnimationToRun > this->stateRef.getMiliseconds();
     };
     LastEvent CombatState::getLastEvent()
     {

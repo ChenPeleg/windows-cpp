@@ -7,6 +7,7 @@
 #include "common.hpp"
 #include "combat_state.hpp"
 #include "monster.hpp"
+#include "content_pages.hpp"
 
 using namespace common;
 
@@ -24,6 +25,7 @@ private:
     int highlightedBattleOption;
     time_t start_time;
     clock_t start_t;
+    // Page *pagePtr;
 
 public:
     int HP;
