@@ -20,7 +20,7 @@ private:
     static int getStageClockTicks(common::ClockTicksState animationState, int numberOfStages, int durationInMs);
     static void paintCombatButtons(combatController::CombatState *combat);
     static void paintUpperStatusBar(State *state);
-    static void paintMosterStatusBar(Monster *monster);
+    static void paintMosterStatusBar(Monster *monster, State *state);
     static void paintCombatMessage(combatController::CombatState *combat, State *state);
 
 public:

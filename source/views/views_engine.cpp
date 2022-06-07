@@ -69,17 +69,23 @@ void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
 }
 void ViewEngine ::paintUpperStatusBar(State *state)
 {
-    cout << "HP " << state->HP << "/" << state->maxHP << "\n";
+    const char *empasis = state->combat->getLastEvent() == combatController::LastEvent::tookDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
+    const char *reset = getColorText(ConsoleColor::reset);
+
+    cout << "HP " << empasis << state->HP << reset << "/" << state->maxHP << "\n";
 }
-void ViewEngine ::paintMosterStatusBar(Monster *monster)
+void ViewEngine ::paintMosterStatusBar(Monster *monster, State *state)
 {
-    cout << (*monster).name << " HP " << (*monster).HP << "/" << (*monster).maxHP << '\n';
+    const char *empasis = state->combat->getLastEvent() == combatController::LastEvent::inflictedDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
+    const char *reset = getColorText(ConsoleColor::reset);
+
+    cout << (*monster).name << " HP " << empasis << (*monster).HP << "/" << reset << (*monster).maxHP << '\n';
 }
 void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, State *state)
 {
     int stage = getStageClockTicks(state->animationState, 7, 100);
     combatController::LastEvent last = combat->getLastEvent();
-    if (stage > 1 && last != combatController::LastEvent::noEvent)
+    if (stage > 3 && last != combatController::LastEvent::noEvent)
     {
         char *startText;
         char *endText;
@@ -92,7 +98,7 @@ void ViewEngine ::paintCombatMessage(combatController::CombatState *combat, Stat
             cout << getColorText(ConsoleColor::whiteBGGreen) << "  DODGED!   ";
             break;
         case combatController::LastEvent::inflictedDamage:
-            cout << getColorText(ConsoleColor::whiteBGRed) << "  INFLICTED  " << combat->lastEventInNumber << " DAMAGE  ";
+            cout << getColorText(ConsoleColor::whiteBGBlue) << "  INFLICTED  " << combat->lastEventInNumber << " DAMAGE  ";
             break;
         case combatController::LastEvent::tookDamage:
             cout << getColorText(ConsoleColor::whiteBGRed) << "  TOOK  " << combat->lastEventInNumber << " DAMAGE  ";
@@ -125,7 +131,7 @@ void ViewEngine::paint(State *state, Page *page)
 
     if (page->isFight)
     {
-        paintMosterStatusBar(&(state->combat->monster));
+        paintMosterStatusBar(&(state->combat->monster), state);
         cout << "\n";
         paintCombatMessage((*state).combat, state);
         char *textImage = getTextImage(asciiImages::AsciiWordsEnumb::dodge);

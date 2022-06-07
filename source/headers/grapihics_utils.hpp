@@ -13,7 +13,9 @@ namespace graphicUtils
         blackBGWhite,
         whiteBGRed,
         whiteBGBlue,
-        whiteBGGreen
+        whiteBGGreen,
+        red,
+        blue
 
     };
     void
@@ -46,6 +48,10 @@ namespace graphicUtils
             return "\x1b[37m\x1b[44m";
         case ConsoleColor::whiteBGGreen:
             return "\x1b[37m\x1b[42m";
+        case ConsoleColor::red:
+            return "\x1b[31m";
+        case ConsoleColor::blue:
+            return "\x1b[34m";
         default:
             return "";
         }

@@ -42,21 +42,22 @@ namespace combatController
             *randomNumbersPtr = rand;
             ++randomNumbersPtr;
             switch (rand / 10)
+
             {
             case 0:
             case 1:
             case 2:
             case 3:
-                return CombatActionType::Attack;
             case 4:
             case 5:
+                return CombatActionType::Attack;
             case 6:
-                return CombatActionType::Dodge;
             case 7:
             case 8:
+                return CombatActionType::Dodge;
             case 9:
-                return CombatActionType::Block;
             case 10:
+                return CombatActionType::Block;
             default:
                 return CombatActionType::Attack;
             }

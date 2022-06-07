@@ -10,6 +10,7 @@ namespace constants
     {
         return 8;
     }
-    const int TIME_FOR_COMBAT_MESSAGE = 3000;
+    const int TIME_FOR_COMBAT_MESSAGE = 2000;
+    const int COMBAT_BUTTONS_SPEED = 500;
 }
 #endif
