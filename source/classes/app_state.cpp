@@ -7,7 +7,7 @@ State::State(int _initialState)
 {
     this->p_level = 1;
     this->animationState = 1;
-    this->isInCombat = false;
+
     this->maxHP = 100;
     this->HP = this->maxHP;
 
@@ -31,7 +31,13 @@ void State::setPage(int pageNum)
 {
     if (pageNum > 0)
     {
+        //  delete combat;
         this->page = pageNum;
+        Page tempPage = Page::getPages(this->page);
+        if (tempPage.isFight)
+        {
+            this->initFight(tempPage.pageMonster);
+        }
     }
 };
 

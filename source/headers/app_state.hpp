@@ -37,7 +37,6 @@ public:
     int lastKey;
     int highLightedAns;
     int carridgePos;
-    bool isInCombat;
 
     void setPage(int);
     void setMsTimer(int ms);

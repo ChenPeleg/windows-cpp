@@ -57,7 +57,10 @@ namespace combatController
     LastEvent CombatState::getLastEvent()
     {
         const bool show = isLastEventAnimationRunning();
-        // return lastCombatEvent;
+        if (!show && lastCombatEvent == LastEvent::combatWon)
+        {
+            this->stateRef.combatWon();
+        }
         return show ? lastCombatEvent : LastEvent::noEvent;
     };
 }

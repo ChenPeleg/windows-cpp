@@ -44,10 +44,9 @@ private:
 
     void newPageWasChosen(int newPage)
     {
-        state->setPage(newPage);
         page = Page::getPages(newPage);
-
-        state->initFight(page.pageMonster);
+        state->setPage(newPage);
+        // state->initFight(page.pageMonster);22
 
         state->animation = AnimationType::FadeIn;
         state->highLightedAns = 0;

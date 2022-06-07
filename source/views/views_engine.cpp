@@ -129,6 +129,8 @@ void ViewEngine::paint(State *state, Page *page)
 
     if (page->isFight && state->combat->getLastEvent() == combatController::LastEvent::combatWon)
     {
+        cout << getTextImage(AsciiWordsEnumb::youWin);
+        return;
     }
     char *img = page->isFight ? getImage(state->combat->monster.monsterImage) : getImage(page->image, state->animationState);
     cout << img << endl;
