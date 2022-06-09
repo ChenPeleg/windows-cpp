@@ -25,6 +25,7 @@ private:
     int highlightedBattleOption;
     time_t start_time;
     clock_t start_t;
+    Page pageObj;
     // Page *pagePtr;
 
 public:
@@ -52,6 +53,8 @@ public:
     int getSeconds();
     void decrementHP(int);
     void combatWon();
+    int getPage();
+    Page &currentPage();
 };
 
 #endif

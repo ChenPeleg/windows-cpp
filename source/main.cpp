@@ -39,12 +39,12 @@ public:
     };
 
 private:
-    Page page = Page::getPages(1);
+    Page pageGlob = Page::getPages(1);
     State *state = new State(1);
 
     void newPageWasChosen(int newPage)
     {
-        page = Page::getPages(newPage);
+        pageGlob = Page::getPages(newPage);
         state->setPage(newPage);
         // state->initFight(page.pageMonster);22
 
@@ -56,16 +56,19 @@ private:
     }
     void paintContent()
     {
-        ViewEngine::paint(state, &page);
+        Page &pgRef = state->currentPage();
+        Page *pgPtr = &pgRef;
+        ViewEngine::paint(state, pgPtr);
     }
 
     void optionWasPressed(char key)
     {
+        // const PAge pageGlob = state->currentPage();
         state->lastKey = key;
         int chosenAnswer = getOptionFromKeyPressed(key);
         if (chosenAnswer > 0)
         {
-            if (page.isFight)
+            if (pageGlob.isFight)
             {
                 state->combat->combatKeyPressed(key);
             }
@@ -78,7 +81,7 @@ private:
     int getOptionFromKeyPressed(char key)
     {
         int keyAsInt = key - '0';
-        if (page.isFight && keyAsInt < 5 && keyAsInt > 0)
+        if (pageGlob.isFight && keyAsInt < 5 && keyAsInt > 0)
         {
             return keyAsInt + 1;
         }
@@ -86,14 +89,14 @@ private:
         int highLightedAns = 0;
         for (int o = 0; o < 5; o++)
         {
-            if (page.optionsNumber[o] < 1)
+            if (pageGlob.optionsNumber[o] < 1)
             {
                 continue;
             }
 
             if (keyAsInt == (o + 1))
             {
-                newPageNumber = page.optionsNumber[o];
+                newPageNumber = pageGlob.optionsNumber[o];
                 highLightedAns = o + 1;
             }
         }
@@ -131,7 +134,7 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
-            if (keyPressed != lastChar || page.isFight)
+            if (keyPressed != lastChar || pageGlob.isFight)
             {
                 lastChar = keyPressed;
                 optionWasPressed(keyPressed);
@@ -160,7 +163,7 @@ private:
                         if (chosenAnswer > 0)
                         {
                             state->highLightedAns = chosenAnswer;
-                            int newPAgeNumber = page.optionsNumber[chosenAnswer - 1];
+                            int newPAgeNumber = pageGlob.optionsNumber[chosenAnswer - 1];
                             if (newPAgeNumber > 0)
                             {
                                 newPageWasChosen(newPAgeNumber);

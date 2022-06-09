@@ -69,14 +69,15 @@ void ViewEngine::paintCombatButtons(combatController::CombatState *combat)
 }
 void ViewEngine ::paintUpperStatusBar(State *state)
 {
-    const char *empasis = state->combat->getLastEvent() == combatController::LastEvent::tookDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
+    const char *empasis = (state->combat != NULL) && state->combat->getLastEvent() == combatController::LastEvent::tookDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
     const char *reset = getColorText(ConsoleColor::reset);
 
-    cout << "HP " << empasis << state->HP << reset << "/" << state->maxHP << "\n";
+    cout << "HP " << empasis << state->HP << reset << "/" << state->maxHP << "    page " << state->getPage()
+         << "\n";
 }
 void ViewEngine ::paintMosterStatusBar(Monster *monster, State *state)
 {
-    const char *empasis = state->combat->getLastEvent() == combatController::LastEvent::inflictedDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
+    const char *empasis = (state->combat != NULL) && state->combat->getLastEvent() == combatController::LastEvent::inflictedDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
     const char *reset = getColorText(ConsoleColor::reset);
 
     cout << (*monster).name << " HP " << empasis << (*monster).HP << "/" << reset << (*monster).maxHP << '\n';

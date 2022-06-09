@@ -77,6 +77,12 @@ namespace combatController
         CombatActionType allButtonsArray[maxBattleButtonOptions][numberOfButtons];
         void combatActionHandler(CombatActionType btn)
         {
+            // FOR DEBUG
+            if (this != NULL)
+            {
+                inflictDamage(100);
+                return;
+                        }
             switch (btn)
             {
             case CombatActionType::Attack:

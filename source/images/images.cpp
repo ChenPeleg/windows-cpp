@@ -80,6 +80,7 @@ namespace images
  a:f_________.-' "-______-'  \__|             |________________________)";
   const char *elephant = R"(                              
  
+ [-----]
  
 )";
   const char *skull = R"( 
