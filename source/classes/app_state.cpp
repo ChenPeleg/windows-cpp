@@ -6,7 +6,7 @@
 State::State(int _initialState)
 {
     this->p_level = 1;
-    21 this->animationState = 1;
+    this->animationState = 1;
 
     this->maxHP = 100;
     this->HP = this->maxHP;

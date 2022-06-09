@@ -73,6 +73,7 @@ void ViewEngine ::paintUpperStatusBar(State *state)
     const char *reset = getColorText(ConsoleColor::reset);
 
     cout << "HP " << empasis << state->HP << reset << "/" << state->maxHP << "    page " << state->getPage()
+         << "       (S)etting "
          << "\n";
 }
 void ViewEngine ::paintMosterStatusBar(Monster *monster, State *state)

@@ -39,12 +39,10 @@ public:
     };
 
 private:
-    Page pageGlob = Page::getPages(1);
     State *state = new State(1);
-
     void newPageWasChosen(int newPage)
     {
-        pageGlob = Page::getPages(newPage);
+
         state->setPage(newPage);
         // state->initFight(page.pageMonster);22
 
@@ -63,7 +61,7 @@ private:
 
     void optionWasPressed(char key)
     {
-        // const PAge pageGlob = state->currentPage();
+        const Page pageGlob = state->currentPage();
         state->lastKey = key;
         int chosenAnswer = getOptionFromKeyPressed(key);
         if (chosenAnswer > 0)
@@ -80,7 +78,9 @@ private:
     }
     int getOptionFromKeyPressed(char key)
     {
+        const Page &pageGlob = state->currentPage();
         int keyAsInt = key - '0';
+
         if (pageGlob.isFight && keyAsInt < 5 && keyAsInt > 0)
         {
             return keyAsInt + 1;
@@ -134,7 +134,7 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
-            if (keyPressed != lastChar || pageGlob.isFight)
+            if (keyPressed != lastChar || state->currentPage().isFight)
             {
                 lastChar = keyPressed;
                 optionWasPressed(keyPressed);
@@ -163,7 +163,7 @@ private:
                         if (chosenAnswer > 0)
                         {
                             state->highLightedAns = chosenAnswer;
-                            int newPAgeNumber = pageGlob.optionsNumber[chosenAnswer - 1];
+                            int newPAgeNumber = state->currentPage().optionsNumber[chosenAnswer - 1];
                             if (newPAgeNumber > 0)
                             {
                                 newPageWasChosen(newPAgeNumber);
