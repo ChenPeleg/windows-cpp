@@ -6,7 +6,7 @@
 State::State(int _initialState)
 {
     this->p_level = 1;
-    this->animationState = 1;
+    21 this->animationState = 1;
 
     this->maxHP = 100;
     this->HP = this->maxHP;
@@ -15,7 +15,7 @@ State::State(int _initialState)
     this->start_time = std::time(&start_time);
     this->start_t = clock();
     this->page = 1;
-    this->combat = new combatController::CombatState((*this), content_monsters::MonsterType::blobhMonster);
+    this->combat = NULL;
 };
 State::~State(){};
 void State::initFight(content_monsters::MonsterType mnsTyp)
@@ -27,16 +27,24 @@ void State::initFight(content_monsters::MonsterType mnsTyp)
     }
     this->combat = new combatController::CombatState((*this), content_monsters::MonsterType::blobhMonster);
 }
+Page &State::currentPage()
+{
+    return this->pageObj;
+};
 void State::setPage(int pageNum)
 {
     if (pageNum > 0)
     {
         //  delete combat;
         this->page = pageNum;
-        Page tempPage = Page::getPages(this->page);
-        if (tempPage.isFight)
+        this->pageObj = Page::getPages(this->page);
+        if (pageObj.isFight)
         {
-            this->initFight(tempPage.pageMonster);
+            this->initFight(pageObj.pageMonster);
+        }
+        else
+        {
+            this->combat = NULL;
         }
     }
 };
@@ -50,7 +58,10 @@ void State::tik()
     this->secondsPassed = current - this->start_time;
     double justMiliseconds = this->milisecondsPassed;
     this->animationState = ((justMiliseconds / 10000) - std::floor(justMiliseconds / 10000)) * 10000;
-    this->combat->setHighlightPosition(common::getStageClockTicks(animationState, 4, constants::COMBAT_BUTTONS_SPEED));
+    if (this->combat != NULL)
+    {
+        this->combat->setHighlightPosition(common::getStageClockTicks(animationState, 4, constants::COMBAT_BUTTONS_SPEED));
+    }
 };
 double State::getTimePased()
 {
@@ -89,6 +100,11 @@ void State::decrementHP(int hpDelta = 1)
 void State::combatWon()
 {
     Page tempPage = Page::getPages(this->page);
+
     int nextPageValue = tempPage.optionsNumber[0];
     this->setPage(nextPageValue);
 }
+int State::getPage()
+{
+    return page;
+};
