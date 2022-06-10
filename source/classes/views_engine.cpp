@@ -318,6 +318,8 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         return ViewEngine::proccessImage(images::ghost);
     case ImageEnumb::worm:
         return ViewEngine::proccessImage(images::worm);
+    case ImageEnumb::palmTree:
+        return ViewEngine::proccessImage(images::palmTree);
 
     case ImageEnumb::none:
 

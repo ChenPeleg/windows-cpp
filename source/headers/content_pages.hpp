@@ -148,17 +148,17 @@ public:
        static Page getPages(int pageNumber = 1)
        {
               Page p;
-              p.b("abcImageEnumb::none34", ImageEnumb::none, 1);
-              p.o("Open the door", 1,
-                  "Look around", 1);
+              // p.b("abcImageEnumb::none34", ImageEnumb::none, 1);
+              // p.o("Open the door", 1,
+              //     "Look around", 1);
 
               switch (pageNumber)
               {
+
               case 1:
-                     p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
-                     p.m(content_monsters::MonsterType::blobhMonster, 2);
-                     p.o("Open the door", 2,
-                         "Look around", 3);
+                     p.b("Walking from the hills you embark on a big journy. You see Two roads ahed of you.", ImageEnumb::palmTree, 1);
+                     p.o("Go Right ", 5,
+                         "Go Left ", 6);
                      break;
 
               case 2:
@@ -188,6 +188,12 @@ public:
                      p.o(
                          "Get close and try to call", 2,
                          "Stay put and listen to the voices", 2);
+                     break;
+              case 7:
+                     p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
+                     p.m(content_monsters::MonsterType::blobhMonster, 2);
+                     p.o("Open the door", 2,
+                         "Look around", 3);
                      break;
               }
 

@@ -5,11 +5,11 @@
 #include "./headers/views_engine.hpp"
 #include "./headers/common.hpp"
 #include "./headers/grapihics_utils.hpp"
+#include "./headers/app_events.hpp"
 
 #include "./classes/app_state.cpp"
 #include "./classes/combat_state.cpp"
-#include "./views/views_engine.cpp"
-#include "./events/app_events.cpp"
+#include "./classes/views_engine.cpp"
 #include "./images/images.cpp"
 
 #include <windows.h>
