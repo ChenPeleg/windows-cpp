@@ -20,6 +20,7 @@ private:
     static int getStageClockTicks(common::ClockTicksState animationState, int numberOfStages, int durationInMs);
     static void paintCombatButtons(combatController::CombatState *combat);
     static void paintUpperStatusBar(State *state);
+    static void paintCombatWonMessage(State *state);
     static void paintMosterStatusBar(Monster *monster, State *state);
     static void paintCombatMessage(combatController::CombatState *combat, State *state);
 
@@ -29,8 +30,8 @@ public:
     static const int ticsForKeyPress = 3000; // 3000 as default
     ViewEngine(int charsPerRow, int numOfRows);
     ~ViewEngine();
-    static void hideCursor();
     static void paint(State *state, Page *page);
+    static void hideCursor();
     static void paintKeyPressBar(int carriagePos);
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);

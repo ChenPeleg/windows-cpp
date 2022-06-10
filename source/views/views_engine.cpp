@@ -76,6 +76,31 @@ void ViewEngine ::paintUpperStatusBar(State *state)
          << "       (S)etting "
          << "\n";
 }
+void ViewEngine::paintCombatWonMessage(State *state)
+{
+    // 1
+    int winStage = getStageClockTicks(state->animationState, 4, 250);
+
+    switch (winStage)
+    {
+    case 0:
+        cout << getColorText(ConsoleColor::green);
+        break;
+    case 1:
+        cout << getColorText(ConsoleColor::blue);
+        break;
+    case 2:
+        cout << getColorText(ConsoleColor::green);
+        break;
+    case 3:
+        cout << getColorText(ConsoleColor::yellow);
+        break;
+    }
+
+    cout
+        << getTextImage(AsciiWordsEnumb::youWin) << getColorText(ConsoleColor::reset);
+    return;
+}
 void ViewEngine ::paintMosterStatusBar(Monster *monster, State *state)
 {
     const char *empasis = (state->combat != NULL) && state->combat->getLastEvent() == combatController::LastEvent::inflictedDamage ? getColorText(graphicUtils::ConsoleColor::red) : "";
@@ -131,7 +156,8 @@ void ViewEngine::paint(State *state, Page *page)
 
     if (page->isFight && state->combat->getLastEvent() == combatController::LastEvent::combatWon)
     {
-        cout << getTextImage(AsciiWordsEnumb::youWin);
+        paintCombatWonMessage(state);
+
         return;
     }
     char *img = page->isFight ? getImage(state->combat->monster.monsterImage) : getImage(page->image, state->animationState);
