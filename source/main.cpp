@@ -6,6 +6,7 @@
 #include "./headers/common.hpp"
 #include "./headers/grapihics_utils.hpp"
 #include "./headers/app_events.hpp"
+#include "./headers/file_manager.hpp"
 
 #include "./classes/app_state.cpp"
 #include "./classes/combat_state.cpp"
@@ -211,6 +212,7 @@ private:
 };
 int main()
 {
+    FileManager *fm = new FileManager();
     AppMain app;
     app.start();
     return 0;
