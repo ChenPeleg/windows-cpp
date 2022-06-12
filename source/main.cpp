@@ -212,7 +212,11 @@ private:
 };
 int main()
 {
-    FileManager *fm = new FileManager();
+    FileManager fm = *(new FileManager());
+    fm.add("abc12342342342");
+    cout << fm.GetFileLength() << "\n\n";
+    int i;
+    cin >> i;
     AppMain app;
     app.start();
     return 0;
