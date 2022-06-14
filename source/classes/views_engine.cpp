@@ -1,3 +1,7 @@
+
+#ifndef VIEW_IMP_H
+#define VIEW_IMP_H
+
 #include <windows.h>
 #include <iostream>
 #include <math.h>
@@ -456,3 +460,4 @@ char *ViewEngine::proccessImage(const char *rawImage)
 };
 
 void ViewEngine::trimRows(){};
+#endif

@@ -1,3 +1,7 @@
+
+#ifndef CSTATE_IMP
+#define CSTATE_IMP
+
 #include "../headers/app_state.hpp"
 #include <time.h>
 #include <cmath>
@@ -108,3 +112,4 @@ int State::getPage()
 {
     return page;
 };
+#endif
