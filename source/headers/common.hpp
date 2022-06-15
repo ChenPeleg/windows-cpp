@@ -4,6 +4,16 @@
 
 namespace common
 {
+    enum ItemType
+    {
+        noItem = 0,
+        sword = 1,
+        shield,
+        wand,
+        gold,
+        food,
+        water
+    };
 
     enum AnimationType
     {

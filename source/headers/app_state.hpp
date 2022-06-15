@@ -16,7 +16,6 @@ class State
 
 private:
     int p_level;
-    int initialState;
     int page;
     int secondsPassed;
     int msTimer;
@@ -26,7 +25,6 @@ private:
     time_t start_time;
     clock_t start_t;
     Page pageObj;
-    // Page *pagePtr;
 
 public:
     int HP;

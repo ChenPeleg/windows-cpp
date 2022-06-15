@@ -15,7 +15,6 @@ State::State(int _initialState)
     this->maxHP = 100;
     this->HP = this->maxHP;
 
-    this->initialState = _initialState;
     this->start_time = std::time(&start_time);
     this->start_t = clock();
     this->page = 1;
