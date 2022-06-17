@@ -24,7 +24,7 @@ public:
        char text[500];
        char options[5][100];
        int optionsDestenationPageNumber[5];
-       //  Item optionRequiersItem[5] = {ItemType::};
+       Item optionRequiersItem[5];
        ImageEnumb image;
        content_monsters::MonsterType pageMonster;
        ~Page()
