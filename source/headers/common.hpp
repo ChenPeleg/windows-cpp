@@ -4,16 +4,43 @@
 
 namespace common
 {
-    enum ItemType
+#define ITEMS_ENUM_DEFENITION  \
+    X(NoItem, "NoItem", false) \
+    X(Gold, "Gold", false)     \
+    X(Sword, "Sword", false)   \
+    X(Food, "Food", false)     \
+    X(Water, "Water", false)   \
+    X(Wand, "Wand", false)     \
+    X(shield, "shield", false)
+
+#define X(day, name, canBeAccumulated) day,
+    enum ItemType : size_t
     {
-        noItem = 0,
-        sword = 1,
-        shield,
-        wand,
-        gold,
-        food,
-        water
+        ITEMS_ENUM_DEFENITION
     };
+#undef X
+
+#define X(day, name, canBeAccumulated) name,
+    char const *ItemName[] =
+        {
+            ITEMS_ENUM_DEFENITION};
+#undef X
+
+#define X(day, name, canBeAccumulated) canBeAccumulated,
+    bool isItemAcumilated[]{
+        ITEMS_ENUM_DEFENITION};
+#undef X
+
+    // enum ItemType
+    // {
+    //     noItem = 0,
+    //     sword = 1,
+    //     shield,
+    //     wand,
+    //     gold,
+    //     food,
+    //     water
+    // };
 
     enum AnimationType
     {

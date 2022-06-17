@@ -8,6 +8,7 @@
 #include "./headers/app_events.hpp"
 #include "./headers/file_manager.hpp"
 #include "./headers/inventory.hpp"
+#include "./headers/debuging.hpp"
 
 #include "./classes/app_state.cpp"
 #include "./classes/combat_state.cpp"
@@ -216,11 +217,21 @@ int main()
     FileManager fm = *(new FileManager());
     fm.add("abc12342342342");
     Inventory *inv = new Inventory();
-    inv->getItems();
-    // cout << fm.GetFileLength() << "\n\n";
-    // int i;
-    // cin >> i;
+    inv->add(common::ItemType::Food, 5);
+    inv->add(common::ItemType::Gold, 100);
+    inv->add(common::ItemType::Sword, 1);
+    inv->printItems();
+    cout << "adding more items and removing some \n\n";
+
+    inv->remove(common::ItemType::Food, 10);
+    inv->add(common::ItemType::Gold, 17);
+    inv->remove(common::ItemType::Sword);
+    inv->add(common::ItemType::Wand);
+    inv->printItems();
+
+    debuging::stop();
+
     AppMain app;
-    app.start();
+    // app.start();
     return 0;
 };
