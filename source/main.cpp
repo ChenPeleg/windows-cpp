@@ -92,14 +92,14 @@ private:
         int highLightedAns = 0;
         for (int o = 0; o < 5; o++)
         {
-            if (pageGlob.optionsNumber[o] < 1)
+            if (pageGlob.optionsDestenationPageNumber[o] < 1)
             {
                 continue;
             }
 
             if (keyAsInt == (o + 1))
             {
-                newPageNumber = pageGlob.optionsNumber[o];
+                newPageNumber = pageGlob.optionsDestenationPageNumber[o];
                 highLightedAns = o + 1;
             }
         }
@@ -166,7 +166,7 @@ private:
                         if (chosenAnswer > 0)
                         {
                             state->highLightedAns = chosenAnswer;
-                            int newPAgeNumber = state->currentPage().optionsNumber[chosenAnswer - 1];
+                            int newPAgeNumber = state->currentPage().optionsDestenationPageNumber[chosenAnswer - 1];
                             if (newPAgeNumber > 0)
                             {
                                 newPageWasChosen(newPAgeNumber);
@@ -216,22 +216,10 @@ int main()
 {
     FileManager fm = *(new FileManager());
     fm.add("abc12342342342");
-    Inventory *inv = new Inventory();
-    inv->add(common::ItemType::Food, 5);
-    inv->add(common::ItemType::Gold, 100);
-    inv->add(common::ItemType::Sword, 1);
-    inv->printItems();
-    cout << "adding more items and removing some \n\n";
 
-    inv->remove(common::ItemType::Food, 10);
-    inv->add(common::ItemType::Gold, 17);
-    inv->remove(common::ItemType::Sword);
-    inv->add(common::ItemType::Wand);
-    inv->printItems();
-
-    debuging::stop();
+    //  debuging::stop();
 
     AppMain app;
-    // app.start();
+    app.start();
     return 0;
 };

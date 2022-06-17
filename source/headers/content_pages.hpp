@@ -8,6 +8,7 @@
 #include "../images/images.cpp"
 #include "common.hpp"
 #include "content_monsters.hpp"
+#include "item.hpp"
 
 using namespace asciiImages;
 
@@ -22,7 +23,8 @@ public:
        bool isFight = false;
        char text[500];
        char options[5][100];
-       int optionsNumber[5];
+       int optionsDestenationPageNumber[5];
+       //  Item optionRequiersItem[5] = {ItemType::};
        ImageEnumb image;
        content_monsters::MonsterType pageMonster;
        ~Page()
@@ -103,7 +105,7 @@ public:
                             this->options[o][d] = '\0'; // end  of meaningfull cahrs
                      }
 
-                     this->optionsNumber[o] = optionNumber;
+                     this->optionsDestenationPageNumber[o] = optionNumber;
               };
        };
 
@@ -148,9 +150,6 @@ public:
        static Page getPages(int pageNumber = 1)
        {
               Page p;
-              // p.b("abcImageEnumb::none34", ImageEnumb::none, 1);
-              // p.o("Open the door", 1,
-              //     "Look around", 1);
 
               switch (pageNumber)
               {

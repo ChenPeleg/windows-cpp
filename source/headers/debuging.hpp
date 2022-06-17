@@ -10,6 +10,7 @@ namespace debuging
         std::cout << "\n";
         std::system("PAUSE");
     }
+    bool debugMode = true;
 };
 
 #endif

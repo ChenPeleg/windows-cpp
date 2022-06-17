@@ -8,6 +8,7 @@
 #include "combat_state.hpp"
 #include "monster.hpp"
 #include "content_pages.hpp"
+#include "inventory.hpp"
 
 using namespace common;
 
@@ -31,6 +32,7 @@ public:
     int maxHP;
     AnimationType animation;
     ClockTicksState animationState;
+    Inventory inventory;
     combatController::CombatState *combat;
 
     int lastKey;

@@ -182,7 +182,7 @@ void ViewEngine::paint(State *state, Page *page)
     cout << page->text << endl
          << "_________________\n"
          << endl;
-    if (fadeIn)
+    if (fadeIn && !debuging::debugMode)
         Sleep(AnimationDelay);
 
     if (page->isFight)
@@ -196,7 +196,7 @@ void ViewEngine::paint(State *state, Page *page)
 
         const char *chooseColor = "\x1b[37m";
 
-        if (page->optionsNumber[o] < 1)
+        if (page->optionsDestenationPageNumber[o] < 1)
         {
             continue;
         }
@@ -210,10 +210,13 @@ void ViewEngine::paint(State *state, Page *page)
              << "\n"
              << endl;
 
-        if (fadeIn)
+        if (fadeIn && !debuging::debugMode)
             Sleep(AnimationDelay);
     }
     ViewEngine::paintKeyPressBar(state->carridgePos);
+
+    cout << "\n";
+    state->inventory.printItemsInline();
 };
 
 void ViewEngine::paintKeyPressBar(int carriagePos)

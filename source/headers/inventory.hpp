@@ -4,8 +4,11 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include "views_engine.hpp"
 
 #include "item.hpp"
+
+using std::cout;
 
 class Inventory
 {
@@ -17,6 +20,7 @@ public:
     Inventory();
     ~Inventory();
     void printItems();
+    void printItemsInline();
     void remove(ItemType, int quantity = 1);
     void add(ItemType, int quantity = 1);
     bool has(ItemType);
@@ -32,6 +36,21 @@ Inventory::Inventory(/* args */)
 Inventory::~Inventory()
 {
     // delete items;
+}
+void Inventory::printItemsInline()
+{
+    cout << "Items:";
+
+    for (auto it = std::begin(items); it != std::end(items); ++it)
+    {
+        const char *iName = ItemName[it->itemType];
+
+        cout << iName << " " << it->amount;
+        if (it + 1 != std::end(items))
+        {
+            cout << ", ";
+        }
+    }
 }
 void Inventory::printItems()
 {
