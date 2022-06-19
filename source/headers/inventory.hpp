@@ -23,6 +23,7 @@ public:
     void printItemsInline();
     void remove(ItemType, int quantity = 1);
     void add(ItemType, int quantity = 1);
+    void update(ItemType, int quantity);
     bool has(ItemType);
     int count(ItemType);
 };
@@ -81,6 +82,7 @@ int Inventory::getPos(ItemType typ)
     return -1;
 }
 void Inventory::remove(ItemType typ, int quantity)
+
 {
     int pos = getPos(typ);
     if (pos < 0)
@@ -92,6 +94,10 @@ void Inventory::remove(ItemType typ, int quantity)
     {
         items.erase(items.begin() + pos);
     }
+}
+void Inventory::update(ItemType typ, int quantity)
+{
+    add(typ, quantity);
 }
 void Inventory::add(ItemType typ, int quantity)
 {

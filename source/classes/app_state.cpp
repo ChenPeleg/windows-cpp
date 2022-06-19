@@ -7,6 +7,7 @@
 #include <cmath>
 #include "../headers/combat_state.hpp"
 #include "../headers/monster.hpp"
+#include "../headers/constants.hpp"
 State::State(int _initialState)
 {
     this->p_level = 1;
@@ -48,6 +49,14 @@ void State::setPage(int pageNum)
         else
         {
             this->combat = NULL;
+        }
+
+        for (int i = 0; i < constants::MAX_NUMBER_OF_OPTIONS; i++)
+        {
+            if (this->pageObj.pageChangesItems[i].itemType != ItemType::NoItem)
+            {
+                inventory.update(this->pageObj.pageChangesItems[i].itemType, this->pageObj.pageChangesItems[i].amount);
+            }
         }
     }
 };
