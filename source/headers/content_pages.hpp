@@ -9,8 +9,10 @@
 #include "common.hpp"
 #include "content_monsters.hpp"
 #include "item.hpp"
+#include "constants.hpp"
 
 using namespace asciiImages;
+using namespace constants;
 
 class Page
 {
@@ -22,9 +24,10 @@ private:
 public:
        bool isFight = false;
        char text[500];
-       char options[5][100];
-       int optionsDestenationPageNumber[5];
-       Item optionRequiersItem[5];
+       char options[MAX_NUMBER_OF_OPTIONS][100];
+       int optionsDestenationPageNumber[MAX_NUMBER_OF_OPTIONS];
+       Item optionRequiersItems[MAX_NUMBER_OF_OPTIONS];
+       Item pageChangesItems[MAX_NUMBER_OF_OPTIONS];
        ImageEnumb image;
        content_monsters::MonsterType pageMonster;
        ~Page()
@@ -146,7 +149,29 @@ public:
 
               this->image = image;
        }
+       void pageChangeItem(Item itm, int amount)
+       {
+              for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
+              {
+                     if (pageChangesItems[i].itemType == ItemType::NoItem)
+                     {
+                            pageChangesItems[i] = itm;
 
+                            break;
+                     }
+              }
+       }
+       void pageOptionRequiersItems(int optionPageNumber, Item itm, int amount)
+       {
+
+              for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
+              {
+                     if (optionPageNumber == optionsDestenationPageNumber[i])
+                     {
+                            optionRequiersItems[i] = itm;
+                     }
+              }
+       }
        static Page getPages(int pageNumber = 1)
        {
               Page p;
