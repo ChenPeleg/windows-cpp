@@ -149,7 +149,7 @@ public:
 
               this->image = image;
        }
-       void pageChangeItem(Item itm, int amount)
+       void setChangedItems(Item itm)
        {
               for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
               {
@@ -183,6 +183,8 @@ public:
                      p.b("Walking from the hills you embark on a big journy. You see Two roads ahed of you.", ImageEnumb::palmTree, 1);
                      p.o("Go Right ", 5,
                          "Go Left ", 6);
+
+                     p.setChangedItems(Item(ItemType::shield, 1));
                      break;
 
               case 2:
@@ -202,11 +204,12 @@ public:
                          "Go through the door", 2);
                      break;
               case 5:
-                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling.", ImageEnumb::none, 1);
+                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling. On the Floor you find a big sword", ImageEnumb::none, 1);
                      p.o(
-                         "Pull the Rope", 1,
-                         "Open the door", 1);
-                     break;
+                         "Pull the Rope", 2,
+                         "Open the door", 7);
+                     p.setChangedItems(Item(ItemType::Sword, 1));
+                     break; //
               case 6:
                      p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", ImageEnumb::none, 1);
                      p.o(
