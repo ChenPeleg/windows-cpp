@@ -166,7 +166,7 @@ private:
                         if (chosenAnswer > 0)
                         {
                             state->highLightedAns = chosenAnswer;
-                            int newPAgeNumber = state->currentPage().optionsDestenationPageNumber[chosenAnswer - 1];
+                            int newPAgeNumber = state->currentPage().choices[chosenAnswer - 1].pageNumber;
                             if (newPAgeNumber > 0)
                             {
                                 newPageWasChosen(newPAgeNumber);
@@ -216,8 +216,6 @@ int main()
 {
     FileManager fm = *(new FileManager());
     fm.add("abc12342342342");
-
-    //  debuging::stop();
 
     AppMain app;
     app.start();
