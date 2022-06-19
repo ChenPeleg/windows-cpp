@@ -196,7 +196,7 @@ void ViewEngine::paint(State *state, Page *page)
 
         const char *chooseColor = "\x1b[37m";
 
-        if (page->optionsDestenationPageNumber[o] < 1)
+        if (page->choices[o].pageNumber < 1)
         {
             continue;
         }
@@ -205,7 +205,7 @@ void ViewEngine::paint(State *state, Page *page)
             chooseColor = "\x1b[30m\x1b[47m";
         };
 
-        cout << chooseColor << o + 1 << ". " << page->options[o] << " "
+        cout << chooseColor << o + 1 << ". " << page->choices[o].text << " "
              << "\033[0m\t\t"
              << "\n"
              << endl;

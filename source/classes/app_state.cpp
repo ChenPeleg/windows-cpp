@@ -113,7 +113,7 @@ void State::combatWon()
 {
     Page tempPage = Page::getPages(this->page);
 
-    int nextPageValue = tempPage.optionsDestenationPageNumber[0];
+    int nextPageValue = tempPage.choices[0].pageNumber;
     this->setPage(nextPageValue);
 }
 int State::getPage()

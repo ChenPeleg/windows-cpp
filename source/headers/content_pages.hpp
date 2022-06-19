@@ -34,11 +34,12 @@ public:
        char text[500];
 
        Choice choices[MAX_NUMBER_OF_OPTIONS];
-       char options[MAX_NUMBER_OF_OPTIONS][100];
-       int optionsDestenationPageNumber[MAX_NUMBER_OF_OPTIONS];
+       // char options[MAX_NUMBER_OF_OPTIONS][100];
+       // int optionsDestenationPageNumber[MAX_NUMBER_OF_OPTIONS];
+       // Item optionRequiersItems[MAX_NUMBER_OF_OPTIONS];
 
-       Item optionRequiersItems[MAX_NUMBER_OF_OPTIONS];
        Item pageChangesItems[MAX_NUMBER_OF_OPTIONS];
+
        ImageEnumb image;
        content_monsters::MonsterType pageMonster;
        ~Page()
@@ -109,21 +110,18 @@ public:
                      int i = 0;
                      for (i = 0; i < currentSize; i++)
                      {
-                            this->options[o][i] = optionString[i];
                             this->choices[o].text[i] = optionString[i];
                      };
-                     int sizeOfArr = sizeof(this->options[o]);
-                     // for ()
-                     this->options[o][i] = '\0';
+                     int sizeOfArr = sizeof(this->choices[o]);
+
                      this->choices[o].text[i] = '\0';
                      for (int d = i + 1; d < sizeOfArr - currentSize; d++)
                      {
-                            this->options[o][d] = '\0';
+
                             this->choices[o].text[i] = '\0';
                      }
 
-                     this->optionsDestenationPageNumber[o] = optionNumber;
-                     this->choices[o]->pageNumber = optionNumber;
+                     this->choices[o].pageNumber = optionNumber;
               };
        };
 
@@ -181,9 +179,9 @@ public:
 
               for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
               {
-                     if (optionPageNumber == optionsDestenationPageNumber[i])
+                     if (optionPageNumber == choices[i].pageNumber)
                      {
-                            optionRequiersItems[i] = itm;
+                            choices[i].requiredItem = itm;
                      }
               }
        }

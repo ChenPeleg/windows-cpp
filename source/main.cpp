@@ -92,14 +92,14 @@ private:
         int highLightedAns = 0;
         for (int o = 0; o < 5; o++)
         {
-            if (pageGlob.optionsDestenationPageNumber[o] < 1)
+            if (pageGlob.choices[o].pageNumber < 1)
             {
                 continue;
             }
 
             if (keyAsInt == (o + 1))
             {
-                newPageNumber = pageGlob.optionsDestenationPageNumber[o];
+                newPageNumber = pageGlob.choices[o].pageNumber;
                 highLightedAns = o + 1;
             }
         }
