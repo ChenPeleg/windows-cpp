@@ -21,6 +21,7 @@ struct Choice
        int pageNumber;
        char text[100];
        Item requiredItem;
+       bool optionBlocked = false;
 };
 
 class Page
@@ -251,9 +252,20 @@ public:
                      break;
               }
        }
-       // void updateOptionsFromInventory(Inventory &inv)
-       // {
-       // }
+       void updateOptionsFromInventory(Inventory const &inv)
+       {
+              for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
+              {
+                     if (choices[i].requiredItem.itemType != ItemType::NoItem)
+                     {
+                            int cnt = inv.count(choices[i].requiredItem.itemType);
+                            if (cnt < choices[i].requiredItem.amount)
+                            {
+                                   choices[i].optionBlocked = true;
+                            }
+                     };
+              }
+       }
 };
 
 #endif

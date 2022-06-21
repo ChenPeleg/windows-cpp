@@ -23,8 +23,8 @@ public:
     void remove(ItemType, int quantity = 1);
     void add(ItemType, int quantity = 1);
     void update(ItemType, int quantity);
-    bool has(ItemType);
-    int count(ItemType);
+    const bool has(ItemType);
+    const int count(ItemType);
 };
 
 Inventory::Inventory(/* args */)
@@ -111,11 +111,11 @@ void Inventory::add(ItemType typ, int quantity)
         items.push_back(newItem);
     }
 }
-bool Inventory::has(ItemType typ)
+const bool Inventory::has(ItemType typ)
 {
     return getPos(typ) > -1;
 }
-int Inventory::count(ItemType typ)
+const int Inventory::count(ItemType typ)
 {
     int pos = getPos(typ);
     if (pos > -1)
