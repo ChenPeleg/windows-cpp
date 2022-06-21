@@ -28,24 +28,6 @@ class Page
 private:
        int imageId;
        int customId;
-
-public:
-       bool isFight = false;
-       char text[500];
-
-       Choice choices[MAX_NUMBER_OF_OPTIONS];
-       // char options[MAX_NUMBER_OF_OPTIONS][100];
-       // int optionsDestenationPageNumber[MAX_NUMBER_OF_OPTIONS];
-       // Item optionRequiersItems[MAX_NUMBER_OF_OPTIONS];
-
-       Item pageChangesItems[MAX_NUMBER_OF_OPTIONS];
-
-       ImageEnumb image;
-       content_monsters::MonsterType pageMonster;
-       ~Page()
-       {
-              //  delete this;
-       }
        void o(const char *textoptions1, int op1,
               const char *textoptions2, int op2,
               const char *textoptions3, int op3,
@@ -185,6 +167,21 @@ public:
                      }
               }
        }
+
+public:
+       bool isFight = false;
+       char text[500];
+       Choice choices[MAX_NUMBER_OF_OPTIONS];
+       Item pageChangesItems[MAX_NUMBER_OF_OPTIONS];
+
+       ImageEnumb image;
+       content_monsters::MonsterType pageMonster;
+
+       ~Page()
+       {
+              //  delete this;
+       }
+
        static Page getPages(int pageNumber = 1)
        {
               Page p;
@@ -240,6 +237,7 @@ public:
               return p;
        };
        void setCustomId(int customId, content_monsters::MonsterType mnsType)
+
        {
               this->customId = customId;
               switch (mnsType)
@@ -252,6 +250,9 @@ public:
                      break;
               }
        }
+       // void updateOptionsFromInventory(Inventory &inv)
+       // {
+       // }
 };
 
 #endif
