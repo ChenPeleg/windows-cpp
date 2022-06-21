@@ -5,6 +5,7 @@
  *   header and implementation files.
  *   So the definitions and implementation are all in one file.
  * *********************/
+#include "inventory.hpp"
 #include "../images/images.cpp"
 #include "common.hpp"
 #include "content_monsters.hpp"

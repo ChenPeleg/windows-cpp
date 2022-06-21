@@ -4,7 +4,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "views_engine.hpp"
 
 #include "item.hpp"
 
@@ -59,9 +58,9 @@ void Inventory::printItems()
     int num = 1;
     for (auto it = std::begin(items); it != std::end(items); ++it)
     {
-        const char *iName = ItemName[it->itemType];
-        char *fill = ViewEngine::duplicateChar(' ', 15 - common::string_size(iName));
-        cout << num++ << "." << iName << " " << fill << it->amount << "\n\n";
+        // const char *iName = ItemName[it->itemType];
+        // char *fill = ViewEngine::duplicateChar(' ', 15 - common::string_size(iName));
+        // cout << num++ << "." << iName << " " << fill << it->amount << "\n\n";
     }
 }
 /**
