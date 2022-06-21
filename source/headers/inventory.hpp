@@ -13,7 +13,7 @@ class Inventory
 {
 private:
     std::vector<Item> items;
-    int getPos(ItemType);
+    const int getPos(ItemType);
 
 public:
     Inventory();
@@ -69,7 +69,7 @@ void Inventory::printItems()
  * @typ ItemType ().
  * @return the position as int or -1 if none exist.
  */
-int Inventory::getPos(ItemType typ)
+const int Inventory::getPos(ItemType typ)
 {
     for (auto it = std::begin(items); it != std::end(items); ++it)
     {

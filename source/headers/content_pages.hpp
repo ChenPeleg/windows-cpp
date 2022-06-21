@@ -158,7 +158,7 @@ private:
                      }
               }
        }
-       void pageOptionRequiersItems(int optionPageNumber, Item itm, int amount)
+       void pageOptionRequiersItems(int optionPageNumber, Item itm, int amount = 1)
        {
 
               for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
@@ -193,16 +193,19 @@ public:
 
               case 1:
                      p.b("Walking from the hills you embark on a big journy. You see Two roads ahed of you.", ImageEnumb::palmTree, 1);
-                     p.o("Go Right ", 5,
+                     p.o("Go Right ", 2,
                          "Go Left ", 6);
 
                      p.setChangedItems(Item(ItemType::shield, 1));
                      break;
 
               case 2:
-                     p.b("You look at the body of the monster. The door leads to a dark long corridor. At it goes into a staircase. There are stairse goning up and down.", ImageEnumb::elephant, 1);
-                     p.o("Go up ", 5,
-                         "Go down ", 6);
+                     p.b("You go right and down. You see a skull. What do you want to do?", ImageEnumb::worm, 1);
+                     p.o("Break It with sword ", 5,
+                         "Break It with shield ", 6,
+                         "Leave It ", 7);
+                     p.pageOptionRequiersItems(5, Item(ItemType::Sword));
+                     p.pageOptionRequiersItems(6, Item(ItemType::shield));
                      break;
 
               case 3:
@@ -252,7 +255,7 @@ public:
                      break;
               }
        }
-       void updateOptionsFromInventory(Inventory const &inv)
+       void updateOptionsFromInventory(Inventory &inv)
        {
               for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
               {

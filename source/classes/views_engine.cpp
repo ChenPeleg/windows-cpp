@@ -195,7 +195,7 @@ void ViewEngine::paint(State *state, Page *page)
     {
 
         const char *chooseColor = "\x1b[37m";
-
+        const bool isBlocked = page->choices[o].optionBlocked;
         if (page->choices[o].pageNumber < 1)
         {
             continue;
@@ -204,6 +204,10 @@ void ViewEngine::paint(State *state, Page *page)
         {
             chooseColor = "\x1b[30m\x1b[47m";
         };
+        if (isBlocked)
+        {
+            chooseColor = graphicUtils::getColorText(graphicUtils::ConsoleColor::dim);
+        }
 
         cout << chooseColor << o + 1 << ". " << page->choices[o].text << " "
              << "\033[0m\t\t"

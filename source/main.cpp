@@ -62,7 +62,7 @@ private:
         ViewEngine::paint(state, pgPtr);
     }
 
-    void optionWasPressed(char key)
+    bool optionWasPressed(char key)
     {
         const Page pageGlob = state->currentPage();
         state->lastKey = key;
@@ -75,9 +75,14 @@ private:
             }
             else
             {
+                if (pageGlob.choices[chosenAnswer - 1].optionBlocked)
+                {
+                    return false;
+                }
                 state->highLightedAns = chosenAnswer;
             }
-        }
+        } //
+        return true;
     }
     int getOptionFromKeyPressed(char key)
     {
@@ -126,7 +131,7 @@ private:
         bool paintOrNot = true;
         state->carridgePos = 0;
         state->setMsTimer(100);
-
+        bool isAllowed = true;
         while (runing)
         {
             state->tik();
@@ -140,7 +145,15 @@ private:
             if (keyPressed != lastChar || state->currentPage().isFight)
             {
                 lastChar = keyPressed;
-                optionWasPressed(keyPressed);
+                isAllowed = optionWasPressed(keyPressed);
+                // if (!isRelevant)
+                // {
+                //     continue;
+                // }
+            }
+            if (!isAllowed)
+            {
+                continue;
             }
 
             if (keyPressed && keyPressed == lastChar)
