@@ -19,7 +19,8 @@ namespace asciiImages
     skull,
     ghost,
     skeleton,
-    palmTree
+    palmTree,
+    bag
   };
 }
 
@@ -156,6 +157,17 @@ L/         \J
    
 )";
 
+  const char *bag = R"(
+          __     ___
+     //\\   // \\   
+ /`````````````]\\
+(;             )}/
+(;___       ___)}
+(;   \__@__/   )}
+(;             )}
+ \`            )}       
+  `=..====..==//
+)";
   const char *palmTree = R"( 
         __ _.--..--._ _
      .-' _/   _/\_   \_'-.

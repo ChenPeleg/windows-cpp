@@ -270,13 +270,13 @@ int ViewEngine::getStageClockTicks(common::ClockTicksState clockTicksState, int 
 };
 char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
 {
-    // int stage = GetAnimationStage(animationsState, 3, 500);
-    // cout << "\n\n"
-    //      << stage << "\n\n";
+
     switch (image)
     {
     case ImageEnumb::fighter:
         return ViewEngine::proccessImage(images::fighter);
+    case ImageEnumb::bag:
+        return ViewEngine::proccessImage(images::bag);
     case ImageEnumb::mage:
         return ViewEngine::proccessImage(images::mage);
     case ImageEnumb::mageAnimation:
