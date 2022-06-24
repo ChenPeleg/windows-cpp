@@ -183,6 +183,34 @@ public:
        {
               //  delete this;
        }
+       void setCustomId(int customId, content_monsters::MonsterType mnsType)
+
+       {
+              this->customId = customId;
+              switch (mnsType)
+              {
+              case content_monsters::MonsterType::none:
+                     this->isFight = false;
+                     break;
+              default:
+                     this->isFight = true;
+                     break;
+              }
+       }
+       void updateOptionsFromInventory(Inventory &inv)
+       {
+              for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
+              {
+                     if (choices[i].requiredItem.itemType != ItemType::NoItem)
+                     {
+                            int cnt = inv.count(choices[i].requiredItem.itemType);
+                            if (cnt < choices[i].requiredItem.amount)
+                            {
+                                   choices[i].optionBlocked = true;
+                            }
+                     };
+              }
+       }
 
        static Page getPages(int pageNumber = 1)
        {
@@ -237,38 +265,17 @@ public:
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
+
+              case 10001:
+                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+
+                     p.o("         Start New Game        ", 1,
+                         "         Load Game        ", 10003);
+                     break;
               }
 
               return p;
        };
-       void setCustomId(int customId, content_monsters::MonsterType mnsType)
-
-       {
-              this->customId = customId;
-              switch (mnsType)
-              {
-              case content_monsters::MonsterType::none:
-                     this->isFight = false;
-                     break;
-              default:
-                     this->isFight = true;
-                     break;
-              }
-       }
-       void updateOptionsFromInventory(Inventory &inv)
-       {
-              for (int i = 0; i < MAX_NUMBER_OF_OPTIONS; i++)
-              {
-                     if (choices[i].requiredItem.itemType != ItemType::NoItem)
-                     {
-                            int cnt = inv.count(choices[i].requiredItem.itemType);
-                            if (cnt < choices[i].requiredItem.amount)
-                            {
-                                   choices[i].optionBlocked = true;
-                            }
-                     };
-              }
-       }
 };
 
 #endif

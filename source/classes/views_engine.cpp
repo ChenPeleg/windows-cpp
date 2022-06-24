@@ -279,6 +279,42 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         return ViewEngine::proccessImage(images::bag);
     case ImageEnumb::mage:
         return ViewEngine::proccessImage(images::mage);
+
+    case ImageEnumb::candleAnimation:
+    {
+        int stage = getStageClockTicks(animationsState, 10, 100);
+        switch (stage)
+        {
+        case 0:
+        case 9:
+            return ViewEngine::proccessImage(images::candleA1);
+            break;
+        case 8:
+        case 1:
+            return ViewEngine::proccessImage(images::candleA1);
+            break;
+
+        case 2:
+        case 7:
+            return ViewEngine::proccessImage(images::candleA0);
+            break;
+        case 3:
+        case 6:
+            return ViewEngine::proccessImage(images::candleA0);
+            break;
+        case 4:
+        case 5:
+            return ViewEngine::proccessImage(images::candleA1);
+            break;
+
+        default:
+            return ViewEngine::proccessImage(images::candleA0);
+            break;
+        }
+        return ViewEngine::proccessImage(images::candleA0);
+        break;
+    }
+
     case ImageEnumb::mageAnimation:
     {
         int stage = getStageClockTicks(animationsState, 10, 100);

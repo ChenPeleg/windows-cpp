@@ -4,6 +4,31 @@
 namespace images
 {
 
+  const char *candleA0 = R"(
+
+    (
+     )
+    ()
+   |--|
+   |  |
+ .-|  |-.
+:  |  |  :
+:  '--'  :
+ '-....-'
+  )";
+  const char *candleA1 = R"(
+
+     )
+     (
+    ()
+   |--|
+   |  |
+ .-|  |-.
+:  |  |  :
+:  '--'  :
+ '-....-'
+  )";
+
   const char *fighter = R"(
 
 |==(W{==========-       

@@ -10,6 +10,7 @@ namespace asciiImages
     mage,
     Choose,
     mageAnimation,
+    candleAnimation,
     fighterAnimation,
     manWalkingSun,
     manPickingFromTree,
@@ -158,8 +159,8 @@ L/         \J
 )";
 
   const char *bag = R"(
-          __     ___
-     //\\   // \\   
+   __     ___
+  //\\   // ;\
  /`````````````]\\
 (;             )}/
 (;___       ___)}

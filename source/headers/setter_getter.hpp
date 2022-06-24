@@ -1,22 +1,25 @@
 #ifndef SetGetGeneric_H
 #define SETTER_GETTER_H
 
-template <decltype T>
+template <typename T>
 class SetGetGeneric
 {
 private:
-    /* data */
+    T *t = nullptr; // nullptr
+
 public:
     SetGetGeneric(/* args */);
     ~SetGetGeneric();
 };
 
-SetGetGeneric::SetGetGeneric(/* args */)
+SetGetGeneric::SetGetGeneric(T _t) :
 {
+    t = new T(_t);
 }
 
 SetGetGeneric::~SetGetGeneric()
 {
+    delete t;
 }
 
 #endif
