@@ -269,8 +269,18 @@ public:
               case 10001:
                      p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
 
-                     p.o("         Start New Game        ", 1,
-                         "         Load Game        ", 10003);
+                     p.o("         Continue        ", 1,
+                         "         Start New Game        ", 1,
+                         "         Load Game        ", 10003,
+                         "         Options        ", 10005);
+                     break;
+              case 10002:
+                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+
+                     p.o("         Slot A        ", 11111,
+                         "         Slot B        ", 1,
+                         "         Slot C       ", 10003,
+                         "         Options        ", 10005);
                      break;
               }
 

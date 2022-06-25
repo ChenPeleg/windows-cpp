@@ -5,9 +5,9 @@ namespace images
 {
 
   const char *candleA0 = R"(
-
-    (
-     )
+      
+    ( 
+     ) 
     ()
    |--|
    |  |
@@ -19,7 +19,7 @@ namespace images
   const char *candleA1 = R"(
 
      )
-     (
+    (    
     ()
    |--|
    |  |

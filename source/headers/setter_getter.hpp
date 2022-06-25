@@ -1,25 +1,35 @@
-#ifndef SetGetGeneric_H
+#ifndef SETTER_GETTER_H
 #define SETTER_GETTER_H
 
 template <typename T>
-class SetGetGeneric
+class Getter
 {
-private:
-    T *t = nullptr; // nullptr
+protected:
+    T &_value;
 
 public:
-    SetGetGeneric(/* args */);
-    ~SetGetGeneric();
+    Getter(T &value) : _value(value)
+    {
+    }
+    operator const T() const
+    {
+        return _value;
+    }
 };
 
-SetGetGeneric::SetGetGeneric(T _t) :
+template <typename T>
+class GetterSetter : public Getter<T>
 {
-    t = new T(_t);
-}
+    using Getter<T>::_value;
+    using Getter<T>::Getter;
 
-SetGetGeneric::~SetGetGeneric()
-{
-    delete t;
-}
+public:
+    GetterSetter<T> &
+    operator=(const T val)
+    {
+        _value = val;
+        return *(this);
+    };
+};
 
 #endif
