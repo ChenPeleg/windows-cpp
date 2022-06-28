@@ -46,7 +46,9 @@ private:
     State *state = new State(1);
     void saveDataTest()
     {
-        SaveLoad::StateToStruct(*(state));
+        int *arr = SaveLoad::GetIntArrayFromStateClass(*(state));
+        FileManager fm = *(new FileManager());
+        fm.addBin(arr, SAVE_RECORD_SIZE_BYTES);
     }
     void newPageWasChosen(int newPage)
     {
@@ -157,7 +159,7 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
-            if (!((keyPressed >= 49 && keyPressed <= 56) || keyPressed == 'S' || keyPressed == 116 || keyPressed == 0))
+            if (!((keyPressed >= 49 && keyPressed <= 56) || keyPressed == 'S' || keyPressed == 'E' || keyPressed == 116 || keyPressed == 0))
             {
                 keyPressed = 0;
                 continue;
@@ -248,8 +250,6 @@ private:
 };
 int main()
 {
-    FileManager fm = *(new FileManager());
-    fm.add("abc12342342342");
 
     AppMain app;
     app.start();

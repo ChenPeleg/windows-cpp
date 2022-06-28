@@ -15,5 +15,6 @@ namespace constants
     const int TIME_FOR_WIN_MESSAGE = 5000;
     const int MAX_NUMBER_OF_OPTIONS = 5;
     const int CODE_RETURN_TO_GAME = 10000000;
+    const int SAVE_RECORD_SIZE_BYTES = 100;
 }
 #endif

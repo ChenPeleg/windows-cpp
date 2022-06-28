@@ -15,7 +15,6 @@ private:
      * @brief This should be the about the maximum size of inventory * 2 + 3 properies
      *
      */
-    static const int RecordSizeInBytes = 100;
 
 public:
     struct SaveLoadData
@@ -26,15 +25,29 @@ public:
         int inventory[50][2];
     };
     SaveLoad();
-    static int *StructToIntArray(SaveLoadData &saveLoad)
+    static int *StructToIntArray(SaveLoadData &saveLoad, bool reverse = false)
     {
-        int *intArr = new int[RecordSizeInBytes];
+        int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
+
+        intArr[0] = saveLoad.page;
+        intArr[1] = saveLoad.HP;
+        intArr[2] = saveLoad.maxHP;
+        int invC = 0;
+        for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
+        {
+            intArr[i] = saveLoad.inventory[invC][0];
+            intArr[i + 1] = saveLoad.inventory[invC][1];
+            invC++;
+        }
+
         return intArr;
     }
-    // int[RecordSizeInBytes] IntArrayToStruct(SaveLoadData &saveLoad)
 
-    // {
-    // }
+    static int *GetIntArrayFromStateClass(const State &stateRef)
+    {
+        SaveLoadData sl = StateToStruct(stateRef);
+        return StructToIntArray(sl);
+    }
     static SaveLoadData StateToStruct(const State &stateRef)
     {
         SaveLoadData saveload;

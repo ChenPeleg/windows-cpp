@@ -17,6 +17,7 @@ public:
     FileManager(const char *fileName = "data/savefile.dat", int fileDataSize = 100);
     ~FileManager();
     void add(const char *textToWrite);
+    void addBin(const int *textToWrite, int lenght);
     long GetFileLength();
     fstream openFile();
 };
@@ -53,6 +54,15 @@ void FileManager::add(const char *textToWrite)
     fstream file = openFile();
     file << textToWrite;
     file.close();
+}
+void FileManager::addBin(const int *intArr, int length)
+{
+
+    fstream file = openFile();
+    ofstream strm(FileName, ios::out | ios::binary);
+    strm.write((char *)&intArr, length);
+
+    strm.close();
 }
 
 FileManager::~FileManager()
