@@ -9,7 +9,6 @@ using namespace std;
 class FileManager
 {
 private:
-    /* data */
     int FileDataSize;
     const char *FileName;
     long getFileLength(fstream &fileRef);
@@ -24,9 +23,9 @@ public:
 
 /*** Class ***/
 
-FileManager::FileManager(const char *fileName, int fileDataSize) : FileDataSize(fileDataSize), FileName(fileName){
-                                                                                                   // fstream file = openFile();// file.close();
-                                                                                               };
+FileManager::FileManager(const char *fileName, int fileDataSize) : FileDataSize(fileDataSize), FileName(fileName)
+{
+}
 long FileManager::getFileLength(fstream &fileRef)
 {
 

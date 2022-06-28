@@ -11,7 +11,8 @@ namespace common
     X(Food, "Food", false)     \
     X(Water, "Water", false)   \
     X(Wand, "Wand", false)     \
-    X(shield, "shield", false)
+    X(shield, "shield", false) \
+    X(LastItem, "LastItem", false)
 
 #define X(day, name, canBeAccumulated) day,
     enum ItemType : size_t
