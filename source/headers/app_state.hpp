@@ -18,6 +18,7 @@ class State
 private:
     int p_level;
     int page;
+    int lastStoryPage;
     int secondsPassed;
     int msTimer;
     int msTimerDuration;

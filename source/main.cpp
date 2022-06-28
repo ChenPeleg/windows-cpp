@@ -82,6 +82,15 @@ private:
         } //
         return true;
     }
+    void specialKeyPressed(char key)
+    { //
+        switch (key)
+        {
+        case 'S':
+            newPageWasChosen(10002);
+            break;
+        }
+    }
     int getOptionFromKeyPressed(char key)
     {
         const Page &pageGlob = state->currentPage();
@@ -140,14 +149,16 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
+            if (!((keyPressed >= 49 && keyPressed <= 56) || keyPressed == 'S' || keyPressed == 116 || keyPressed == 0))
+            {
+                keyPressed = 0;
+                continue;
+            }
+
             if (keyPressed != lastChar || state->currentPage().isFight)
             {
                 lastChar = keyPressed;
                 isAllowed = optionWasPressed(keyPressed);
-                // if (!isRelevant)
-                // {
-                //     continue;
-                // }
             }
             if (!isAllowed)
             {
@@ -210,6 +221,10 @@ private:
             {
                 finish();
                 runing = false;
+            }
+            else if ((keyPressed == 'S' || keyPressed == 'B') && state->getPage() < 10000)
+            {
+                specialKeyPressed(keyPressed);
             }
 
             // end of loop

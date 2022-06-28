@@ -39,7 +39,7 @@ void State::setPage(int pageNum)
 {
     if (pageNum > 0)
     {
-        //  delete combat;
+        int _lastPage = page;
         this->page = pageNum;
         this->pageObj = Page::getPages(this->page);
         if (pageObj.isFight)
@@ -57,8 +57,12 @@ void State::setPage(int pageNum)
             {
                 inventory.update(this->pageObj.pageChangesItems[i].itemType, this->pageObj.pageChangesItems[i].amount);
             }
-        } //
+        }
         this->pageObj.updateOptionsFromInventory(inventory);
+        if (!pageObj.isFight && pageNum < 10000)
+        {
+            this->lastStoryPage = pageNum;
+        }
     }
 };
 

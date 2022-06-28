@@ -223,6 +223,9 @@ public:
                      };
               }
        }
+       void updateOptionsForMenu(int lastPage)
+       {
+       }
 
        static Page getPages(int pageNumber = 1)
        {
@@ -320,9 +323,8 @@ public:
 
                      p.o("         Sound On      ", 11111,
                          "         Sound off     ", 1,
-                         "         Slot C       ", 10003,
-                         "         Back      ", 10002,
-                         "         Options        ", 10005);
+                         "         About      ", 10003,
+                         "         Back      ", 10002);
                      break;
               }
 
