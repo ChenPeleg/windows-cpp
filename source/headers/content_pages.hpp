@@ -293,7 +293,7 @@ public:
               case 10002:
                      p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
 
-                     p.o("         Continue        ", 1,
+                     p.o("         Return To Game        ", CODE_RETURN_TO_GAME,
                          "         Start New Game        ", 1,
                          "         Load Game        ", 10003,
                          "         Save Game        ", 10004,
