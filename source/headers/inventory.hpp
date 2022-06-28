@@ -13,7 +13,7 @@ class Inventory
 {
 private:
     std::vector<Item> items;
-    const int getPos(ItemType);
+    const int getPos(ItemType) const;
 
 public:
     Inventory();
@@ -24,7 +24,7 @@ public:
     void add(ItemType, int quantity = 1);
     void update(ItemType, int quantity);
     const bool has(ItemType);
-    const int count(ItemType);
+    const int count(ItemType) const;
 };
 
 Inventory::Inventory(/* args */)
@@ -69,7 +69,7 @@ void Inventory::printItems()
  * @typ ItemType ().
  * @return the position as int or -1 if none exist.
  */
-const int Inventory::getPos(ItemType typ)
+const int Inventory::getPos(ItemType typ) const
 {
     for (auto it = std::begin(items); it != std::end(items); ++it)
     {
@@ -115,7 +115,7 @@ const bool Inventory::has(ItemType typ)
 {
     return getPos(typ) > -1;
 }
-const int Inventory::count(ItemType typ)
+const int Inventory::count(ItemType typ) const
 {
     int pos = getPos(typ);
     if (pos > -1)

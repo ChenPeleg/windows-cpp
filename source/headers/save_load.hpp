@@ -15,10 +15,10 @@ private:
      * @brief This should be the about the maximum size of inventory * 2 + 3 properies
      *
      */
-    static int RecordSizeInBytes = 100;
+    static const int RecordSizeInBytes = 100;
 
 public:
-    static struct SaveLoadData
+    struct SaveLoadData
     {
         int page;
         int HP;
@@ -26,13 +26,22 @@ public:
         int inventory[50][2];
     };
     SaveLoad();
-    SaveLoadData &static StateToStruct(const State &stateRef)
+    static int *StructToIntArray(SaveLoadData &saveLoad)
     {
-        SaveLoadData saveload = new SaveLoadData();
+        int *intArr = new int[RecordSizeInBytes];
+        return intArr;
+    }
+    // int[RecordSizeInBytes] IntArrayToStruct(SaveLoadData &saveLoad)
+
+    // {
+    // }
+    static SaveLoadData StateToStruct(const State &stateRef)
+    {
+        SaveLoadData saveload;
         saveload.HP = stateRef.HP;
         saveload.maxHP = stateRef.maxHP;
 
-        memset(saveload.inventory, 0, sizeof(array[0][0]) * 50 * 2);
+        memset(saveload.inventory, 0, sizeof(saveload.inventory[0][0]) * 50 * 2);
         int countCells = 0;
         for (int intItem = ItemType::NoItem; intItem != ItemType::LastItem; intItem++)
         {

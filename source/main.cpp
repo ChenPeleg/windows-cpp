@@ -9,6 +9,7 @@
 #include "./headers/file_manager.hpp"
 #include "./headers/inventory.hpp"
 #include "./headers/debuging.hpp"
+#include "./headers/save_load.hpp"
 
 #include "./classes/app_state.cpp"
 #include "./classes/combat_state.cpp"
@@ -35,7 +36,7 @@ public:
 
         ViewEngine::hideCursor();
         graphicUtils::clear();
-        newPageWasChosen(10001);
+        newPageWasChosen(2); // 44410001
         paintContent();
         eventLoop();
         return 0;
@@ -43,6 +44,10 @@ public:
 
 private:
     State *state = new State(1);
+    void saveDataTest()
+    {
+        SaveLoad::StateToStruct(*(state));
+    }
     void newPageWasChosen(int newPage)
     {
 
@@ -88,6 +93,9 @@ private:
         {
         case 'S':
             newPageWasChosen(10002);
+            break;
+        case 'E':
+            saveDataTest();
             break;
         }
     }
@@ -222,7 +230,7 @@ private:
                 finish();
                 runing = false;
             }
-            else if ((keyPressed == 'S' || keyPressed == 'B') && state->getPage() < 10000)
+            else if ((keyPressed == 'S' || keyPressed == 'B' || keyPressed == 'E') && state->getPage() < 10000)
             {
                 specialKeyPressed(keyPressed);
             }
