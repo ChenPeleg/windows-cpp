@@ -57,7 +57,7 @@ void State::setPage(int pageNum)
             {
                 inventory.update(this->pageObj.pageChangesItems[i].itemType, this->pageObj.pageChangesItems[i].amount);
             }
-        }
+        } //
         this->pageObj.updateOptionsFromInventory(inventory);
     }
 };

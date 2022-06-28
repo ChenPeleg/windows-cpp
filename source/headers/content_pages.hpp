@@ -33,31 +33,40 @@ private:
        void o(const char *textoptions1, int op1,
               const char *textoptions2, int op2,
               const char *textoptions3, int op3,
+              const char *textoptions4, int op4,
+              const char *textoptions5, int op5)
+       {
+              this->setOptions(textoptions1, op1, textoptions2, op2, textoptions3, op3, textoptions4, op4, textoptions5, op5);
+       };
+       void o(const char *textoptions1, int op1,
+              const char *textoptions2, int op2,
+              const char *textoptions3, int op3,
               const char *textoptions4, int op4)
        {
-              this->setOptions(textoptions1, op1, textoptions2, op2, textoptions3, op3, textoptions4, op4);
+              this->setOptions(textoptions1, op1, textoptions2, op2, textoptions3, op3, textoptions4, op4, "", 0);
        };
        void o(const char *textoptions1, int op1,
               const char *textoptions2, int op2,
               const char *textoptions3, int op3)
        {
-              this->setOptions(textoptions1, op1, textoptions2, op2, textoptions3, op3, "", 0);
+              this->setOptions(textoptions1, op1, textoptions2, op2, textoptions3, op3, "", 0, "", 0);
        };
        void o(const char *textoptions1, int op1,
               const char *textoptions2, int op2)
        {
 
-              this->setOptions(textoptions1, op1, textoptions2, op2, "", 0, "", 0);
+              this->setOptions(textoptions1, op1, textoptions2, op2, "", 0, "", 0, "", 0);
        };
        void o(const char *textoptions1, int op1)
        {
 
-              this->setOptions(textoptions1, op1, "", 0, "", 0, "", 0);
+              this->setOptions(textoptions1, op1, "", 0, "", 0, "", 0, "", 0);
        };
        void setOptions(const char *textoptions1, int op1,
                        const char *textoptions2, int op2,
                        const char *textoptions3, int op3,
-                       const char *textoptions4, int op4)
+                       const char *textoptions4, int op4,
+                       const char *textoptions5, int op5)
        {
 
               for (int o = 0; o < 5; o++)
@@ -89,6 +98,9 @@ private:
                             optionNumber = op4;
                             break;
                      case 4:
+                            currentSize = common::string_size(textoptions5);
+                            optionString = textoptions5;
+                            optionNumber = op5;
                             break;
                      }
                      int i = 0;
@@ -265,21 +277,51 @@ public:
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
-
+                     // StartScreenOptions
               case 10001:
+                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+
+                     p.o("         Load Last Save      ", 1,
+                         "         Start New Game        ", 1,
+                         "         Load Game        ", 10003,
+                         "         Options        ", 10005);
+                     break;
+                     // in-game Options
+              case 10002:
                      p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
 
                      p.o("         Continue        ", 1,
                          "         Start New Game        ", 1,
                          "         Load Game        ", 10003,
+                         "         Save Game        ", 10004,
                          "         Options        ", 10005);
                      break;
-              case 10002:
-                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+              case 10003:
+                     p.b("   WHISPERING FOREST - LOAD GAME    ", ImageEnumb::candleAnimation, 1000);
 
                      p.o("         Slot A        ", 11111,
-                         "         Slot B        ", 1,
+                         "         Slot B        ", 11112,
+                         "         Slot C       ", 11113,
+                         "         Back      ", 10002,
+                         "         Options        ", 10005);
+                     break;
+
+              case 10004:
+                     p.b("   WHISPERING FOREST - SAVE GAME    ", ImageEnumb::candleAnimation, 1000);
+
+                     p.o("         Slot A        ", 11111,
+                         "         Slot B        ", 11112,
+                         "         Slot C       ", 11113,
+                         "         Back      ", 10002,
+                         "         Options        ", 10005);
+                     break;
+              case 10005:
+                     p.b("    WHISPERING FOREST - OPTIONS       ", ImageEnumb::candleAnimation, 1000);
+
+                     p.o("         Sound On      ", 11111,
+                         "         Sound off     ", 1,
                          "         Slot C       ", 10003,
+                         "         Back      ", 10002,
                          "         Options        ", 10005);
                      break;
               }
