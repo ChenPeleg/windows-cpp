@@ -37,10 +37,16 @@ Page &State::currentPage()
 };
 void State::setPage(int pageNum)
 {
+    //
     if (pageNum > 0)
     {
+
         int _lastPage = page;
         this->page = pageNum;
+        if (pageNum == CODE_RETURN_TO_GAME)
+        {
+            this->page = this->lastStoryPage;
+        }
         this->pageObj = Page::getPages(this->page);
         if (pageObj.isFight)
         {
@@ -53,15 +59,15 @@ void State::setPage(int pageNum)
 
         for (int i = 0; i < constants::MAX_NUMBER_OF_OPTIONS; i++)
         {
-            if (this->pageObj.pageChangesItems[i].itemType != ItemType::NoItem)
+            if (this->pageObj.pageChangesItems[i].itemType != ItemType::NoItem && pageNum != CODE_RETURN_TO_GAME)
             {
                 inventory.update(this->pageObj.pageChangesItems[i].itemType, this->pageObj.pageChangesItems[i].amount);
             }
         }
         this->pageObj.updateOptionsFromInventory(inventory);
-        if (!pageObj.isFight && pageNum < 10000)
+        if (!pageObj.isFight && this->page < 10000)
         {
-            this->lastStoryPage = pageNum;
+            this->lastStoryPage = this->page;
         }
     }
 };
