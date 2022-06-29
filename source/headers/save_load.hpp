@@ -32,58 +32,78 @@ public:
     {
         int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
 
-        intArr[0] = saveLoad.page;
-        intArr[1] = saveLoad.HP;
-        intArr[2] = saveLoad.maxHP;
-        int invC = 0;
-        for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
-        {
-            intArr[i] = saveLoad.inventory[invC][0];
-            intArr[i + 1] = saveLoad.inventory[invC][1];
-            invC++;
-        }
+        // try
+        // {
+        //     intArr[0] = saveLoad.page;
+        //     intArr[1] = saveLoad.HP;
+        //     intArr[2] = saveLoad.maxHP;
+        //     int invC = 0;
+        //     for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
+        //     {
+        //         intArr[i] = saveLoad.inventory[invC][0];
+        //         intArr[i + 1] = saveLoad.inventory[invC][1];
+        //         invC++;
+        //     }
+        // }
+        // catch (exception e)
+        // {
+        //     std::cout << "StructToIntArray Exception" << e.what();
+        // }
 
         return intArr;
     }
 
     static int *GetIntArrayFromStateAndData(const State &stateRef, char *saveName)
     {
-        SaveLoadData sl = StateToStruct(stateRef, saveName);
-        return StructToIntArray(sl);
+        SaveLoadData sl; // eeee
+        sl = SaveLoad::StateToStruct(stateRef, saveName);
+
+        int *ret = StructToIntArray(sl);
+
+        return 0;
     }
     static SaveLoadData StateToStruct(const State &stateRef, char *saveName)
     {
         SaveLoadData saveload;
-        saveload.HP = stateRef.HP;
-        saveload.maxHP = stateRef.maxHP;
-        bool nameOver = false;
-        for (int c = 0; c < sizeof(saveload.name); c++)
+        try
         {
-            saveload.name[c] = nameOver ? saveName[c] : '\0';
-            nameOver = nameOver || saveName[c] == '\0';
-        }
 
-        memset(saveload.inventory, 0, sizeof(saveload.inventory[0][0]) * 50 * 2);
-        int countCells = 0;
-        for (int intItem = ItemType::NoItem; intItem != ItemType::LastItem; intItem++)
-        {
-            ItemType itemEnum = static_cast<ItemType>(intItem);
-            if (itemEnum != ItemType::NoItem &&
-                itemEnum != ItemType::LastItem)
+            saveload.HP = stateRef.HP;
+            saveload.maxHP = stateRef.maxHP;
+            bool nameOver = false;
+            for (int c = 0; c < sizeof(saveload.name); c++)
             {
-                int amount = stateRef.inventory.count(itemEnum);
-                if (amount == 0)
+                saveload.name[c] = nameOver ? saveName[c] : '\0';
+                nameOver = nameOver || saveName[c] == '\0';
+            }
+
+            memset(saveload.inventory, 0, sizeof(saveload.inventory[0][0]) * 50 * 2);
+            int countCells = 0;
+            for (int intItem = ItemType::NoItem; intItem != ItemType::LastItem; intItem++)
+            {
+                ItemType itemEnum = static_cast<ItemType>(intItem);
+                if (itemEnum != ItemType::NoItem &&
+                    itemEnum != ItemType::LastItem)
                 {
-                    continue;
-                }
-                else
-                {
-                    saveload.inventory[countCells][0] = intItem;
-                    saveload.inventory[countCells][1] = amount;
-                    countCells++;
+                    int amount = stateRef.inventory.count(itemEnum);
+                    if (amount == 0)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        saveload.inventory[countCells][0] = intItem;
+                        saveload.inventory[countCells][1] = amount;
+                        countCells++;
+                    }
                 }
             }
         }
+        catch (exception e)
+        {
+            std::cout << "Exception " << e.what();
+        }
+
         return saveload;
     }
 };
