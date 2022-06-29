@@ -293,7 +293,7 @@ public:
               case 10002:
                      p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
 
-                     p.o("         Return To Game        ", CODE_RETURN_TO_GAME,
+                     p.o("         Return To Game        ", PAGE_NUMBER_RETURN_TO_GAME,
                          "         Start New Game        ", 1,
                          "         Load Game        ", 10003,
                          "         Save Game        ", 10004,
@@ -302,21 +302,21 @@ public:
               case 10003:
                      p.b("   WHISPERING FOREST - LOAD GAME    ", ImageEnumb::candleAnimation, 1000);
 
-                     p.o("         Slot A        ", 11111,
-                         "         Slot B        ", 11112,
-                         "         Slot C       ", 11113,
-                         "         Back      ", 10002,
-                         "         Options        ", 10005);
+                     p.o("         Slot A        ", PAGE_NUMBER_LOAD_SLOTS + 1,
+                         "         Slot B        ", PAGE_NUMBER_LOAD_SLOTS + 2,
+                         "         Slot C       ", PAGE_NUMBER_LOAD_SLOTS + 3,
+                         "         Slot D     ", PAGE_NUMBER_LOAD_SLOTS + 4,
+                         "         Back         ", 10002);
                      break;
 
               case 10004:
                      p.b("   WHISPERING FOREST - SAVE GAME    ", ImageEnumb::candleAnimation, 1000);
 
-                     p.o("         Slot A        ", 11111,
-                         "         Slot B        ", 11112,
-                         "         Slot C       ", 11113,
-                         "         Back      ", 10002,
-                         "         Options        ", 10005);
+                     p.o("         Slot A        ", PAGE_NUMBER_SAVE_SLOTS + 1,
+                         "         Slot B        ", PAGE_NUMBER_SAVE_SLOTS + 2,
+                         "         Slot C       ", PAGE_NUMBER_SAVE_SLOTS + 3,
+                         "         Slot D     ", PAGE_NUMBER_SAVE_SLOTS + 4,
+                         "         Back        ", 10002);
                      break;
               case 10005:
                      p.b("    WHISPERING FOREST - OPTIONS       ", ImageEnumb::candleAnimation, 1000);

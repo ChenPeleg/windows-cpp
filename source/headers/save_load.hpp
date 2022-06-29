@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <iostream>
+
 #include "app_state.hpp"
 #include "inventory.hpp"
 using namespace std;
@@ -23,6 +24,8 @@ public:
         int HP;
         int maxHP;
         int inventory[50][2];
+        int name[30];
+        int time;
     };
     SaveLoad();
     static int *StructToIntArray(SaveLoadData &saveLoad, bool reverse = false)
