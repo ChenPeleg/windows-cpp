@@ -52,6 +52,13 @@ private:
         FileManager fm = *(new FileManager());
         fm.addBin(arr, sizeof(SaveLoad));
     }
+    void loadDataTest(int slotNumber, char *saveName)
+    { //
+      // FileManager fm = *(new FileManager());
+      // fm.getBin(arr, sizeof(SaveLoad));
+      // int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
+      // SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+    }
     void newPageWasChosen(int newPage)
     {
 

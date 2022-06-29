@@ -32,23 +32,65 @@ public:
     {
         int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
 
-        // try
-        // {
-        //     intArr[0] = saveLoad.page;
-        //     intArr[1] = saveLoad.HP;
-        //     intArr[2] = saveLoad.maxHP;
-        //     int invC = 0;
-        //     for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
-        //     {
-        //         intArr[i] = saveLoad.inventory[invC][0];
-        //         intArr[i + 1] = saveLoad.inventory[invC][1];
-        //         invC++;
-        //     }
-        // }
-        // catch (exception e)
-        // {
-        //     std::cout << "StructToIntArray Exception" << e.what();
-        // }
+        try
+        {
+            if (!reverse)
+            {
+                intArr[0] = saveLoad.page;
+                intArr[1] = saveLoad.HP;
+                intArr[2] = saveLoad.maxHP;
+                // intArr[3] = saveLoad.maxHP;
+            }
+
+            int invC = 0;
+
+            for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
+            {
+                if (!reverse)
+                {
+                    intArr[i] = saveLoad.inventory[invC][0];
+                    intArr[i + 1] = saveLoad.inventory[invC][1];
+                    invC++;
+                }
+            }
+        }
+        catch (exception e)
+        {
+            std::cout << "StructToIntArray Exception" << e.what();
+        }
+
+        return intArr;
+    }
+    static int *StructToByteArray(SaveLoadData &saveLoad, bool reverse = false)
+    {
+        int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
+
+        try
+        {
+            if (!reverse)
+            {
+                intArr[0] = saveLoad.page;
+                intArr[1] = saveLoad.HP;
+                intArr[2] = saveLoad.maxHP;
+                // intArr[3] = saveLoad.maxHP;
+            }
+
+            int invC = 0;
+
+            for (int i = 3; i < SAVE_RECORD_SIZE_BYTES - 1; i += 2)
+            {
+                if (!reverse)
+                {
+                    intArr[i] = saveLoad.inventory[invC][0];
+                    intArr[i + 1] = saveLoad.inventory[invC][1];
+                    invC++;
+                }
+            }
+        }
+        catch (exception e)
+        {
+            std::cout << "StructToIntArray Exception" << e.what();
+        }
 
         return intArr;
     }
@@ -57,6 +99,13 @@ public:
     {
         SaveLoadData sl; // eeee
         sl = SaveLoad::StateToStruct(stateRef, saveName);
+        int *ret = StructToIntArray(sl);
+        return 0;
+    }
+    static SaveLoadData *GetDataFromIntArray(const State &stateRef, char *saveName)
+    {
+        SaveLoadData sl; // eeee
+
         int *ret = StructToIntArray(sl);
         return 0;
     }
