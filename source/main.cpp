@@ -46,11 +46,11 @@ private:
     State *state = new State(1);
     void saveDataTest(int slotNumber, char *saveName)
     { //
-        // int *arr =
-        SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+        int *arr =
+            SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
 
-        // FileManager fm = *(new FileManager());
-        // fm.addBin(arr, sizeof(SaveLoad));
+        FileManager fm = *(new FileManager());
+        fm.addBin(arr, sizeof(SaveLoad));
     }
     void newPageWasChosen(int newPage)
     {

@@ -57,9 +57,7 @@ public:
     {
         SaveLoadData sl; // eeee
         sl = SaveLoad::StateToStruct(stateRef, saveName);
-
         int *ret = StructToIntArray(sl);
-
         return 0;
     }
     static SaveLoadData StateToStruct(const State &stateRef, char *saveName)

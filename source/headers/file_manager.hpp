@@ -61,7 +61,6 @@ void FileManager::addBin(const int *intArr, int length)
     fstream file = openFile();
     ofstream strm(FileName, ios::out | ios::binary);
     strm.write((char *)&intArr, length);
-
     strm.close();
 }
 
