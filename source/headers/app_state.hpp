@@ -27,6 +27,8 @@ private:
     time_t start_time;
     clock_t start_t;
     Page pageObj;
+    void loadGame(int page);
+    void saveGame(int page);
 
 public:
     int HP;

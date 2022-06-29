@@ -43,6 +43,14 @@ void State::setPage(int pageNum)
 
         int _lastPage = page;
         this->page = pageNum;
+        if (pageNum > PAGE_NUMBER_LOAD_SLOTS)
+        {
+            loadGame(pageNum);
+        }
+        else if (pageNum > PAGE_NUMBER_SAVE_SLOTS)
+        {
+            saveGame(pageNum);
+        }
         if (pageNum == PAGE_NUMBER_RETURN_TO_GAME)
         {
             this->page = this->lastStoryPage;
@@ -71,6 +79,15 @@ void State::setPage(int pageNum)
         }
     }
 };
+void State::loadGame(int pageNum)
+{
+}
+void State::saveGame(int pageNum)
+{
+    cout << "/n/n Save name (Enter if no change): \n";
+    std::string saveName;
+    cin >> saveName;
+}
 
 void State::tik()
 {

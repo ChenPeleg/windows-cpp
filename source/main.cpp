@@ -44,11 +44,11 @@ public:
 
 private:
     State *state = new State(1);
-    void saveDataTest()
+    void saveDataTest(int slotNumber, char *saveName)
     {
-        int *arr = SaveLoad::GetIntArrayFromStateClass(*(state));
+        int *arr = SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
         FileManager fm = *(new FileManager());
-        fm.addBin(arr, SAVE_RECORD_SIZE_BYTES);
+        fm.addBin(arr, sizeof(SaveLoad));
     }
     void newPageWasChosen(int newPage)
     {
@@ -97,7 +97,7 @@ private:
             newPageWasChosen(10002);
             break;
         case 'E':
-            saveDataTest();
+            saveDataTest(1, "Chen"); //
             break;
         }
     }
