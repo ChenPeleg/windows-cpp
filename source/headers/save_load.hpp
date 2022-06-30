@@ -20,6 +20,10 @@ private:
 public:
     struct SaveLoadData
     {
+        char a;
+        char b;
+        char c;
+        char d;
         int HP;
         int maxHP;
         int page;
@@ -32,20 +36,31 @@ public:
     static char *StructToByteArray(SaveLoadData &saveLoad)
     {
         char *byteArr = reinterpret_cast<char *>(&saveLoad);
+        cout << "save bin:";
+
         return byteArr;
     }
     static SaveLoadData *ByteArrayToStruct(char *byteArr)
     {
 
         SaveLoadData *fromChar = reinterpret_cast<SaveLoadData *>(byteArr);
-        // &sl = reinterpret_cast<SaveLoadData>(byteArr);
+
         return fromChar;
     }
-    static char *GetByteArrayFromStateAndData(const State &stateRef, char *saveName)
+    static char *GetByteArrayFromStateAndData(const State &stateRef, char *saveName, char charRef[sizeof(SaveLoadData)])
     {
         SaveLoadData sl; // eeee
         sl = SaveLoad::StateToStruct(stateRef, saveName);
-        char *ret = StructToByteArray(sl);
+        char *ret = new char[sizeof(SaveLoadData)];
+        ret = StructToByteArray(sl);
+        for (int p = 0; p < sizeof(SaveLoadData); p++)
+            charRef[p] = ret[p];
+
+        cout << "\n\n Byte array: ";
+        for (int i = 0; i < sizeof(SaveLoad::SaveLoadData); i++)
+        {
+            cout << charRef[i];
+        }
         return ret;
     }
 
@@ -60,7 +75,10 @@ public:
         SaveLoadData saveload;
         try
         {
-
+            saveload.a = 'O';
+            saveload.b = 'K';
+            saveload.c = '!';
+            saveload.d = ' ';
             saveload.HP = stateRef.HP;
             saveload.maxHP = stateRef.maxHP;
             bool nameOver = false;

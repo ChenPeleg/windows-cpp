@@ -49,7 +49,16 @@ private:
         try
         {
 
-            char *charArr = SaveLoad::GetByteArrayFromStateAndData(*(state), saveName);
+            char *charArr = new char[sizeof(SaveLoad::SaveLoadData)];
+            SaveLoad::GetByteArrayFromStateAndData(*(state), saveName, charArr);
+
+            cout << "\n\n SaveDataTest Byte array: ";
+
+            for (int i = 0; i < sizeof(SaveLoad::SaveLoadData); i++)
+            {
+                cout << charArr[i];
+            }
+
             FileManager fm = *(new FileManager());
             fm.addBin(charArr, sizeof(SaveLoad::SaveLoadData));
         }
