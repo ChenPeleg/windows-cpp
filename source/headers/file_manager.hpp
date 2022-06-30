@@ -18,7 +18,8 @@ public:
     ~FileManager();
     void add(const char *textToWrite);
     void addBin(const int *textToWrite, int lenght);
-    void getBin(int *textToWrite, int lenght);
+    void addBin(const char *textToWrite, int lenght);
+    void getBin(char *charArr, int lenght);
     long GetFileLength();
     fstream openFile();
 };
@@ -64,12 +65,17 @@ void FileManager::addBin(const int *intArr, int length)
     strm.write((char *)&intArr, length);
     strm.close();
 }
-void FileManager::getBin(int *intArr, int length)
+void FileManager::addBin(const char *charArr, int length)
 {
 
-    // fstream file = openFile();
+    ofstream strm(FileName, ios::out | ios::binary);
+    strm.write(charArr, length);
+    strm.close();
+}
+void FileManager::getBin(char *charArr, int length)
+{
     ifstream strm(FileName, ios::in | ios::binary);
-    strm.read((char *)&intArr, length);
+    strm.read((char *)&charArr, length);
     strm.close();
 }
 
