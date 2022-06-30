@@ -51,7 +51,7 @@ private:
 
             char *charArr = SaveLoad::GetByteArrayFromStateAndData(*(state), saveName);
             FileManager fm = *(new FileManager());
-            fm.addBin(charArr, sizeof(SaveLoad));
+            fm.addBin(charArr, sizeof(SaveLoad::SaveLoadData));
         }
         catch (exception e)
         {
@@ -59,12 +59,22 @@ private:
         }
         return true;
     }
-    bool loadDataTest(int slotNumber, char *saveName)
-    { //
-        // FileManager fm = *(new FileManager());
-        // fm.getBin(arr, sizeof(SaveLoad));
-        // int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
-        // SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+    bool loadDataTest(int slotNumber)
+    {
+        try
+        {
+            //
+            char *charArr = new char[sizeof(SaveLoad::SaveLoadData)];
+            FileManager fm = *(new FileManager());
+            fm.getBin(charArr, sizeof(SaveLoad::SaveLoadData));
+            SaveLoad::SaveLoadData *slPtr = SaveLoad::ByteArrayToStruct(charArr);
+            SaveLoad::SaveLoadData slRef = *slPtr;
+            delete charArr;
+        }
+        catch (exception e)
+        {
+            return false;
+        }
         return true;
     }
     void newPageWasChosen(int newPage)
@@ -114,14 +124,26 @@ private:
             newPageWasChosen(10002);
             break;
         case 'E':
+        {
             char name[] = "Chen"; //
             if (saveDataTest(1, name))
             {
                 cout << "\n\n Game was saved! \n\n";
+                int a2;
+                cin >> a2;
+            };
+        }
+        break;
+        case 'W':
+        {
+            if (loadDataTest(1))
+            {
+                cout << "\n\n Game was loaded! \n\n";
                 int a;
                 cin >> a;
             };
-            break;
+        }
+        break;
         }
     }
     int getOptionFromKeyPressed(char key)
@@ -182,7 +204,7 @@ private:
             }
             char keyPressed = app_events::getKeyPressed();
 
-            if (!((keyPressed >= 49 && keyPressed <= 56) || keyPressed == 'S' || keyPressed == 'E' || keyPressed == 116 || keyPressed == 0))
+            if (!((keyPressed >= 49 && keyPressed <= 56) || keyPressed == 'S' || keyPressed == 'E' || keyPressed == 'W' || keyPressed == 116 || keyPressed == 0))
             {
                 keyPressed = 0;
                 continue;
@@ -255,7 +277,7 @@ private:
                 finish();
                 runing = false;
             }
-            else if ((keyPressed == 'S' || keyPressed == 'B' || keyPressed == 'E') && state->getPage() < 10000)
+            else if ((keyPressed == 'S' || keyPressed == 'B' || keyPressed == 'E' || keyPressed == 'W') && state->getPage() < 10000)
             {
                 specialKeyPressed(keyPressed);
             }

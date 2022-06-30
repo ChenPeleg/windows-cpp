@@ -75,7 +75,7 @@ void FileManager::addBin(const char *charArr, int length)
 void FileManager::getBin(char *charArr, int length)
 {
     ifstream strm(FileName, ios::in | ios::binary);
-    strm.read((char *)&charArr, length);
+    strm.read(charArr, length);
     strm.close();
 }
 
