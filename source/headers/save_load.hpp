@@ -20,9 +20,9 @@ private:
 public:
     struct SaveLoadData
     {
-        int page;
         int HP;
         int maxHP;
+        int page;
         int inventory[50][2];
         int name[30];
         int time;

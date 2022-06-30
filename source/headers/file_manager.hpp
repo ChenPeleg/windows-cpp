@@ -14,7 +14,7 @@ private:
     long getFileLength(fstream &fileRef);
 
 public:
-    FileManager(const char *fileName = "data/savefile.dat", int fileDataSize = 100);
+    FileManager(const char *fileName = "data/savefile.txt", int fileDataSize = 100);
     ~FileManager();
     void add(const char *textToWrite);
     void addBin(const int *textToWrite, int lenght);
@@ -57,24 +57,17 @@ void FileManager::add(const char *textToWrite)
     file << textToWrite;
     file.close();
 }
-void FileManager::addBin(const int *intArr, int length)
-{
 
-    // fstream file = openFile();
-    ofstream strm(FileName, ios::out | ios::binary);
-    strm.write((char *)&intArr, length);
-    strm.close();
-}
 void FileManager::addBin(const char *charArr, int length)
 {
 
-    ofstream strm(FileName, ios::out | ios::binary);
+    ofstream strm(FileName, ios::out);
     strm.write(charArr, length);
     strm.close();
 }
 void FileManager::getBin(char *charArr, int length)
 {
-    ifstream strm(FileName, ios::in | ios::binary);
+    ifstream strm(FileName, ios::in);
     strm.read(charArr, length);
     strm.close();
 }
