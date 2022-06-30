@@ -44,20 +44,28 @@ public:
 
 private:
     State *state = new State(1);
-    void saveDataTest(int slotNumber, char *saveName)
+    bool saveDataTest(int slotNumber, char *saveName)
     { //
-        int *arr =
-            SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+        try
+        {
 
-        FileManager fm = *(new FileManager());
-        fm.addBin(arr, sizeof(SaveLoad));
+            char *charArr = SaveLoad::GetByteArrayFromStateAndData(*(state), saveName);
+            FileManager fm = *(new FileManager());
+            fm.addBin(charArr, sizeof(SaveLoad));
+        }
+        catch (exception e)
+        {
+            return false;
+        }
+        return true;
     }
-    void loadDataTest(int slotNumber, char *saveName)
+    bool loadDataTest(int slotNumber, char *saveName)
     { //
-      // FileManager fm = *(new FileManager());
-      // fm.getBin(arr, sizeof(SaveLoad));
-      // int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
-      // SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+        // FileManager fm = *(new FileManager());
+        // fm.getBin(arr, sizeof(SaveLoad));
+        // int *intArr = new int[SAVE_RECORD_SIZE_BYTES];
+        // SaveLoad::GetIntArrayFromStateAndData(*(state), saveName);
+        return true;
     }
     void newPageWasChosen(int newPage)
     {
@@ -106,7 +114,13 @@ private:
             newPageWasChosen(10002);
             break;
         case 'E':
-            saveDataTest(1, "Chen"); //
+            char name[] = "Chen"; //
+            if (saveDataTest(1, name))
+            {
+                cout << "\n\n Game was saved! \n\n";
+                int a;
+                cin >> a;
+            };
             break;
         }
     }
