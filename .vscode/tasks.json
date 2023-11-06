@@ -1,47 +1,45 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "clear_console",
-            "type": "shell",
-            "command": "cd..",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            }
-        },
-        {
-            "label": "build_main.cpp",
-            "type": "cppbuild",
-            "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${workspaceFolder}\\source\\main.cpp",
-                "-o",
-                "${workspaceFolder}\\bin\\main.exe"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "never",
-                "focus": false,
-                "panel": "shared",
-                // "close": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "detail": "compiler: C:\\msys64\\mingw64\\bin\\g++.exe",
-            // "dependsOn": [
-            //     "clear_console"
-            // ]
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "clear_console",
+      "type": "shell",
+      "command": "cd..",
+      "args": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+    {
+      "label": "build_main.cpp",
+      "type": "cppbuild",
+      "command": "C:\\msys64\\ucrt64\\bin\\g++.exe",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        "${workspaceFolder}\\source\\main.cpp",
+        "-o",
+        "${workspaceFolder}\\bin\\main.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared"
+        // "close": true
+      },
+      "problemMatcher": ["$gcc"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "compiler: C:\\msys64\\ucrt64\\bin\\g++.exe"
+      // "dependsOn": [
+      //     "clear_console"
+      // ]
+    }
+  ]
 }
