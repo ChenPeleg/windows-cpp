@@ -14,11 +14,17 @@ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
 
 
 
-# Cahnges from the last installation
+# Changes from the last installation
 
 looks like the path has changed to 
 
 `C:\msys64\ucrt64\bin`
 
 ## Installing mingw64
+
+
+## Path
+
+add `C:\msys64\ucrt64\bin` to windows path
+
 
