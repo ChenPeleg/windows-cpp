@@ -36,7 +36,7 @@ public:
 
         ViewEngine::hideCursor();
         graphicUtils::clear();
-        newPageWasChosen(1); // 44410001
+        newPageWasChosen(7); // 444100011
         paintContent();
         eventLoop();
         return 0;

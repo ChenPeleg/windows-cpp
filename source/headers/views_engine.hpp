@@ -36,7 +36,7 @@ public:
     static void ShowConsoleCursor(bool showFlag);
     static char *duplicateChar(char c, int len);
     static char *proccessImage(const char *);
-    static char *getImage(ImageEnumb image, common::ClockTicksState animbationState = 0);
+    static char *getImage(ImageEnum image, common::ClockTicksState animbationState = 0);
     static char *getTextImage(AsciiWordsEnumb asciiWord, common::ClockTicksState animbationState = 0);
 
     void trimRows();

@@ -268,19 +268,19 @@ int ViewEngine::getStageClockTicks(common::ClockTicksState clockTicksState, int 
 {
     return common::getStageClockTicks(clockTicksState, numberOfStages, durationOfTickInMs);
 };
-char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
+char *ViewEngine::getImage(ImageEnum image, ClockTicksState animationsState)
 {
 
     switch (image)
     {
-    case ImageEnumb::fighter:
+    case ImageEnum::fighter:
         return ViewEngine::proccessImage(images::fighter);
-    case ImageEnumb::bag:
+    case ImageEnum::bag:
         return ViewEngine::proccessImage(images::bag);
-    case ImageEnumb::mage:
+    case ImageEnum::mage:
         return ViewEngine::proccessImage(images::mage);
 
-    case ImageEnumb::candleAnimation:
+    case ImageEnum::candleAnimation:
     {
         int stage = getStageClockTicks(animationsState, 10, 100);
         switch (stage)
@@ -315,7 +315,7 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         break;
     }
 
-    case ImageEnumb::mageAnimation:
+    case ImageEnum::mageAnimation:
     {
         int stage = getStageClockTicks(animationsState, 10, 100);
         switch (stage)
@@ -349,26 +349,26 @@ char *ViewEngine::getImage(ImageEnumb image, ClockTicksState animationsState)
         return ViewEngine::proccessImage(images::mageA0);
         break;
     }
-    case ImageEnumb::manPickingFromTree:
+    case ImageEnum::manPickingFromTree:
         return ViewEngine::proccessImage(images::manPickingFromTree);
-    case ImageEnumb::manWalkingSun:
+    case ImageEnum::manWalkingSun:
         return ViewEngine::proccessImage(images::manWalkingSun);
-    case ImageEnumb::elephant:
+    case ImageEnum::elephant:
         return ViewEngine::proccessImage(images::elephant);
-    case ImageEnumb::skeleton:
+    case ImageEnum::skeleton:
         return ViewEngine::proccessImage(images::skeleton);
-    case ImageEnumb::skull:
+    case ImageEnum::skull:
         return ViewEngine::proccessImage(images::skull);
-    case ImageEnumb::blobMonster:
+    case ImageEnum::blobMonster:
         return ViewEngine::proccessImage(images::blobMonser);
-    case ImageEnumb::ghost:
+    case ImageEnum::ghost:
         return ViewEngine::proccessImage(images::ghost);
-    case ImageEnumb::worm:
+    case ImageEnum::worm:
         return ViewEngine::proccessImage(images::worm);
-    case ImageEnumb::palmTree:
+    case ImageEnum::palmTree:
         return ViewEngine::proccessImage(images::palmTree);
 
-    case ImageEnumb::none:
+    case ImageEnum::none:
 
     default:
         return ViewEngine::proccessImage(images::none);

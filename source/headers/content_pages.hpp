@@ -121,7 +121,7 @@ private:
               };
        };
 
-       void b(const char *text, ImageEnumb image, int customId)
+       void b(const char *text, ImageEnum image, int customId)
        {
               this->buildPage(text, image, customId);
        };
@@ -130,7 +130,7 @@ private:
               this->buildPage(text, image, 0, mnsType);
               this->o("", nextPage);
        };
-       void buildPage(const char *text, ImageEnumb image, int customId, content_monsters::MonsterType mnsType = content_monsters::MonsterType::none)
+       void buildPage(const char *text, ImageEnum image, int customId, content_monsters::MonsterType mnsType = content_monsters::MonsterType::none)
        {
               pageMonster = mnsType;
               setCustomId(customId, mnsType);
@@ -188,7 +188,7 @@ public:
        Choice choices[MAX_NUMBER_OF_OPTIONS];
        Item pageChangesItems[MAX_NUMBER_OF_OPTIONS];
 
-       ImageEnumb image;
+       ImageEnum image;
        content_monsters::MonsterType pageMonster;
 
        ~Page()
@@ -235,7 +235,7 @@ public:
               {
 
               case 1:
-                     p.b("Walking from the hills you embark on a big journy. You see Two roads ahed of you.", ImageEnumb::palmTree, 1);
+                     p.b("Walking from the hills you embark on a big journey. You see Two roads ahead of you.", ImageEnum::palmTree, 1);
                      p.o("Go Right ", 2,
                          "Go Left ", 6);
 
@@ -243,7 +243,7 @@ public:
                      break;
 
               case 2:
-                     p.b("You go right and down. You see a skull. What do you want to do?", ImageEnumb::worm, 1);
+                     p.b("You go right and down. You see a skull. What do you want to do?", ImageEnum::worm, 1);
                      p.o("Break It with sword ", 5,
                          "Break It with shield ", 6,
                          "Leave It ", 7);
@@ -252,37 +252,37 @@ public:
                      break;
 
               case 3:
-                     p.b("Tou look around the room. In the cornner you see a small peace of paper.", ImageEnumb::none, 1);
+                     p.b("Tou look around the room. In the cornner you see a small peace of paper.", ImageEnum::none, 1);
                      p.o("Read the paper", 4,
                          "Go through the door", 2);
                      break;
               case 4:
-                     p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", ImageEnumb::none, 1);
+                     p.b("The paper has strage writings on it and it sais: ...don't touch the golden goose", ImageEnum::none, 1);
                      p.o(
                          "Go through the door", 2);
                      break;
               case 5:
-                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling. On the Floor you find a big sword", ImageEnumb::none, 1);
+                     p.b("You go upstairs. At the end of the stairs, you see a door with a big rope hanging from the cieling. On the Floor you find a big sword", ImageEnum::none, 1);
                      p.o(
                          "Pull the Rope", 2,
                          "Open the door", 7);
                      p.setChangedItems(Item(ItemType::Sword, 1));
                      break; //
               case 6:
-                     p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", ImageEnumb::none, 1);
+                     p.b("Going down the stairs you start smelling old wine. Looks like to are getting close to the wine celler. You hear voices at the distance", ImageEnum::none, 1);
                      p.o(
                          "Get close and try to call", 2,
                          "Stay put and listen to the voices", 2);
                      break;
               case 7:
-                     p.b("Fight The Worm Moster!", ImageEnumb::worm, 1000);
+                     p.b("Fight The Worm Moster!", ImageEnum::worm, 1000);
                      p.m(content_monsters::MonsterType::blobhMonster, 2);
                      p.o("Open the door", 2,
                          "Look around", 3);
                      break;
                      // StartScreenOptions
               case 10001:
-                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+                     p.b("        WHISPERING FOREST       ", ImageEnum::candleAnimation, 1000);
 
                      p.o("         Load Last Save      ", 1,
                          "         Start New Game        ", 1,
@@ -291,7 +291,7 @@ public:
                      break;
                      // in-game Options
               case 10002:
-                     p.b("        WHISPERING FOREST       ", ImageEnumb::candleAnimation, 1000);
+                     p.b("        WHISPERING FOREST       ", ImageEnum::candleAnimation, 1000);
 
                      p.o("         Return To Game        ", PAGE_NUMBER_RETURN_TO_GAME,
                          "         Start New Game        ", 1,
@@ -300,7 +300,7 @@ public:
                          "         Options        ", 10005);
                      break;
               case 10003:
-                     p.b("   WHISPERING FOREST - LOAD GAME    ", ImageEnumb::candleAnimation, 1000);
+                     p.b("   WHISPERING FOREST - LOAD GAME    ", ImageEnum::candleAnimation, 1000);
 
                      p.o("         Slot A        ", PAGE_NUMBER_LOAD_SLOTS + 1,
                          "         Slot B        ", PAGE_NUMBER_LOAD_SLOTS + 2,
@@ -310,7 +310,7 @@ public:
                      break;
 
               case 10004:
-                     p.b("   WHISPERING FOREST - SAVE GAME    ", ImageEnumb::candleAnimation, 1000);
+                     p.b("   WHISPERING FOREST - SAVE GAME    ", ImageEnum::candleAnimation, 1000);
 
                      p.o("         Slot A        ", PAGE_NUMBER_SAVE_SLOTS + 1,
                          "         Slot B        ", PAGE_NUMBER_SAVE_SLOTS + 2,
@@ -319,7 +319,7 @@ public:
                          "         Back        ", 10002);
                      break;
               case 10005:
-                     p.b("    WHISPERING FOREST - OPTIONS       ", ImageEnumb::candleAnimation, 1000);
+                     p.b("    WHISPERING FOREST - OPTIONS       ", ImageEnum::candleAnimation, 1000);
 
                      p.o("         Sound On      ", 11111,
                          "         Sound off     ", 1,

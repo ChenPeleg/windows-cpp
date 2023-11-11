@@ -18,7 +18,7 @@ private:
 public:
     int HP;
     int maxHP;
-    asciiImages::ImageEnumb monsterImage;
+    asciiImages::ImageEnum monsterImage;
     char name[20];
     int mosterDifficulty;
     int baseDamage;

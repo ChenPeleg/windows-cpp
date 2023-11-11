@@ -3,7 +3,7 @@
 
 namespace asciiImages
 {
-  enum ImageEnumb
+  enum ImageEnum
   {
     none = 0,
     fighter = 1,
